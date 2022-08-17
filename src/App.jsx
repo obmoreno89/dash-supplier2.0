@@ -54,10 +54,38 @@ function App() {
         />
 
         {/* Auth */}
-        <Route path='/signin' element={<Signin />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/step01' element={<MultiStepForm01 />} />
+        <Route
+          path='/signin'
+          element={
+            <PublicRoute>
+              <Signin />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path='/signup'
+          element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path='/reset-password'
+          element={
+            <PublicRoute>
+              <ResetPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path='/step01'
+          element={
+            <PublicRoute>
+              <MultiStepForm01 />
+            </PublicRoute>
+          }
+        />
 
         {/* Vista previa de Componentes */}
         <Route path='/component/form' element={<FormPage />} />

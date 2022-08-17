@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
@@ -12,6 +12,8 @@ function Signin() {
   const submit = (data) => console.log(data);
 
   const { loading, setLoading } = useContext(StateContext);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -38,8 +40,8 @@ function Signin() {
           console.log('hola1');
           // let result = json;
           // localStorage.setItem('token', result.token);
-          // localStorage.setItem('first_name', result.user.first_name);
-          // localStorage.setItem('email', result.user.email);
+          // localStorage.setItem('first_name', result.first_name);
+          // localStorage.setItem('email', result.email);
           // setTimeout(() => {
           //   navigate('/');
           //   setLoading(false);
