@@ -6,6 +6,10 @@ import './css/style.scss';
 
 import './charts/ChartjsConfig';
 
+//ROUTES PRIVATE AND PUBLIC
+import PrivateRoute from './routes/PrivateRoute';
+import PublicRoute from './routes/PublicRoute';
+
 // Import pages
 import Dashboard from './pages/Dashboard';
 import PageNotFound from './pages/utility/PageNotFound';
@@ -39,7 +43,15 @@ function App() {
     <StateProvider>
       <Routes>
         {/* Dashboard */}
-        <Route exact path='/' element={<Dashboard />} />
+        <Route
+          exact
+          path='/'
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
 
         {/* Auth */}
         <Route path='/signin' element={<Signin />} />
