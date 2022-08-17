@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
@@ -12,6 +12,8 @@ function Signup() {
   } = useForm();
 
   const submit = (data) => console.log(data);
+
+  const navigate = useNavigate();
 
   return (
     <main className='bg-white'>
@@ -173,9 +175,11 @@ function Signup() {
                   </div>
                 </div>
                 <div className='flex items-center justify-center mt-6'>
-                  <button className='btn bg-primary hover:bg-secondary hover:text-primary text-white ml-3 whitespace-nowrap '>
+                  <Link
+                    to='/step01'
+                    className='btn bg-primary hover:bg-secondary hover:text-primary text-white ml-3 whitespace-nowrap '>
                     Crear cuenta
-                  </button>
+                  </Link>
                 </div>
               </form>
               {/* Footer */}

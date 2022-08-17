@@ -9,10 +9,11 @@ import './charts/ChartjsConfig';
 // Import pages
 import Dashboard from './pages/Dashboard';
 import PageNotFound from './pages/utility/PageNotFound';
-
+//LOGIN
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
+import MultiStepForm01 from './pages/MultiStepForm01';
 
 import FormPage from './pages/component/FormPage';
 import DropdownPage from './pages/component/DropdownPage';
@@ -44,6 +45,7 @@ function App() {
         <Route path='/signin' element={<Signin />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/step01' element={<MultiStepForm01 />} />
 
         {/* Vista previa de Componentes */}
         <Route path='/component/form' element={<FormPage />} />
