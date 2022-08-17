@@ -34,7 +34,7 @@ function Signin() {
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
-                <Link className='block' to='/'>
+                <div className='block'>
                   <svg
                     width='143'
                     height='33'
@@ -66,7 +66,7 @@ function Signin() {
                       fill='#8B8A8A'
                     />
                   </svg>
-                </Link>
+                </div>
               </div>
             </div>
 
@@ -205,11 +205,11 @@ function Signin() {
               <div className='pt-5 mt-6 border-t border-slate-200'>
                 {/* Warning */}
                 <div className='text-sm'>
-                  Don’t you have an account?{' '}
+                  No tienes cuenta?{' '}
                   <Link
-                    className='font-medium text-indigo-500 hover:text-indigo-600'
+                    className='font-medium text-primary hover:text-secondary'
                     to='/signup'>
-                    Sign Up
+                    Registrate
                   </Link>
                 </div>
                 {!locked ? (
