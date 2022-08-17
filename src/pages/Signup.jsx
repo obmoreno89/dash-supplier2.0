@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 
 function Signup() {
+  const [eye, setEye] = useState(false);
+  const toggleEye = () => {
+    setEye((prevState) => !prevState);
+  };
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({ user_type_id: 1 });
 
   const submit = (data) => console.log(data);
 
@@ -61,7 +66,7 @@ function Signup() {
               </div>
             </div>
 
-            <div className='max-w-sm mx-auto px-4 py-8 w-full'>
+            <div className='max-w-sm mx-auto py-8 w-full'>
               <h1 className='text-3xl text-slate-800 font-bold mb-6'>
                 Crea tu cuenta ✨
               </h1>
@@ -72,13 +77,101 @@ function Signup() {
                     <label
                       className='block text-sm font-medium mb-1'
                       htmlFor='email'>
-                      Correo electrónico{' '}
-                      <span className='text-rose-500'>*</span>
+                      Nombres <span className='text-rose-500'>*</span>
                     </label>
                     <input
                       maxLength='35'
                       autoComplete='off'
                       className='form-input w-full'
+                      type='text'
+                      {...register('first_name', {
+                        required: {
+                          value: true,
+                          message: 'El campo es requerido',
+                        },
+                        pattern: {
+                          value: /[a-zA-Z]/,
+                          message: 'El formato no es correcto',
+                        },
+                      })}
+                    />
+                    {errors.first_name && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.first_name.message}
+                      </span>
+                    )}
+                  </div>
+                  {/* INPUT LAST NAME */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      Apellidos<span className='text-rose-500'>*</span>
+                    </label>
+                    <input
+                      maxLength='35'
+                      className='form-input w-full capitalize'
+                      autoComplete='off'
+                      type='text'
+                      {...register('last_name', {
+                        required: {
+                          value: true,
+                          message: 'El campo es requerido',
+                        },
+                        pattern: {
+                          value: /[a-zA-Z]/,
+                          message: 'El formato no es correcto',
+                        },
+                      })}
+                    />{' '}
+                    {errors.last_name && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.last_name.message}
+                      </span>
+                    )}
+                  </div>
+                  {/* INPUT PHONE */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      Numero de telefono<span className='text-rose-500'>*</span>
+                    </label>
+                    <input
+                      maxLength='10'
+                      className='form-input w-full capitalize'
+                      autoComplete='off'
+                      type='number'
+                      {...register('phone_number', {
+                        required: {
+                          value: true,
+                          message: 'El campo es requerido',
+                        },
+                        pattern: {
+                          value: /[0-9]/,
+                          message: 'El formato no es correcto',
+                        },
+                        minLength: {
+                          value: 13,
+                          message: 'debe de tener 10 caracteres',
+                        },
+                        maxLength: {
+                          value: 13,
+                          message: 'debe de tener 10 caracteres',
+                        },
+                      })}
+                    />{' '}
+                    {errors.phone_number && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.phone_number.message}
+                      </span>
+                    )}
+                  </div>
+                  {/* EMAIL */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      Email<span className='text-rose-500'>*</span>
+                    </label>
+                    <input
+                      maxLength='35'
+                      className='form-input w-full'
+                      autoComplete='off'
                       type='email'
                       {...register('email', {
                         required: {
@@ -90,75 +183,21 @@ function Signup() {
                           message: 'El formato no es correcto',
                         },
                       })}
-                    />
+                    />{' '}
                     {errors.email && (
                       <span className='text-red-500 text-sm'>
                         {errors.email.message}
                       </span>
                     )}
                   </div>
-                  <div>
-                    <label
-                      className='block text-sm font-medium mb-1'
-                      htmlFor='name'>
-                      Nombre completo <span className='text-rose-500'>*</span>
-                    </label>
-                    <input
-                      maxLength='35'
-                      autoComplete='off'
-                      className='form-input w-full'
-                      type='email'
-                      {...register('email', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />
-                    {errors.email && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.email.message}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label
-                      className='block text-sm font-medium mb-1'
-                      htmlFor='role'>
-                      Puesto <span className='text-rose-500'>*</span>
-                    </label>
-                    <select
-                      className='form-select w-full'
-                      {...register('gender', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                      })}>
-                      <option value=''>Selecciona</option>
-                      <option value=''>Frontend</option>
-                      <option value=''>Backend</option>
-                      <option value=''>Otro</option>
-                    </select>
-                    {errors.gender && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.gender.message}
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <label
-                      className='block text-sm font-medium mb-1'
-                      htmlFor='password'>
+                  {/* PASSWORD */}
+                  <div className='relative'>
+                    <label className='block text-sm font-medium mb-1'>
                       Contraseña
                     </label>
                     <input
-                      maxLength='35'
                       className='form-input w-full'
+                      type={eye ? 'text' : 'password'}
                       autoComplete='off'
                       {...register('password', {
                         required: {
@@ -172,14 +211,173 @@ function Signup() {
                         {errors.password.message}
                       </span>
                     )}
+                    <button
+                      onClick={toggleEye}
+                      type='button'
+                      className='absolute right-0 top-5 mt-3 mr-4'>
+                      {eye ? (
+                        <svg
+                          width='24'
+                          height='24'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'>
+                          <path
+                            d='M21.27 9.17999C20.98 8.71999 20.67 8.28999 20.35 7.88999C19.98 7.41999 19.28 7.37999 18.86 7.79999L15.86 10.8C16.08 11.46 16.12 12.22 15.92 13.01C15.57 14.42 14.43 15.56 13.02 15.91C12.23 16.11 11.47 16.07 10.81 15.85C10.81 15.85 9.38001 17.28 8.35001 18.31C7.85001 18.81 8.01001 19.69 8.68001 19.95C9.75001 20.36 10.86 20.57 12 20.57C13.78 20.57 15.51 20.05 17.09 19.08C18.7 18.08 20.15 16.61 21.32 14.74C22.27 13.23 22.22 10.69 21.27 9.17999Z'
+                            fill='#BBC0C9'
+                          />
+                          <path
+                            d='M14.02 9.98001L9.98001 14.02C9.47001 13.5 9.14001 12.78 9.14001 12C9.14001 10.43 10.42 9.14001 12 9.14001C12.78 9.14001 13.5 9.47001 14.02 9.98001Z'
+                            fill='#BBC0C9'
+                          />
+                          <path
+                            d='M18.25 5.74999L14.86 9.13999C14.13 8.39999 13.12 7.95999 12 7.95999C9.76 7.95999 7.96 9.76999 7.96 12C7.96 13.12 8.41 14.13 9.14 14.86L5.76 18.25H5.75C4.64 17.35 3.62 16.2 2.75 14.84C1.75 13.27 1.75 10.72 2.75 9.14999C3.91 7.32999 5.33 5.89999 6.91 4.91999C8.49 3.95999 10.22 3.42999 12 3.42999C14.23 3.42999 16.39 4.24999 18.25 5.74999Z'
+                            fill='#BBC0C9'
+                          />
+                          <path
+                            d='M14.86 12C14.86 13.57 13.58 14.86 12 14.86C11.94 14.86 11.89 14.86 11.83 14.84L14.84 11.83C14.86 11.89 14.86 11.94 14.86 12Z'
+                            fill='#BBC0C9'
+                          />
+                          <path
+                            d='M21.77 2.23C21.47 1.93 20.98 1.93 20.68 2.23L2.23 20.69C1.93 20.99 1.93 21.48 2.23 21.78C2.38 21.92 2.57 22 2.77 22C2.97 22 3.16 21.92 3.31 21.77L21.77 3.31C22.08 3.01 22.08 2.53 21.77 2.23Z'
+                            fill='#BBC0C9'
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          width='24'
+                          height='24'
+                          viewBox='0 0 24 24'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'>
+                          <path
+                            d='M21.25 9.14999C18.94 5.51999 15.56 3.42999 12 3.42999C10.22 3.42999 8.49 3.94999 6.91 4.91999C5.33 5.89999 3.91 7.32999 2.75 9.14999C1.75 10.72 1.75 13.27 2.75 14.84C5.06 18.48 8.44 20.56 12 20.56C13.78 20.56 15.51 20.04 17.09 19.07C18.67 18.09 20.09 16.66 21.25 14.84C22.25 13.28 22.25 10.72 21.25 9.14999ZM12 16.04C9.76 16.04 7.96 14.23 7.96 12C7.96 9.76999 9.76 7.95999 12 7.95999C14.24 7.95999 16.04 9.76999 16.04 12C16.04 14.23 14.24 16.04 12 16.04Z'
+                            fill='#BBC0C9'
+                          />
+                          <path
+                            d='M12 9.14001C10.43 9.14001 9.15002 10.42 9.15002 12C9.15002 13.57 10.43 14.85 12 14.85C13.57 14.85 14.86 13.57 14.86 12C14.86 10.43 13.57 9.14001 12 9.14001Z'
+                            fill='#BBC0C9'
+                          />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+                  {/* BUSINESS NAME */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      Nombre del negocio
+                    </label>
+                    <input
+                      maxLength='35'
+                      className='form-input w-full'
+                      autoComplete='off'
+                      type='text'
+                      {...register('business_name', {
+                        required: {
+                          value: false,
+                          message: 'El campo es requerido',
+                        },
+                        pattern: {
+                          value: /[a-zA-Z]/,
+                          message: 'El formato no es correcto',
+                        },
+                      })}
+                    />{' '}
+                    {errors.business_name && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.business_name.message}
+                      </span>
+                    )}
+                  </div>
+                  {/* INPUT RFC */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      RFC
+                    </label>
+                    <input
+                      maxLength='13'
+                      className='uppercase form-input w-full '
+                      autoComplete='off'
+                      type='text'
+                      {...register('rfc', {
+                        required: {
+                          value: false,
+                          message: 'El campo es requerido',
+                        },
+                        pattern: {
+                          value: /[a-zA-Z0-9]/,
+                          message: 'El formato no es correcto',
+                        },
+                        minLength: {
+                          value: 13,
+                          message: 'El RFC debe de tener 13 caracteres',
+                        },
+                      })}
+                    />{' '}
+                    {errors.rfc && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.rfc.message}
+                      </span>
+                    )}
+                  </div>
+                  {/* CUSTOMER TYPE ID */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      Tipo de cliente<span className='text-rose-500'>*</span>
+                    </label>
+                    <select
+                      className='form-select w-full'
+                      {...register('customer_type_id', {
+                        required: {
+                          value: true,
+                          message: 'El campo es requerido',
+                        },
+                      })}>
+                      <option value=''>Selecciona</option>
+                      <option value='1'>Comprador</option>
+                      <option value='2'>Proveedor</option>
+                      <option value='3'>Chofer</option>
+                    </select>
+                    {errors.customer_type_id && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.customer_type_id.message}
+                      </span>
+                    )}
+                  </div>
+                  {/* BUSINESS TYPE */}
+                  <div>
+                    <label className='block text-sm font-medium mb-1'>
+                      Tipo del negocio
+                    </label>
+                    <input
+                      maxLength='35'
+                      className='form-input w-full'
+                      autoComplete='off'
+                      type='text'
+                      {...register('business_type', {
+                        required: {
+                          value: false,
+                          message: 'El campo es requerido',
+                        },
+                        pattern: {
+                          value: /[a-zA-Z]/,
+                          message: 'El formato no es correcto',
+                        },
+                      })}
+                    />{' '}
+                    {errors.business_type && (
+                      <span className='text-red-500 text-sm'>
+                        {errors.business_type.message}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className='flex items-center justify-center mt-6'>
-                  <Link
-                    to='/step01'
+                  <button
+                    type='submit'
                     className='btn bg-primary hover:bg-secondary hover:text-primary text-white ml-3 whitespace-nowrap '>
                     Crear cuenta
-                  </Link>
+                  </button>
                 </div>
               </form>
               {/* Footer */}

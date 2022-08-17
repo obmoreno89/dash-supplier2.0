@@ -7,9 +7,8 @@ import AuthImage from '../images/auth-image.jpg';
 
 function Signin() {
   const [locked, setLocked] = useState(false);
-  const [typeLock, setTypeLock] = useState(false);
   const [eye, setEye] = useState(false);
-  const submit = (data) => console.log(data);
+  // const submit = (data) => console.log(data);
 
   const { loading, setLoading } = useContext(StateContext);
 
@@ -35,25 +34,24 @@ function Signin() {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json.user_type_id === 2) {
-          // setLoading(true);
-          console.log('hola1');
-          // let result = json;
-          // localStorage.setItem('token', result.token);
-          // localStorage.setItem('first_name', result.first_name);
-          // localStorage.setItem('email', result.email);
-          // setTimeout(() => {
-          //   navigate('/');
-          //   setLoading(false);
-          // }, 2000);
-        } else if (json.user_type_id === 1) {
-          // setLoading(true);
+        if (json.customer_type_id === 2) {
+          setLoading(true);
+          let result = json;
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('first_name', result.first_name);
+          localStorage.setItem('email', result.email);
           setTimeout(() => {
-            setTypeLock(true);
+            navigate('/');
+            setLoading(false);
+          }, 2000);
+        } else if (json.customer_type_id === 1) {
+          setLoading(true);
+          setLocked(true);
+          setTimeout(() => {
             setLoading(false);
           }, 2000);
         } else if (json.code === 401) {
-          // setLoading(true);
+          setLoading(true);
           setTimeout(() => {
             setLocked(true);
             setLoading(false);
@@ -259,23 +257,9 @@ function Signin() {
                         <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z' />
                       </svg>
                       <span className='text-sm'>
-                        Este sitio es de uso exclusivo para empleados de
-                        Hubmine, si usted no es un empleado no está autorizado a
-                        continuar usando este sitio.
-                      </span>
-                    </div>
-                  </div>
-                ) : typeLock ? (
-                  <div className='mt-5'>
-                    <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
-                      <svg
-                        className='inline w-4 h-4 shrink-0 fill-current mr-2'
-                        viewBox='0 0 17 17'>
-                        <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
-                      </svg>
-                      <span className='text-sm'>
-                        Lo sentimos, el sitio solo es para proveedores puedes
-                        crear una cuenta para poder ingresar al sitio.
+                        Este sitio es de uso exclusivo para proveedores de
+                        Hubmine, si usted es comprador, debe crear una cuenta
+                        para poder acceder al sitio.
                       </span>
                     </div>
                   </div>
@@ -289,7 +273,8 @@ function Signin() {
                       </svg>
                       <span className='text-sm'>
                         Se ha producido un problema al iniciar sesión. Comprueba
-                        el correo electrónico y la contraseña.
+                        el correo electrónico y la contraseña. Si usted es
+                        comprador no puede acceder al sitio.
                       </span>
                     </div>
                   </div>
