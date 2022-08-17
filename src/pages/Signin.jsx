@@ -182,11 +182,11 @@ function Signin() {
                 </div>
                 <div className='flex items-center justify-between mt-6'>
                   <div className='mr-1'>
-                    <Link
+                    {/* <Link
                       className='text-sm underline hover:no-underline'
                       to='/reset-password'>
                       ¿Olvidaste tu contraseña?
-                    </Link>
+                    </Link> */}
                   </div>
                   {loading ? (
                     <LoadingButton />
@@ -204,6 +204,14 @@ function Signin() {
               {/* Footer */}
               <div className='pt-5 mt-6 border-t border-slate-200'>
                 {/* Warning */}
+                <div className='text-sm'>
+                  Don’t you have an account?{' '}
+                  <Link
+                    className='font-medium text-indigo-500 hover:text-indigo-600'
+                    to='/signup'>
+                    Sign Up
+                  </Link>
+                </div>
                 {!locked ? (
                   <div className='mt-5'>
                     <div className='bg-amber-100 text-amber-600 px-3 py-2 rounded'>
