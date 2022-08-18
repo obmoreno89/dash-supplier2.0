@@ -16,8 +16,13 @@ import PageNotFound from './pages/utility/PageNotFound';
 //LOGIN
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+//RESET PASSWORD
 import ResetPassword from './pages/ResetPassword';
-import MultiStepForm01 from './pages/MultiStepForm01';
+//MULTI STEP FORM
+import MultiStepForm from './pages/MultiStepForm';
+import MultiStepForm02 from './pages/MultiStepForm02';
+import MultiStepForm03 from './pages/MultiStepForm03';
+import MultiStepFormEnd from './pages/MultiStepFormEnd';
 
 import FormPage from './pages/component/FormPage';
 import DropdownPage from './pages/component/DropdownPage';
@@ -79,10 +84,19 @@ function App() {
           }
         />
         <Route
-          path='/step01'
+          path='/multiStep'
           element={
             <PublicRoute>
-              <MultiStepForm01 />
+              <MultiStepForm />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path='/multiStep/end'
+          element={
+            <PublicRoute>
+              <MultiStepFormEnd />
             </PublicRoute>
           }
         />
