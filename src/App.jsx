@@ -20,8 +20,6 @@ import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
 //MULTI STEP FORM
 import MultiStepForm from './pages/MultiStepForm';
-import MultiStepForm02 from './pages/MultiStepForm02';
-import MultiStepForm03 from './pages/MultiStepForm03';
 import MultiStepFormEnd from './pages/MultiStepFormEnd';
 
 import FormPage from './pages/component/FormPage';

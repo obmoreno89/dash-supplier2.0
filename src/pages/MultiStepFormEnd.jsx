@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 
-const MultiStepForm04 = () => {
+const MultiStepFormEnd = () => {
   return (
     <main className='bg-white'>
       <div className='relative flex'>
@@ -146,4 +146,4 @@ const MultiStepForm04 = () => {
   );
 };
 
-export default MultiStepForm04;
+export default MultiStepFormEnd;

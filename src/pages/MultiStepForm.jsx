@@ -32,14 +32,13 @@ const MultiStepForm = () => {
     } else if (step === 2) {
       return (
         <div className='flex items-center justify-between'>
-          {step === 2 && (
-            <button
-              type='button'
-              onClick={previousFormStep}
-              className='text-sm underline hover:no-underline'>
-              &lt;- Regresar
-            </button>
-          )}
+          <button
+            type='button'
+            onClick={previousFormStep}
+            className='text-sm underline hover:no-underline'>
+            &lt;- Regresar
+          </button>
+
           {loading ? (
             <LoadingButton />
           ) : (
