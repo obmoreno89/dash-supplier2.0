@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
+import StateContext from '../context/StateContext';
 
 function Signup() {
-  const [eye, setEye] = useState(false);
-  const toggleEye = () => {
-    setEye((prevState) => !prevState);
-  };
+  const { eye, toggleEye } = useContext(StateContext);
+
   const {
     register,
     handleSubmit,
@@ -70,6 +69,10 @@ function Signup() {
               <h1 className='text-3xl text-slate-800 font-bold mb-6'>
                 Crea tu cuenta ✨
               </h1>
+              <p className='mb-4 text-sm'>
+                Vamos a crear una cuenta para que puedas ingresar a nuestro
+                sitio, compártenos los siguientes datos.
+              </p>
               {/* Form */}
               <form onSubmit={handleSubmit(submit)}>
                 <div className='space-y-4'>

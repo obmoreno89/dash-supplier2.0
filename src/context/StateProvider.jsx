@@ -6,7 +6,9 @@ const StateProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   //STATE FOR EYES
   const [eye, setEye] = useState(false);
-
+  const toggleEye = (prevState) => {
+    setEye((prevState) => !prevState);
+  };
   return (
     <StateContext.Provider
       value={{
@@ -14,6 +16,7 @@ const StateProvider = ({ children }) => {
         setLoading,
         eye,
         setEye,
+        toggleEye,
       }}>
       {children}
     </StateContext.Provider>

@@ -10,7 +10,7 @@ function Signin() {
 
   // const submit = (data) => console.log(data);
 
-  const { loading, setLoading, eye, setEye } = useContext(StateContext);
+  const { loading, setLoading, eye, toggleEye } = useContext(StateContext);
 
   const navigate = useNavigate();
 
@@ -19,10 +19,6 @@ function Signin() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  const toggleEye = () => {
-    setEye((prevState) => !prevState);
-  };
 
   async function loginUser(credentials) {
     return fetch('http://supplier.hubmine.mx/api/auth/login/', {
