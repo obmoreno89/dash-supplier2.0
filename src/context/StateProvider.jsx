@@ -6,6 +6,10 @@ const StateProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   //STATE FOR EYES
   const [eye, setEye] = useState(false);
+  //STATE FOR OPEN MODAL VERIFICATION
+  const [newsletterModalOpen, setNewsletterModalOpen] = useState(false);
+
+  //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
     setEye((prevState) => !prevState);
   };
@@ -17,6 +21,8 @@ const StateProvider = ({ children }) => {
         eye,
         setEye,
         toggleEye,
+        newsletterModalOpen,
+        setNewsletterModalOpen,
       }}>
       {children}
     </StateContext.Provider>

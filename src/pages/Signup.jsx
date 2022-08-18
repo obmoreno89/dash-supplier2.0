@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import StateContext from '../context/StateContext';
+import ModalVerification from '../helpers/ModalVerification';
 
 function Signup() {
   const { eye, toggleEye } = useContext(StateContext);
@@ -284,6 +285,7 @@ function Signup() {
                     Iniciar sesión
                   </Link>
                 </div>
+                <ModalVerification />
               </div>
             </div>
           </div>
