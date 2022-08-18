@@ -1,12 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ModalAction from '../components/ModalAction';
 import StateContext from '../context/StateContext';
 import { useForm } from 'react-hook-form';
+import LoadingButton from './LoadingButton';
 
 const ModalVerification = () => {
-  const { newsletterModalOpen, setNewsletterModalOpen } =
+  const { newsletterModalOpen, setNewsletterModalOpen, loading, setLoading } =
     useContext(StateContext);
+
+  const submit = (data) => console.log(data);
+
+  const [errorApi, setErrorApi] = useState(false);
 
   const {
     register,
@@ -17,6 +22,41 @@ const ModalVerification = () => {
   useEffect(() => {
     setNewsletterModalOpen(true);
   }, []);
+
+  async function numberValidation(phone) {
+    return fetch('http://supplier.hubmine.mx/api/auth/send_register/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(phone),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.code) {
+          setLoading(true);
+          async function codeValidation(code) {
+            return fetch('http://supplier.hubmine.mx/api/auth/validate/', {
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json',
+              },
+              body: JSON.stringify(code),
+            }).then((response) => {
+              if (response.status === 202) {
+                setTimeout(() => {
+                  setNewsletterModalOpen(false);
+                  setLoading(false);
+                }, 4000);
+              } else {
+                setErrorApi(true);
+              }
+            });
+          }
+          codeValidation(json);
+        }
+      });
+  }
 
   return (
     <div className='m-1.5'>
@@ -46,9 +86,7 @@ const ModalVerification = () => {
               <path className='text-primary' d='M26 24l-7-6v5h-8v2h8v5z' />
             </svg>
           </div>
-          <div className='text-lg font-semibold text-slate-800'>
-            Validación de datos
-          </div>
+          <div className='text-lg font-semibold text-slate-800'>Validación</div>
         </div>
         {/* Modal content */}
         <div className='text-center'>
@@ -57,17 +95,16 @@ const ModalVerification = () => {
             podras continuar con la operación.
           </div>
           {/* Submit form */}
-          <form className='flex max-w-sm m-auto'>
-            <div className='grow mr-2'>
-              <label htmlFor='subscribe-form' className='sr-only'>
-                Leave your Email
-              </label>
+          <form
+            onSubmit={handleSubmit(numberValidation)}
+            className='flex max-w-sm m-auto space-x-3'>
+            {/* INPUT PHONE */}
+            <div className='w-full h-9'>
               <input
-                maxLength='10'
-                id='subscribe-form'
-                className='form-input w-full px-2 py-1'
-                type='email'
-                {...register('phone_number', {
+                className='form-input w-full capitalize'
+                autoComplete='off'
+                type='number'
+                {...register('number', {
                   required: {
                     value: true,
                     message: 'El campo es requerido',
@@ -77,36 +114,53 @@ const ModalVerification = () => {
                     message: 'El formato no es correcto',
                   },
                   minLength: {
-                    value: 13,
-                    message: 'debe de tener 10 caracteres',
+                    value: 10,
+                    message: 'Debe de tener 10 caracteres',
                   },
                   maxLength: {
-                    value: 13,
-                    message: 'debe de tener 10 caracteres',
+                    value: 10,
+                    message: 'Debe de tener 10 caracteres',
                   },
                 })}
               />{' '}
-              {errors.phone_number && (
+              {errors.number && (
                 <span className='text-red-500 text-sm'>
-                  {errors.phone_number.message}
+                  {errors.number.message}
                 </span>
               )}
             </div>
-            <button
-              type='submit'
-              className='btn-sm bg-primary hover:bg-indigo-600 text-white whitespace-nowrap'>
-              Validar
-            </button>
+            {loading ? (
+              <LoadingButton />
+            ) : (
+              <>
+                <button
+                  type='submit'
+                  className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-1 h-9'>
+                  Validar
+                </button>
+              </>
+            )}
           </form>
-          <div className='text-xs text-slate-500 italic mt-3'>
-            <div className='text-sm'>
-              Quieres regresar al login?{' '}
-              <a
-                className='font-medium text-primary hover:text-secondary'
-                href='/signin'>
-                Regresar
-              </a>
-            </div>
+          <div className='text-xs text-slate-500 italic mt-8'>
+            {!errorApi ? (
+              <div className='text-sm'>
+                ¿Quieres regresar al login?{' '}
+                <a
+                  className='font-medium text-primary hover:text-secondary'
+                  href='/signin'>
+                  Regresar
+                </a>
+              </div>
+            ) : (
+              <div className='text-sm text-red-500'>
+                Lo sentimos, al parecer tenemos problemas con nuestro servidor.{' '}
+                <a
+                  className='btn border-neutral-200 font-medium text-primary hover:text-red-500 '
+                  href='/signin'>
+                  Regresar
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </ModalAction>
