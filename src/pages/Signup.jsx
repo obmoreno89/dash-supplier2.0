@@ -1,24 +1,61 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import StateContext from '../context/StateContext';
 import ModalVerification from '../helpers/ModalVerification';
+import LoadingButton from '../helpers/LoadingButton';
 
 function Signup() {
   const { eye, toggleEye } = useContext(StateContext);
+  const [errorMenssage, setErrorMenssage] = useState(false);
+  const [reloading, setReloading] = useState(false);
 
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
-  } = useForm({ user_type_id: 1, customer_type_id: 2 });
+  } = useForm({
+    defaultValues: {
+      customer_type_id: 2,
+      user_type_id: 2,
+      business_name: '',
+      rfc: '',
+      country_code: '',
+      business_type: '',
+    },
+  });
 
   const submit = (data) => console.log(data);
 
   const navigate = useNavigate();
+
+  async function createAccount(data) {
+    return fetch('http://supplier.hubmine.mx/api/auth/register/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.code === 201) {
+          setReloading(true);
+          setTimeout(() => {
+            setReloading(false);
+            navigate('/step01');
+          }, 3000);
+        } else {
+          setReloading(true);
+          setTimeout(() => {
+            setErrorMenssage(true);
+            setReloading(false);
+          }, 3000);
+        }
+      });
+  }
 
   return (
     <main className='bg-white'>
@@ -75,7 +112,7 @@ function Signup() {
                 sitio, compártenos los siguientes datos.
               </p>
               {/* Form */}
-              <form onSubmit={handleSubmit(submit)}>
+              <form onSubmit={handleSubmit(createAccount)}>
                 <div className='space-y-4'>
                   <div>
                     <label
@@ -152,11 +189,11 @@ function Signup() {
                           message: 'El formato no es correcto',
                         },
                         minLength: {
-                          value: 13,
+                          value: 10,
                           message: 'debe de tener 10 caracteres',
                         },
                         maxLength: {
-                          value: 13,
+                          value: 10,
                           message: 'debe de tener 10 caracteres',
                         },
                       })}
@@ -197,7 +234,7 @@ function Signup() {
                   {/* PASSWORD */}
                   <div className='relative'>
                     <label className='block text-sm font-medium mb-1'>
-                      Contraseña
+                      Contraseña<span className='text-rose-500'>*</span>
                     </label>
                     <input
                       className='form-input w-full'
@@ -268,11 +305,17 @@ function Signup() {
                   </div>
                 </div>
                 <div className='flex items-center justify-center mt-6'>
-                  <button
-                    type='submit'
-                    className='btn bg-primary hover:bg-secondary hover:text-primary text-white ml-3 whitespace-nowrap '>
-                    Crear cuenta
-                  </button>
+                  {reloading ? (
+                    <LoadingButton />
+                  ) : (
+                    <>
+                      <button
+                        type='submit'
+                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+                        Crear cuenta
+                      </button>
+                    </>
+                  )}
                 </div>
               </form>
               {/* Footer */}
@@ -280,12 +323,28 @@ function Signup() {
                 <div className='text-sm'>
                   Tienes una cuenta?{' '}
                   <Link
-                    className='font-medium text-primary hover:text-indigo-600'
+                    className='font-medium text-primary hover:text-secondary'
                     to='/signin'>
                     Iniciar sesión
                   </Link>
                 </div>
                 <ModalVerification />
+              </div>
+              <div className='mt-5'>
+                {errorMenssage && (
+                  <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
+                    <svg
+                      className='inline w-4 h-4 shrink-0 fill-current mr-2'
+                      viewBox='0 0 17 17'>
+                      <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
+                    </svg>
+                    <span className='text-sm'>
+                      Problemas para crear la cuenta, el email ya existe o el
+                      número de teléfono es diferente al que ingresaste al
+                      generar el código de verificación.
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
