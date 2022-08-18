@@ -7,10 +7,10 @@ import AuthImage from '../images/auth-image.jpg';
 
 function Signin() {
   const [locked, setLocked] = useState(false);
-  const [eye, setEye] = useState(false);
+
   // const submit = (data) => console.log(data);
 
-  const { loading, setLoading } = useContext(StateContext);
+  const { loading, setLoading, eye, setEye } = useContext(StateContext);
 
   const navigate = useNavigate();
 

@@ -14,7 +14,7 @@ function Signup() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({ user_type_id: 1 });
+  } = useForm({ user_type_id: 1, customer_type_id: 2 });
 
   const submit = (data) => console.log(data);
 
@@ -261,115 +261,6 @@ function Signup() {
                         </svg>
                       )}
                     </button>
-                  </div>
-                  {/* BUSINESS NAME */}
-                  <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      Nombre del negocio
-                    </label>
-                    <input
-                      maxLength='35'
-                      className='form-input w-full'
-                      autoComplete='off'
-                      type='text'
-                      {...register('business_name', {
-                        required: {
-                          value: false,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[a-zA-Z]/,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />{' '}
-                    {errors.business_name && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.business_name.message}
-                      </span>
-                    )}
-                  </div>
-                  {/* INPUT RFC */}
-                  <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      RFC
-                    </label>
-                    <input
-                      maxLength='13'
-                      className='uppercase form-input w-full '
-                      autoComplete='off'
-                      type='text'
-                      {...register('rfc', {
-                        required: {
-                          value: false,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[a-zA-Z0-9]/,
-                          message: 'El formato no es correcto',
-                        },
-                        minLength: {
-                          value: 13,
-                          message: 'El RFC debe de tener 13 caracteres',
-                        },
-                      })}
-                    />{' '}
-                    {errors.rfc && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.rfc.message}
-                      </span>
-                    )}
-                  </div>
-                  {/* CUSTOMER TYPE ID */}
-                  <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      Tipo de cliente<span className='text-rose-500'>*</span>
-                    </label>
-                    <select
-                      className='form-select w-full'
-                      {...register('customer_type_id', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                      })}>
-                      <option value=''>Selecciona</option>
-                      <option value='1'>Comprador</option>
-                      <option value='2'>Proveedor</option>
-                      <option value='3'>Chofer</option>
-                    </select>
-                    {errors.customer_type_id && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.customer_type_id.message}
-                      </span>
-                    )}
-                  </div>
-                  {/* BUSINESS TYPE */}
-                  <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      Tipo del negocio
-                    </label>
-                    <input
-                      maxLength='35'
-                      className='form-input w-full'
-                      autoComplete='off'
-                      type='text'
-                      {...register('business_type', {
-                        required: {
-                          value: false,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[a-zA-Z]/,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />{' '}
-                    {errors.business_type && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.business_type.message}
-                      </span>
-                    )}
                   </div>
                 </div>
                 <div className='flex items-center justify-center mt-6'>

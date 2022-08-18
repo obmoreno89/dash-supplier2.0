@@ -4,13 +4,16 @@ import React, { useState } from 'react';
 const StateProvider = ({ children }) => {
   //STATE LOADING BUTTON
   const [loading, setLoading] = useState(false);
-  //STATE EXTRACTOR DATA USER BY LOGIN
+  //STATE FOR EYES
+  const [eye, setEye] = useState(false);
 
   return (
     <StateContext.Provider
       value={{
         loading,
         setLoading,
+        eye,
+        setEye,
       }}>
       {children}
     </StateContext.Provider>
