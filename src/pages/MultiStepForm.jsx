@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import AuthImage from '../images/auth-image.jpg';
+import Question from '../images/question.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import { useForm } from 'react-hook-form';
 import LoadingButton from '../helpers/LoadingButton';
@@ -452,7 +452,7 @@ const MultiStepForm = () => {
           aria-hidden='true'>
           <img
             className='object-cover object-center w-full h-full'
-            src={AuthImage}
+            src={Question}
             width='760'
             height='1024'
             alt='Onboarding'

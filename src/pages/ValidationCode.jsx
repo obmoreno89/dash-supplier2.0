@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
-import AuthImage from '../images/auth-image.jpg';
+import verification from '../images/verification.jpg';
 
 const ValidationCode = () => {
   const navigate = useNavigate();
-  const { loading, errorApi, savedCode } = useContext(StateContext);
+  const { loading, errorApi, setErrorApi, savedCode, setLoading } =
+    useContext(StateContext);
 
   const [otp, setOtp] = useState(new Array(5).fill(''));
   const [counter, setCounter] = useState(59);
@@ -22,9 +23,9 @@ const ValidationCode = () => {
   // }, [counter]);
 
   const codeValue = { code: otp.join(''), number: savedCode.number };
-  const phoneUser = savedCode.number;
 
-  console.log(codeValue);
+  const phoneUser = savedCode.number;
+  const code = savedCode.code;
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -36,6 +37,35 @@ const ValidationCode = () => {
       element.nextSibling.focus();
     }
   };
+
+  async function codeValidation() {
+    return fetch('http://supplier.hubmine.mx/api/auth/validate/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(codeValue),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.msg === 'Ok') {
+          setLoading(true);
+          let result = json;
+          localStorage.setItem('msg', result.msg);
+          setTimeout(() => {
+            setLoading(false);
+            navigate('/signup');
+          }, 3000);
+        } else {
+          setErrorApi(true);
+          setLoading(true);
+          setTimeout(() => {
+            setErrorApi(false);
+            setLoading(false);
+          }, 5000);
+        }
+      });
+  }
   return (
     <main className='bg-white'>
       <div className='relative md:flex'>
@@ -86,11 +116,14 @@ const ValidationCode = () => {
               <h1 className='text-3xl text-slate-800 font-bold mb-6'>
                 Verificación del código ✨
               </h1>
-              <div className=' mb-6 text-center'>
+              <div className=' mb-6 text-center flex flex-col'>
                 <h5 className='text-md text-slate-800 font-bold'>
                   Te enviamos un código al:
                 </h5>
                 <span className='text-red-500 font-bold'>{phoneUser}</span>
+                <span className='text-red-500 font-bold'>
+                  tu codigo: {code}
+                </span>
               </div>
               <div>
                 <p className='text-sm'>
@@ -122,6 +155,7 @@ const ValidationCode = () => {
                   ) : (
                     <>
                       <button
+                        onClick={codeValidation}
                         type='button'
                         className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
                         Validar código
@@ -144,7 +178,7 @@ const ValidationCode = () => {
                   </Link>
                 </div>
 
-                {!errorApi && (
+                {errorApi && (
                   <div className='mt-5'>
                     <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
                       <svg
@@ -170,7 +204,7 @@ const ValidationCode = () => {
           aria-hidden='true'>
           <img
             className='object-cover object-center w-full h-full'
-            src={AuthImage}
+            src={verification}
             width='760'
             height='1024'
             alt='Authentication'

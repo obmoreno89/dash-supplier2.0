@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
+import CreateAccount from '../images/createAccount.jpg';
 
 function Signup() {
   const { eye, toggleEye, errorMenssage, setErrorMenssage } =
@@ -51,11 +51,12 @@ function Signup() {
             navigate('/multiStep');
           }, 3000);
         } else {
+          setErrorMenssage(true);
           setReloading(true);
           setTimeout(() => {
-            setErrorMenssage(true);
+            setErrorMenssage(false);
             setReloading(false);
-          }, 3000);
+          }, 5000);
         }
       });
   }
@@ -358,7 +359,7 @@ function Signup() {
           aria-hidden='true'>
           <img
             className='object-cover object-center w-full h-full'
-            src={AuthImage}
+            src={CreateAccount}
             width='760'
             height='1024'
             alt='Authentication'

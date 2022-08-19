@@ -1,13 +1,12 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 
-function PrivateMultiStepForm({ children }) {
-  const code = localStorage.getItem('code');
+const PrivateMultistepForm = ({ children }) => {
+  const msg = localStorage.getItem('msg');
 
-  if (!code) {
+  if (!msg) {
     return <Navigate to='/signin' />;
   }
   return children;
-}
+};
 
-export default PrivateMultiStepForm;
+export default PrivateMultistepForm;

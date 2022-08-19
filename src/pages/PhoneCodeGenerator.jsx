@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
-import AuthImage from '../images/auth-image.jpg';
+import verification from '../images/verification.jpg';
 
 const PhoneCodeGenerator = () => {
   const {
@@ -163,7 +163,7 @@ const PhoneCodeGenerator = () => {
           aria-hidden='true'>
           <img
             className='object-cover object-center w-full h-full'
-            src={AuthImage}
+            src={verification}
             width='760'
             height='1024'
             alt='Authentication'

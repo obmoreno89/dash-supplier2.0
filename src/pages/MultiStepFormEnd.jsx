@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthImage from '../images/auth-image.jpg';
+import Question from '../images/question.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import StateContext from '../context/StateContext';
 

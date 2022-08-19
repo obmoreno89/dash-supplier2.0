@@ -10,8 +10,9 @@ export default defineConfig({
   css: {
     postcss,
   },
+  // '/dash-supplier2.0/'
   plugins: [react()],
-  base: '/dash-supplier2.0/',
+  base: '/',
   resolve: {
     alias: [
       {

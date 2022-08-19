@@ -27,6 +27,7 @@ const StateProvider = ({ children }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('code');
+    localStorage.removeItem('msg');
 
     navigate('/signin');
   }
@@ -57,7 +58,7 @@ const StateProvider = ({ children }) => {
           setTimeout(() => {
             setLoading(false);
             setErrorApi(false);
-          }, timeout);
+          }, 5000);
         }
       });
   }
