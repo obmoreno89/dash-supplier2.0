@@ -8,11 +8,22 @@ const StateProvider = ({ children }) => {
   const [eye, setEye] = useState(false);
   //STATE FOR OPEN MODAL VERIFICATION
   const [newsletterModalOpen, setNewsletterModalOpen] = useState(false);
+  //STATE FOR ERROR MENSSAGE
+  const [errorMenssage, setErrorMenssage] = useState(false);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
     setEye((prevState) => !prevState);
   };
+
+  //FUNCTION DELETE LOCAL STORAGE
+  function logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+
+    navigate('/signin');
+  }
+
   return (
     <StateContext.Provider
       value={{
@@ -23,6 +34,9 @@ const StateProvider = ({ children }) => {
         toggleEye,
         newsletterModalOpen,
         setNewsletterModalOpen,
+        errorMenssage,
+        setErrorMenssage,
+        logout,
       }}>
       {children}
     </StateContext.Provider>

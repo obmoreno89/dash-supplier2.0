@@ -8,8 +8,9 @@ import ModalVerification from '../helpers/ModalVerification';
 import LoadingButton from '../helpers/LoadingButton';
 
 function Signup() {
-  const { eye, toggleEye } = useContext(StateContext);
-  const [errorMenssage, setErrorMenssage] = useState(false);
+  const { eye, toggleEye, errorMenssage, setErrorMenssage } =
+    useContext(StateContext);
+
   const [reloading, setReloading] = useState(false);
 
   const {
@@ -43,6 +44,9 @@ function Signup() {
       .then((json) => {
         if (json.code === 201) {
           setReloading(true);
+          let result = json;
+          localStorage.setItem('id', result.id);
+          localStorage.setItem('token', result.token);
           setTimeout(() => {
             setReloading(false);
             navigate('/multiStep');

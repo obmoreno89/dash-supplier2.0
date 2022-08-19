@@ -33,6 +33,7 @@ function Signin() {
         if (json.customer_type_id === 2) {
           setLoading(true);
           let result = json;
+
           localStorage.setItem('token', result.token);
           localStorage.setItem('first_name', result.first_name);
           localStorage.setItem('email', result.email);

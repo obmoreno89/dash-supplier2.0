@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
+import StateContext from '../context/StateContext';
 
 const MultiStepFormEnd = () => {
+  const { logout } = useContext(StateContext);
   return (
     <main className='bg-white'>
       <div className='relative flex'>
@@ -112,6 +114,7 @@ const MultiStepFormEnd = () => {
                     Gracias por compartir tus datos. 🙌
                   </h1>
                   <Link
+                    onClick={logout}
                     className='btn bg-secondary hover:bg-primary hover:text-white text-primary'
                     to='/signin'>
                     Página principal -&gt;

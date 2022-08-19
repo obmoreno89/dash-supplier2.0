@@ -84,18 +84,18 @@ function App() {
         <Route
           path='/multiStep'
           element={
-            <PublicRoute>
+            <PrivateRoute>
               <MultiStepForm />
-            </PublicRoute>
+            </PrivateRoute>
           }
         />
 
         <Route
           path='/multiStep/end'
           element={
-            <PublicRoute>
+            <PrivateRoute>
               <MultiStepFormEnd />
-            </PublicRoute>
+            </PrivateRoute>
           }
         />
 

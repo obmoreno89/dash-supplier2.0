@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import { useForm } from 'react-hook-form';
@@ -16,7 +16,12 @@ const MultiStepForm = () => {
 
   const submit = (data) => console.log(data);
 
-  const { loading, setLoading } = useContext(StateContext);
+  const navigate = useNavigate();
+
+  let userId = localStorage.getItem('id');
+
+  const { loading, setLoading, errorMenssage, setErrorMenssage, logout } =
+    useContext(StateContext);
 
   const completeFormStep = () => {
     setStep((cur) => cur + 1);
@@ -31,20 +36,14 @@ const MultiStepForm = () => {
       return undefined;
     } else if (step === 2) {
       return (
-        <div className='flex items-center justify-between'>
-          <button
-            type='button'
-            onClick={previousFormStep}
-            className='text-sm underline hover:no-underline'>
-            &lt;- Regresar
-          </button>
-
+        <div>
           {loading ? (
             <LoadingButton />
           ) : (
             <button
-              type='submit'
+              type='button'
               disabled={!isValid}
+              onClick={handleSubmit(userQuestion)}
               className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-auto disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'>
               Finalizar -&gt;
             </button>
@@ -53,15 +52,7 @@ const MultiStepForm = () => {
       );
     } else {
       return (
-        <div className='flex items-center justify-between'>
-          {step > 0 && (
-            <button
-              type='button'
-              onClick={previousFormStep}
-              className='text-sm underline hover:no-underline'>
-              &lt;- Regresar
-            </button>
-          )}
+        <div>
           <button
             disabled={!isValid}
             type='button'
@@ -73,6 +64,29 @@ const MultiStepForm = () => {
       );
     }
   };
+
+  async function userQuestion(dataMulti) {
+    return fetch(`http://supplier.hubmine.mx/api/suppliers/create/${userId}/`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(dataMulti),
+    }).then((response) => {
+      if (response.status === 201) {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          navigate('/multiStep/end');
+        }, 3000);
+      } else {
+        setErrorMenssage(true);
+        setTimeout(() => {
+          setErrorMenssage(false);
+        }, 3000);
+      }
+    });
+  }
   return (
     <main className='bg-white'>
       <div className='relative flex'>
@@ -83,7 +97,7 @@ const MultiStepForm = () => {
               {/* Header */}
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
-                <Link className='block' to='/signin'>
+                <div className='block'>
                   <svg
                     width='143'
                     height='33'
@@ -115,10 +129,11 @@ const MultiStepForm = () => {
                       fill='#8B8A8A'
                     />
                   </svg>
-                </Link>
+                </div>
                 <div className='text-sm'>
                   ¿Tienes una cuenta?{' '}
                   <Link
+                    onClick={logout}
                     className='font-medium text-primary hover:text-secondary'
                     to='/signin'>
                     Iniciar sesión
@@ -130,7 +145,7 @@ const MultiStepForm = () => {
             <div className='px-4 py-8'>
               <div className='max-w-md mx-auto'>
                 {/* Form */}
-                <form onSubmit={handleSubmit(submit)}>
+                <form>
                   {step === 0 && (
                     <>
                       <div className='max-w-md mx-auto w-full mb-12'>
@@ -397,69 +412,35 @@ const MultiStepForm = () => {
                       </div>
                     </>
                   )}
-                  {step === 3 && (
-                    <>
-                      <div className='max-w-md mx-auto w-full mb-12'>
-                        <div className='relative'>
-                          <div
-                            className='absolute left-0 top-1/2 -mt-px w-full h-0.5 bg-slate-200'
-                            aria-hidden='true'></div>
-                          <section className='relative flex justify-between w-full'>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-primary text-white'>
-                                1
-                              </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-primary text-white'>
-                                2
-                              </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold  bg-primary text-white'>
-                                3
-                              </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-primary text-white'>
-                                4
-                              </div>
-                            </div>
-                          </section>
-                        </div>
+                  <div className='flex items-center justify-between'>
+                    {step > 0 && (
+                      <div>
+                        <button
+                          type='button'
+                          onClick={previousFormStep}
+                          className='text-sm underline hover:no-underline  '>
+                          &lt;- Regresar
+                        </button>
                       </div>
-                      <div className='px-4 py-8'>
-                        <div className='max-w-md mx-auto'>
-                          <div className='text-center'>
-                            <svg
-                              className='inline-flex w-16 h-16 fill-current mb-6'
-                              viewBox='0 0 64 64'>
-                              <circle
-                                className='text-emerald-100'
-                                cx='32'
-                                cy='32'
-                                r='32'
-                              />
-                              <path
-                                className='text-emerald-500'
-                                d='m28.5 41-8-8 3-3 5 5 12-12 3 3z'
-                              />
-                            </svg>
-                            <h1 className='text-3xl text-slate-800 font-bold mb-8'>
-                              Gracias por compartir tus datos. 🙌
-                            </h1>
-                            <Link
-                              className='btn bg-secondary hover:bg-primary hover:text-white text-primary'
-                              to='/signin'>
-                              Página principal -&gt;
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                  {renderButton()}
+                    )}
+                    {renderButton()}
+                  </div>
                 </form>
+                {errorMenssage && (
+                  <div className='mt-5'>
+                    <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
+                      <svg
+                        className='inline w-4 h-4 shrink-0 fill-current mr-2'
+                        viewBox='0 0 17 17'>
+                        <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
+                      </svg>
+                      <span className='text-sm'>
+                        Lo sentimos, al parecer tenemos problemas con nuestro
+                        servidor.
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
