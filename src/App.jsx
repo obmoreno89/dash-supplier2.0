@@ -27,6 +27,8 @@ import ValidationCode from './pages/ValidationCode';
 //MULTI STEP FORM
 import MultiStepForm from './pages/MultiStepForm';
 import MultiStepFormEnd from './pages/MultiStepFormEnd';
+//MODULE PRODUCTS
+import ProductCreate from './partials/products/ProductCreate';
 
 import FormPage from './pages/component/FormPage';
 import DropdownPage from './pages/component/DropdownPage';
@@ -51,17 +53,6 @@ function App() {
   return (
     <StateProvider>
       <Routes>
-        {/* Dashboard */}
-        <Route
-          exact
-          path='/'
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-
         {/* Auth */}
         <Route
           path='/signin'
@@ -116,6 +107,28 @@ function App() {
           element={
             <PrivateRoute>
               <MultiStepFormEnd />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Dashboard */}
+        <Route
+          exact
+          path='/'
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Dashboard */}
+        <Route
+          exact
+          path='/products/create'
+          element={
+            <PrivateRoute>
+              <ProductCreate />
             </PrivateRoute>
           }
         />

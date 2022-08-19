@@ -42,6 +42,7 @@ const Logout = ({ align }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
+    localStorage.removeItem('id');
     navigate('/signin');
   }
 

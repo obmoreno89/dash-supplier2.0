@@ -37,6 +37,7 @@ function Signin() {
           localStorage.setItem('token', result.token);
           localStorage.setItem('first_name', result.first_name);
           localStorage.setItem('email', result.email);
+          localStorage.setItem('id', result.id);
           setTimeout(() => {
             navigate('/');
             setLoading(false);
