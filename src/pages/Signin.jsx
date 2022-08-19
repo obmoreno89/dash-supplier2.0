@@ -238,7 +238,7 @@ function Signin() {
               <div className='pt-5 mt-6 border-t border-slate-200'>
                 {/* Warning */}
                 <div className='text-sm'>
-                  No tienes cuenta?{' '}
+                  ¿No tienes cuenta?{' '}
                   <Link
                     className='font-medium text-primary hover:text-secondary'
                     to='/signup'>
