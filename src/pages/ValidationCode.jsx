@@ -1,20 +1,25 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/auth-image.jpg';
+import { useForm } from 'react-hook-form';
 
-const PhoneCodeGenerator = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+const ValidationCode = () => {
+  const navigate = useNavigate();
+  const { loading, errorApi } = useContext(StateContext);
 
-  const submit = (data) => console.log(data);
+  const [code, setCode] = useState(new Array(4).fill(''));
 
-  const { loading, codeGenerator, errorApi } = useContext(StateContext);
+  const handleChange = (element, index) => {
+    if (isNaN(element.value)) return false;
+
+    setCode([...code.map((d, idx) => (idx === index ? element.value : d))]);
+
+    if (element.nextSibling) {
+      element.nextSibling.focus();
+    }
+  };
 
   return (
     <main className='bg-white'>
@@ -64,62 +69,40 @@ const PhoneCodeGenerator = () => {
 
             <div className='max-w-lg mx-auto px-4 py-8'>
               <h1 className='text-3xl text-slate-800 font-bold mb-6'>
-                Solicita un código ✨
+                Verificación del código ✨
               </h1>
               <div>
                 <p className='text-sm'>
-                  Introduce un número de teléfono para que puedas generar un
-                  código de verificación.
+                  Introduce el código que te hicimos llegar por mensaje SMS,
+                  para que puedas continuar con la operación.
                 </p>
               </div>
               {/* Form */}
-              <form onSubmit={handleSubmit(codeGenerator)}>
-                <div className='space-y-4 mt-10'>
-                  <div>
-                    <label
-                      className='block text-sm font-medium mb-1'
-                      htmlFor='number'>
-                      Número de teléfono<span className='text-rose-500'>*</span>
-                    </label>
+              <form>
+                <div className='space-x-10 mt-5 flex justify-center items-center'>
+                  {code.map((data, index) => (
                     <input
-                      className='form-input w-full capitalize'
+                      className='form-input w-10 text-xl'
                       autoComplete='off'
-                      type='number'
-                      {...register('number', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[0-9]/,
-                          message: 'El formato no es correcto',
-                        },
-                        minLength: {
-                          value: 10,
-                          message: 'Debe de tener 10 caracteres',
-                        },
-                        maxLength: {
-                          value: 10,
-                          message: 'Debe de tener 10 caracteres',
-                        },
-                      })}
-                    />{' '}
-                    {errors.number && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.number.message}
-                      </span>
-                    )}
-                  </div>
+                      type='text'
+                      maxLength='1'
+                      name='code'
+                      key={index}
+                      value={data}
+                      onChange={(e) => handleChange(e.target, index)}
+                      onFocus={(e) => e.target.select()}
+                    />
+                  ))}
                 </div>
-                <div className='flex items-center justify-end mt-6'>
+                <div className='flex items-center justify-end mt-16'>
                   {loading ? (
                     <LoadingButton />
                   ) : (
                     <>
                       <button
-                        type='submit'
+                        onClick={console.log(code)}
                         className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
-                        Generar código
+                        Validar código
                       </button>
                     </>
                   )}
@@ -137,7 +120,7 @@ const PhoneCodeGenerator = () => {
                   </Link>
                 </div>
 
-                {errorApi && (
+                {!errorApi && (
                   <div className='mt-5'>
                     <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
                       <svg
@@ -146,8 +129,8 @@ const PhoneCodeGenerator = () => {
                         <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
                       </svg>
                       <span className='text-sm'>
-                        Lo sentimos, al parecer tenemos problemas con nuestro
-                        servidor, vuelva a intentar más tarde.
+                        Código incorrecto, verifica que tu código que te llego
+                        en un mensaje SMS sea el correspondiente.
                       </span>
                     </div>
                   </div>
@@ -174,4 +157,4 @@ const PhoneCodeGenerator = () => {
   );
 };
 
-export default PhoneCodeGenerator;
+export default ValidationCode;

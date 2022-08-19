@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import StateContext from '../context/StateContext';
-import ModalVerification from '../helpers/ModalVerification';
 import LoadingButton from '../helpers/LoadingButton';
 
 function Signup() {
@@ -332,7 +331,6 @@ function Signup() {
                     Iniciar sesión
                   </Link>
                 </div>
-                <ModalVerification />
               </div>
               <div className='mt-5'>
                 {errorMenssage && (

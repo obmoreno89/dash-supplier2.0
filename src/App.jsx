@@ -20,6 +20,8 @@ import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
 //PHONE CODE GENERATOR
 import PhoneCodeGenerator from './pages/PhoneCodeGenerator';
+//CODE VALIDATION
+import ValidationCode from './pages/ValidationCode';
 //MULTI STEP FORM
 import MultiStepForm from './pages/MultiStepForm';
 import MultiStepFormEnd from './pages/MultiStepFormEnd';
@@ -72,6 +74,14 @@ function App() {
           element={
             <PublicRoute>
               <PhoneCodeGenerator />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path='/code/validation'
+          element={
+            <PublicRoute>
+              <ValidationCode />
             </PublicRoute>
           }
         />

@@ -11,7 +11,6 @@ export default defineConfig({
     postcss,
   },
   plugins: [react()],
-  base: '/dash-supplier2.0/',
   resolve: {
     alias: [
       {

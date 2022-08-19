@@ -1,7 +1,10 @@
 import StateContext from './StateContext';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const StateProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   //STATE LOADING BUTTON
   const [loading, setLoading] = useState(false);
   //STATE FOR EYES
@@ -39,11 +42,11 @@ const StateProvider = ({ children }) => {
       .then((response) => response.json())
       .then((json) => {
         if (json.code) {
-          console.log(json);
           setSavedCode(json);
           setLoading(true);
           setTimeout(() => {
             setLoading(false);
+            navigate('/code/validation');
           }, 3000);
         } else {
           setErrorApi(true);
