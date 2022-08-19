@@ -10,6 +10,9 @@ const StateProvider = ({ children }) => {
   const [newsletterModalOpen, setNewsletterModalOpen] = useState(false);
   //STATE FOR ERROR MENSSAGE
   const [errorMenssage, setErrorMenssage] = useState(false);
+  const [errorApi, setErrorApi] = useState(false);
+  //STATE SAVE JSON CODE GENERATOR
+  const [savedCode, setSavedCode] = useState([]);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -22,6 +25,35 @@ const StateProvider = ({ children }) => {
     localStorage.removeItem('id');
 
     navigate('/signin');
+  }
+
+  //API FOR CODE GENERATOR WITH PHONE
+  async function codeGenerator(phone) {
+    return fetch('http://supplier.hubmine.mx/api/auth/send_register/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(phone),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.code) {
+          console.log(json);
+          setSavedCode(json);
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 3000);
+        } else {
+          setErrorApi(true);
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+            setErrorApi(false);
+          }, timeout);
+        }
+      });
   }
 
   return (
@@ -37,6 +69,11 @@ const StateProvider = ({ children }) => {
         errorMenssage,
         setErrorMenssage,
         logout,
+        savedCode,
+        setSavedCode,
+        codeGenerator,
+        errorApi,
+        setErrorApi,
       }}>
       {children}
     </StateContext.Provider>

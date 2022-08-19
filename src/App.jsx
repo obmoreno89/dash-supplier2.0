@@ -18,6 +18,8 @@ import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 //RESET PASSWORD
 import ResetPassword from './pages/ResetPassword';
+//PHONE CODE GENERATOR
+import PhoneCodeGenerator from './pages/PhoneCodeGenerator';
 //MULTI STEP FORM
 import MultiStepForm from './pages/MultiStepForm';
 import MultiStepFormEnd from './pages/MultiStepFormEnd';
@@ -62,6 +64,14 @@ function App() {
           element={
             <PublicRoute>
               <Signin />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path='/code/generator'
+          element={
+            <PublicRoute>
+              <PhoneCodeGenerator />
             </PublicRoute>
           }
         />

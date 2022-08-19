@@ -11,8 +11,6 @@ const ModalVerification = () => {
 
   const submit = (data) => console.log(data);
 
-  const [errorApi, setErrorApi] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -142,7 +140,7 @@ const ModalVerification = () => {
             )}
           </form>
           <div className='text-xs text-slate-500 italic mt-8'>
-            {!errorApi ? (
+            {/* {!errorApi ? (
               <div className='text-sm'>
                 ¿Quieres regresar al login?{' '}
                 <a
@@ -160,7 +158,7 @@ const ModalVerification = () => {
                   Regresar
                 </a>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </ModalAction>
