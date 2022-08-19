@@ -26,6 +26,7 @@ const StateProvider = ({ children }) => {
   function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('code');
 
     navigate('/signin');
   }
@@ -43,6 +44,8 @@ const StateProvider = ({ children }) => {
       .then((json) => {
         if (json.code) {
           setSavedCode(json);
+          let result = json;
+          localStorage.setItem('code', result.code);
           setLoading(true);
           setTimeout(() => {
             setLoading(false);

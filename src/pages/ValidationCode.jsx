@@ -1,26 +1,41 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/auth-image.jpg';
-import { useForm } from 'react-hook-form';
 
 const ValidationCode = () => {
   const navigate = useNavigate();
-  const { loading, errorApi } = useContext(StateContext);
+  const { loading, errorApi, savedCode } = useContext(StateContext);
 
-  const [code, setCode] = useState(new Array(4).fill(''));
+  const [otp, setOtp] = useState(new Array(5).fill(''));
+  const [counter, setCounter] = useState(59);
+
+  // useEffect(() => {
+  //   if (counter) {
+  //     const timer =
+  //       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+  //     return () => clearInterval(timer);
+  //   } else if (counter === 0) {
+  //     navigate('/signin');
+  //   }
+  // }, [counter]);
+
+  const codeValue = { code: otp.join(''), number: savedCode.number };
+  const phoneUser = savedCode.number;
+
+  console.log(codeValue);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
 
-    setCode([...code.map((d, idx) => (idx === index ? element.value : d))]);
+    setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
 
+    //Focus next input
     if (element.nextSibling) {
       element.nextSibling.focus();
     }
   };
-
   return (
     <main className='bg-white'>
       <div className='relative md:flex'>
@@ -71,6 +86,12 @@ const ValidationCode = () => {
               <h1 className='text-3xl text-slate-800 font-bold mb-6'>
                 Verificación del código ✨
               </h1>
+              <div className=' mb-6 text-center'>
+                <h5 className='text-md text-slate-800 font-bold'>
+                  Te enviamos un código al:
+                </h5>
+                <span className='text-red-500 font-bold'>{phoneUser}</span>
+              </div>
               <div>
                 <p className='text-sm'>
                   Introduce el código que te hicimos llegar por mensaje SMS,
@@ -80,19 +101,20 @@ const ValidationCode = () => {
               {/* Form */}
               <form>
                 <div className='space-x-10 mt-5 flex justify-center items-center'>
-                  {code.map((data, index) => (
-                    <input
-                      className='form-input w-10 text-xl'
-                      autoComplete='off'
-                      type='text'
-                      maxLength='1'
-                      name='code'
-                      key={index}
-                      value={data}
-                      onChange={(e) => handleChange(e.target, index)}
-                      onFocus={(e) => e.target.select()}
-                    />
-                  ))}
+                  {otp.map((data, index) => {
+                    return (
+                      <input
+                        className='form-input w-10 text-xl'
+                        type='text'
+                        name='otp'
+                        maxLength='1'
+                        key={index}
+                        value={data}
+                        onChange={(e) => handleChange(e.target, index)}
+                        onFocus={(e) => e.target.select()}
+                      />
+                    );
+                  })}
                 </div>
                 <div className='flex items-center justify-end mt-16'>
                   {loading ? (
@@ -100,7 +122,7 @@ const ValidationCode = () => {
                   ) : (
                     <>
                       <button
-                        onClick={console.log(code)}
+                        type='button'
                         className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
                         Validar código
                       </button>
@@ -109,14 +131,16 @@ const ValidationCode = () => {
                 </div>
               </form>
               {/* Footer */}
-              <div className='pt-5 mt-6 '>
-                {/* Warning */}
-                <div className='text-sm'>
-                  ¿Tienes cuenta?{' '}
+              <div className='pt-5 mt-6 space-y-6 '>
+                <div className='text-sm text-center'>
+                  Tu código vence en: {counter}
+                </div>
+                <div className='text-sm text-center'>
+                  ¿Este no es tu número?{' '}
                   <Link
                     className='font-medium text-primary hover:text-secondary'
-                    to='/signin'>
-                    Iniciar sesión
+                    to='/code/generator'>
+                    Cambiar número
                   </Link>
                 </div>
 

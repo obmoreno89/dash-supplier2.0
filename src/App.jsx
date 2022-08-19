@@ -9,6 +9,7 @@ import './charts/ChartjsConfig';
 //ROUTES PRIVATE AND PUBLIC
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
+import PrivateMultiStepForm from './routes/PrivateMultistepForm';
 
 // Import pages
 import Dashboard from './pages/Dashboard';
@@ -80,17 +81,17 @@ function App() {
         <Route
           path='/code/validation'
           element={
-            <PublicRoute>
+            <PrivateMultiStepForm>
               <ValidationCode />
-            </PublicRoute>
+            </PrivateMultiStepForm>
           }
         />
         <Route
           path='/signup'
           element={
-            <PublicRoute>
+            <PrivateMultiStepForm>
               <Signup />
-            </PublicRoute>
+            </PrivateMultiStepForm>
           }
         />
         <Route
