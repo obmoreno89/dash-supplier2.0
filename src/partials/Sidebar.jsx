@@ -392,19 +392,19 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               </span>
                             </NavLink>
                           </li>
-                          {/* <li className='mb-1 last:mb-0'>
+                          <li className='mb-1 last:mb-0'>
                             <NavLink
                               end
-                              to='/file/contracts/history'
+                              to='/products/list'
                               className={({ isActive }) =>
                                 'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' +
                                 (isActive ? '!text-primary' : '')
                               }>
                               <span className='text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200'>
-                                Historial de contratos
+                                Lista de productos
                               </span>
                             </NavLink>
-                          </li> */}
+                          </li>
                         </ul>
                       </div>
                     </React.Fragment>
@@ -472,7 +472,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               />
                             </svg>
                             <span className='text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200'>
-                              Utilidades
+                              Planta
                             </span>
                           </div>
                           {/* Icon */}
@@ -498,7 +498,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                                 (isActive ? '!text-primary' : '')
                               }>
                               <span className='text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200'>
-                                Perfiles profesionales
+                                Crear planta recolección
                               </span>
                             </NavLink>
                           </li>

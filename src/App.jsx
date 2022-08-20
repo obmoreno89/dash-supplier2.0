@@ -29,6 +29,7 @@ import MultiStepForm from './pages/MultiStepForm';
 import MultiStepFormEnd from './pages/MultiStepFormEnd';
 //MODULE PRODUCTS
 import ProductCreate from './partials/products/ProductCreate';
+import ProductList from './partials/products/ProductList';
 
 import FormPage from './pages/component/FormPage';
 import DropdownPage from './pages/component/DropdownPage';
@@ -122,13 +123,22 @@ function App() {
           }
         />
 
-        {/* Dashboard */}
+        {/* Products */}
         <Route
           exact
           path='/products/create'
           element={
             <PrivateRoute>
               <ProductCreate />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/products/list'
+          element={
+            <PrivateRoute>
+              <ProductList />
             </PrivateRoute>
           }
         />
