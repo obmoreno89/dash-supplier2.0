@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import ProductListTableItem from './ProductListTableItem';
+import PlantListTableItem from './PlantListTableItem';
 import StateContext from '../../context/StateContext';
 import { Link } from 'react-router-dom';
 import Banner from '../../components/Banner';
 
-const ProductListTable = () => {
+const PlantListTable = () => {
   const {
     bannerSuccessOpen,
     setBannerSuccessOpen,
@@ -42,27 +42,25 @@ const ProductListTable = () => {
             <thead className='text-xs font-semibold uppercase text-slate-500 border-t border-b border-slate-200'>
               <tr>
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                  <div className='font-semibold text-left'>Nombre</div>
+                  <div className='font-semibold text-left'>Proveedor</div>
                 </th>
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                  <div className='font-semibold text-left'>Categoria</div>
+                  <div className='font-semibold text-left'>Teléfono</div>
                 </th>
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                  <div className='font-semibold text-left'>Marca</div>
+                  <div className='font-semibold text-left'>Email</div>
                 </th>
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                  <div className='font-semibold text-left'>Descripción</div>
+                  <div className='font-semibold text-left'>
+                    Nombre de la planta
+                  </div>
                 </th>
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                  <div className='font-semibold text-left'>Tipo de moneda</div>
-                </th>
-                <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                  <div className='font-semibold text-left'>Precio</div>
+                  <div className='font-semibold text-left'>Pais</div>
                 </th>
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                   <div className='font-semibold text-left'>Estado</div>
                 </th>
-
                 <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                   <div className='font-semibold text-right'>Opciones</div>
                 </th>
@@ -71,7 +69,7 @@ const ProductListTable = () => {
             {/* Table body */}
             <tbody className='text-sm divide-y divide-slate-200 border-b border-slate-200'>
               {/* añadir el map */}
-              <ProductListTableItem />
+              <PlantListTableItem />
             </tbody>
           </table>
         </div>
@@ -97,10 +95,11 @@ const ProductListTable = () => {
               </svg>
             </div>
             <h2 className='text-2xl text-slate-800 font-bold mb-2'>
-              Añade el primer Producto
+              Añade la primera planta de relección
             </h2>
             <div className='mb-6'>
-              Crea los productos, los cuales vas a vender.
+              Crea las plantas, las cuales implementaran la logística de
+              entrega.
             </div>
             <Link to='/products/create'>
               <button className='btn bg-secondary hover:bg-primary hover:text-white text-primary'>
@@ -109,7 +108,7 @@ const ProductListTable = () => {
                   viewBox='0 0 16 16'>
                   <path d='M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z' />
                 </svg>
-                <span className='ml-2'>Añadir Producto</span>
+                <span className='ml-2'>Añadir Planta</span>
               </button>
             </Link>
           </div>
@@ -119,4 +118,4 @@ const ProductListTable = () => {
   );
 };
 
-export default ProductListTable;
+export default PlantListTable;

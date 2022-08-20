@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import { Link } from 'react-router-dom';
-import ProductListTable from './ProductListTable';
-
+import PlantListTable from './PlantListTable';
 import PaginationClassic from '../../components/PaginationClassic';
 import StateContext from '../../context/StateContext';
-
-const ProductList = () => {
+const PlantList = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(StateContext);
   return (
     <div className='flex h-screen overflow-hidden'>
@@ -27,7 +25,7 @@ const ProductList = () => {
               {/* Left: Title */}
               <div className='mb-4 sm:mb-0'>
                 <h1 className='text-2xl md:text-3xl text-slate-800 font-bold'>
-                  Lista de productos 📦
+                  Lista de Plantas 🏗
                 </h1>
               </div>
 
@@ -62,13 +60,13 @@ const ProductList = () => {
                 <Link
                   to='/products/create'
                   className='btn bg-secondary hover:bg-primary text-primary hover:text-white'>
-                  Crear producto
+                  Crear Planta
                 </Link>
               </div>
             </div>
 
             {/* Table */}
-            <ProductListTable />
+            <PlantListTable />
             {/* Pagination */}
             {/* <div className='mt-8'>
             <PaginationClassic />
@@ -80,4 +78,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default PlantList;

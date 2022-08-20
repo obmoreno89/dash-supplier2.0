@@ -3,13 +3,13 @@ import ModalBlank from '../../../../src/components/ModalBlank';
 import { useNavigate } from 'react-router-dom';
 import StateContext from '../../../context/StateContext';
 
-const ModalConfirmAndReturn = () => {
+const ModalCorfirmAndReturnPlant = () => {
   const { dangerModalOpen, setDangerModalOpen } = useContext(StateContext);
 
   const navigate = useNavigate();
 
   const backPage = () => {
-    navigate('/products/list');
+    navigate('/plant/list');
     setDangerModalOpen(false);
   };
 
@@ -74,4 +74,4 @@ const ModalConfirmAndReturn = () => {
   );
 };
 
-export default ModalConfirmAndReturn;
+export default ModalCorfirmAndReturnPlant;

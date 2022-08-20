@@ -30,6 +30,10 @@ import MultiStepFormEnd from './pages/MultiStepFormEnd';
 //MODULE PRODUCTS
 import ProductCreate from './partials/products/ProductCreate';
 import ProductList from './partials/products/ProductList';
+//MODULE PLANT
+import PlantCreate from './partials/plant/PlantCreate';
+import PlantList from './partials/plant/PlantList';
+import PlantUpdate from './partials/plant/PlantUpdate';
 
 import FormPage from './pages/component/FormPage';
 import DropdownPage from './pages/component/DropdownPage';
@@ -139,6 +143,35 @@ function App() {
           element={
             <PrivateRoute>
               <ProductList />
+            </PrivateRoute>
+          }
+        />
+        {/* Plant */}
+        <Route
+          exact
+          path='/plant/create'
+          element={
+            <PrivateRoute>
+              <PlantCreate />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path='/plant/list'
+          element={
+            <PrivateRoute>
+              <PlantList />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          exact
+          path='/plant/update'
+          element={
+            <PrivateRoute>
+              <PlantUpdate />
             </PrivateRoute>
           }
         />

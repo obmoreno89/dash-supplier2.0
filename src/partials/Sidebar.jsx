@@ -412,16 +412,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 }}
               </SidebarLinkGroup>
               {/* UTILITIES */}
-              <SidebarLinkGroup
-                activecondition={pathname.includes('professional')}>
+              <SidebarLinkGroup activecondition={pathname.includes('plant')}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <a
                         href='#0'
                         className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
-                          pathname.includes('professional') &&
-                          'hover:text-slate-200'
+                          pathname.includes('plant') && 'hover:text-slate-200'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -436,8 +434,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               viewBox='0 0 24 24'>
                               <circle
                                 className={`fill-current text-slate-400 ${
-                                  pathname.includes('professional') &&
-                                  'text-secondary'
+                                  pathname.includes('plant') && 'text-secondary'
                                 }`}
                                 cx='18.5'
                                 cy='5.5'
@@ -445,8 +442,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               />
                               <circle
                                 className={`fill-current text-slate-600 ${
-                                  pathname.includes('professional') &&
-                                  'text-primary'
+                                  pathname.includes('plant') && 'text-primary'
                                 }`}
                                 cx='5.5'
                                 cy='5.5'
@@ -454,8 +450,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               />
                               <circle
                                 className={`fill-current text-slate-600 ${
-                                  pathname.includes('professional') &&
-                                  'text-primary'
+                                  pathname.includes('plant') && 'text-primary'
                                 }`}
                                 cx='18.5'
                                 cy='18.5'
@@ -463,8 +458,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               />
                               <circle
                                 className={`fill-current text-slate-400 ${
-                                  pathname.includes('professional') &&
-                                  'text-secondary'
+                                  pathname.includes('plant') && 'text-secondary'
                                 }`}
                                 cx='5.5'
                                 cy='18.5'
@@ -492,13 +486,30 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className='mb-1 last:mb-0'>
                             <NavLink
                               end
-                              to='/professional/all'
+                              to='/plant/create'
                               className={({ isActive }) =>
                                 'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' +
                                 (isActive ? '!text-primary' : '')
                               }>
                               <span className='text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200'>
                                 Crear planta recolección
+                              </span>
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className='lg:hidden lg:sidebar-expanded:block 2xl:block'>
+                        <ul className={`pl-9 mt-1 ${!open && 'hidden'}`}>
+                          <li className='mb-1 last:mb-0'>
+                            <NavLink
+                              end
+                              to='/plant/list'
+                              className={({ isActive }) =>
+                                'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' +
+                                (isActive ? '!text-primary' : '')
+                              }>
+                              <span className='text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200'>
+                                Lista de plantas
                               </span>
                             </NavLink>
                           </li>

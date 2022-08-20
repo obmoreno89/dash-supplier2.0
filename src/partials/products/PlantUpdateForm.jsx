@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import ModalConfirmAndReturn from './helpers/ModalConfirmAndReturn';
+import ModalCorfirmAndReturnPlant from './helpers/ModalConfirmAndReturn';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
 
-const CreateProductForm = () => {
+const PlantUpdateForm = () => {
+  const submit = (data) => console.log(data);
   const navigate = useNavigate();
 
   const {
@@ -26,17 +27,15 @@ const CreateProductForm = () => {
     formatInvalid,
     sizeInvalid,
     valid,
-    setProductReload,
+    setPlantReload,
   } = useContext(StateContext);
-
-  const submit = (data) => console.log(data);
   return (
     <>
       <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
         {/* Page header */}
         <div className='mb-8'>
           <h1 className='text-2xl md:text-3xl text-slate-800 font-bold'>
-            Añadir Productos 📦
+            Editar planta de recolección 🏗
           </h1>
         </div>
         {/* BANNER SUCCESS AND ERROR */}
@@ -56,7 +55,7 @@ const CreateProductForm = () => {
               open={bannerErrorOpen}
               setOpen={setBannerErrorOpen}>
               Lo sentimos, al parecer tenemos problema con nuestro servidor,
-              vuelva a intentar más tarde
+              vuelva a intentar más tarde.
             </Banner>
           </div>
         ) : null}
@@ -65,7 +64,7 @@ const CreateProductForm = () => {
         <div className='space-y-8 mt-8'>
           <article className='mt-10'>
             <h2 className='text-2xl text-slate-800 font-bold mb-6'>
-              Datos del producto
+              Datos de la planta
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
@@ -75,7 +74,7 @@ const CreateProductForm = () => {
                 {/* PRODUCT NAME */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
-                    Nombre del producto<span className='text-rose-500'>*</span>
+                    Nombre de la planta<span className='text-rose-500'>*</span>
                   </label>
                   <input
                     maxLength='30'
@@ -101,54 +100,64 @@ const CreateProductForm = () => {
                 </div>
               </div>
               <div>
-                {/* CATEGORY PRODUCT */}
+                {/* PHONE */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
-                    Categoria del producto
+                    Teléfono
+                    <span className='text-rose-500'>*</span>
+                  </label>
+                  <input
+                    className='form-input w-full'
+                    autoComplete='off'
+                    type='number'
+                    {...register('phone_contact', {
+                      required: {
+                        value: true,
+                        message: 'El campo es requerido',
+                      },
+                      pattern: {
+                        value: /[0-9]/,
+                        message: 'El formato no es correcto',
+                      },
+                      minLength: {
+                        value: 10,
+                        message: 'Debe de tener 10 caracteres',
+                      },
+                      maxLength: {
+                        value: 10,
+                        message: 'Debe de tener 10 caracteres',
+                      },
+                    })}
+                  />
+                  {errors.phone_contact && (
+                    <span className='text-red-500 text-sm'>
+                      {errors.phone_contact.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div>
+                {/* TYPE PLACE */}
+                <div>
+                  <label className='block text-sm font-medium mb-1'>
+                    Tipo de ligar
                     <span className='text-rose-500'>*</span>
                   </label>
                   <select
                     className='form-select w-full'
-                    {...register('category_id', {
+                    {...register('type_place_id', {
                       required: {
                         value: true,
                         message: 'El campo es requerido',
                       },
                     })}>
                     <option value=''>Selecciona</option>
+                    <option value=''>Cedis</option>
+                    <option value=''>Bodega</option>
                   </select>
-                  {errors.category_id && (
+                  {errors.type_place_id && (
                     <span className='text-red-500 text-sm'>
-                      {errors.category_id.message}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div>
-                {/* SHORT DESCRIPTION */}
-                <div>
-                  <label className='block text-sm font-medium mb-1'>
-                    Breve descripción<span className='text-rose-500'>*</span>
-                  </label>
-                  <input
-                    maxLength='35'
-                    className='form-input w-full'
-                    autoComplete='off'
-                    type='text'
-                    {...register('short_description', {
-                      required: {
-                        value: true,
-                        message: 'El campo es requerido',
-                      },
-                      pattern: {
-                        value: /[a-zA-Z0-9]/,
-                        message: 'El formato no es correcto',
-                      },
-                    })}
-                  />{' '}
-                  {errors.short_description && (
-                    <span className='text-red-500 text-sm'>
-                      {errors.short_description.message}
+                      {errors.type_place_id.message}
                     </span>
                   )}
                 </div>
@@ -156,121 +165,80 @@ const CreateProductForm = () => {
             </section>
             <article className='mt-10'>
               <h2 className='text-2xl text-slate-800 font-bold mb-6'>
-                Precio y marca
+                Ubicación
               </h2>
               <div className='border-t border-slate-200'></div>
             </article>
             <section className='grid gap-5 md:grid-cols-3 mt-8'>
-              {/* CURRENCY TYPE */}
+              {/* COUNTRY */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
-                  Tipo de moneda
+                  pais
                   <span className='text-rose-500'>*</span>
                 </label>
                 <select
                   className='form-select w-full'
-                  {...register('currency_id', {
+                  {...register('country_id', {
                     required: {
                       value: true,
                       message: 'El campo es requerido',
                     },
                   })}>
                   <option value=''>Selecciona</option>
+                  <option value=''>Mexico</option>
+                  <option value=''>Colombia</option>
                 </select>
-                {errors.currency_id && (
+                {errors.country_id && (
                   <span className='text-red-500 text-sm'>
-                    {errors.currency_id.message}
+                    {errors.country_id.message}
                   </span>
                 )}
               </div>
               <div>
-                {/* PRODUCT PRICE */}
+                {/* STATE */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
-                    Precio del producto<span className='text-rose-500'>*</span>
+                    Estado
+                    <span className='text-rose-500'>*</span>
                   </label>
-                  <div className='relative'>
-                    <input
-                      autoComplete='off'
-                      className='form-input w-full pl-8'
-                      type='number'
-                    />
-                    <div
-                      className='absolute inset-0 right-auto flex items-center pointer-events-none'
-                      {...register('price', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[0-9]/,
-                          message: 'El formato no es correcto',
-                        },
-                      })}>
-                      <span className='text-sm text-slate-400 font-medium px-3'>
-                        $
-                      </span>
-                    </div>
-                    {errors.price && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.price.message}
-                      </span>
-                    )}
-                  </div>
+                  <select
+                    className='form-select w-full'
+                    {...register('state_id', {
+                      required: {
+                        value: true,
+                        message: 'El campo es requerido',
+                      },
+                    })}>
+                    <option value=''>Selecciona</option>
+                    <option value=''>Monterrey</option>
+                  </select>
+                  {errors.state_id && (
+                    <span className='text-red-500 text-sm'>
+                      {errors.state_id.message}
+                    </span>
+                  )}
                 </div>
               </div>
-              {/* PRODUCT MARK */}
+              {/* STATE */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
-                  Marca del producto<span className='text-rose-500'>*</span>
-                </label>
-                <input
-                  maxLength='35'
-                  className='form-input w-full'
-                  autoComplete='off'
-                  type='text'
-                  {...register('mark', {
-                    required: {
-                      value: true,
-                      message: 'El campo es requerido',
-                    },
-                    pattern: {
-                      value: /[a-zA-Z0-9]/,
-                      message: 'El formato no es correcto',
-                    },
-                  })}
-                />{' '}
-                {errors.mark && (
-                  <span className='text-red-500 text-sm'>
-                    {errors.mark.message}
-                  </span>
-                )}
-              </div>
-
-              {/* INPUT INTERBANK KEY */}
-              <div>
-                <label className='block text-sm font-medium mb-1'>
-                  Número de piezas
+                  Ciudad
                   <span className='text-rose-500'>*</span>
                 </label>
-                <input
-                  className='form-input w-full'
-                  autoComplete='off'
-                  type='number'
-                  {...register('unity_id', {
+                <select
+                  className='form-select w-full'
+                  {...register('state_id', {
                     required: {
                       value: true,
                       message: 'El campo es requerido',
                     },
-                    pattern: {
-                      value: /[0-9]/,
-                      message: 'El formato no es correcto',
-                    },
-                  })}
-                />
-                {errors.unity_id && (
+                  })}>
+                  <option value=''>Selecciona</option>
+                  <option value=''>Los mochis</option>
+                </select>
+                {errors.state_id && (
                   <span className='text-red-500 text-sm'>
-                    {errors.unity_id.message}
+                    {errors.state_id.message}
                   </span>
                 )}
               </div>
@@ -278,7 +246,7 @@ const CreateProductForm = () => {
 
             <article className='mt-10'>
               <h2 className='text-2xl text-slate-800 font-bold mb-6'>
-                Descripción e Imagen
+                Observaciones
               </h2>
               <div className='border-t border-slate-200'></div>
             </article>
@@ -287,7 +255,7 @@ const CreateProductForm = () => {
                 {/* SHORT DESCRIPTION */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
-                    Descripción del producto (función, objetivo, etc)
+                    Referencia de como llegar a la planta
                     <span className='text-rose-500'>*</span>
                   </label>
                   <textarea
@@ -311,40 +279,6 @@ const CreateProductForm = () => {
                       {errors.description.message}
                     </span>
                   )}
-                </div>
-                {/* INPUT ADJUNTAR ARCHIVO */}
-                <div className='mt-8'>
-                  <h5 className='block text-sm font-medium mb-1'>
-                    Añade una imagen del producto
-                  </h5>
-                  <div className='space-x-5'>
-                    <label
-                      htmlFor='archivo'
-                      className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:text-emerald-200 cursor-pointer img-size'>
-                      Selecciona una imagen
-                    </label>
-                    <input
-                      accept='.jpg,.png'
-                      id='archivo'
-                      type='file'
-                      {...register('picture', {
-                        required: {
-                          value: false,
-                        },
-                      })}
-                      onChange={valid}
-                    />
-                    {formatInvalid && (
-                      <span className='text-red-500 text-sm'>
-                        Soló se permite formato .png y .jpg
-                      </span>
-                    )}
-                    {sizeInvalid && (
-                      <span className='text-red-500 text-sm'>
-                        Soló se permite archivos que pesen menos de un 1MB
-                      </span>
-                    )}
-                  </div>
                 </div>
               </div>
             </section>
@@ -378,9 +312,9 @@ const CreateProductForm = () => {
         </div>
       </div>
       {/* MODAL CONFIRM */}
-      <ModalConfirmAndReturn />
+      <ModalCorfirmAndReturnPlant />
     </>
   );
 };
 
-export default CreateProductForm;
+export default PlantUpdateForm;

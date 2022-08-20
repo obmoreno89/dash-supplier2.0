@@ -28,6 +28,7 @@ const StateProvider = ({ children }) => {
   const [savedCode, setSavedCode] = useState([]);
   //STATE FOR UPDATE STATE
   const [productReload, setProductReload] = useState(false);
+  const [plantReload, setPlantReload] = useState(false);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -131,6 +132,10 @@ const StateProvider = ({ children }) => {
         setBannerSuccessOpen,
         dangerModalOpen,
         setDangerModalOpen,
+        productReload,
+        setProductReload,
+        plantReload,
+        setPlantReload,
       }}>
       {children}
     </StateContext.Provider>
