@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 import StateContext from '../../context/StateContext';
-import PlantUpdateForm from './PlantUpdateForm';
+import ProfileUpdateForm from './ProfileUpdateForm';
 
-const PlantUpdate = () => {
+const Profile = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(StateContext);
 
   return (
@@ -18,11 +18,11 @@ const PlantUpdate = () => {
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <main>
-          <PlantUpdateForm />
+          <ProfileUpdateForm />
         </main>
       </div>
     </div>
   );
 };
 
-export default PlantUpdate;
+export default Profile;

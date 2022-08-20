@@ -34,6 +34,8 @@ import ProductList from './partials/products/ProductList';
 import PlantCreate from './partials/plant/PlantCreate';
 import PlantList from './partials/plant/PlantList';
 import PlantUpdate from './partials/plant/PlantUpdate';
+//MODULE COMPANY
+import Profile from './partials/company/Profile';
 
 import FormPage from './pages/component/FormPage';
 import DropdownPage from './pages/component/DropdownPage';
@@ -172,6 +174,16 @@ function App() {
           element={
             <PrivateRoute>
               <PlantUpdate />
+            </PrivateRoute>
+          }
+        />
+        {/* company */}
+        <Route
+          exact
+          path='/company/profile'
+          element={
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           }
         />

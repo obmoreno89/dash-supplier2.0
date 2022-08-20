@@ -96,9 +96,9 @@ const Logout = ({ align }) => {
             <li>
               <Link
                 className='font-medium text-sm text-black-500 hover:text-primary flex items-center py-1 px-3'
-                to='/settings/account'
+                to='/company/profile'
                 onClick={() => setDropdownOpen(!dropdownOpen)}>
-                Configuración
+                Mi perfil
               </Link>
             </li>
             <li>

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import ModalCorfirmAndReturnPlant from './helpers/ModalConfirmAndReturn';
+import ModalCorfirmAndReturnPlant from './helpers/ModalCorfirmAndReturnPlant';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
