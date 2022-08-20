@@ -131,7 +131,7 @@ const MultiStepFormEnd = () => {
           aria-hidden='true'>
           <img
             className='object-cover object-center w-full h-full'
-            src={AuthImage}
+            src={Question}
             width='760'
             height='1024'
             alt='Onboarding'
