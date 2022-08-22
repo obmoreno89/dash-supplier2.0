@@ -30,6 +30,43 @@ const CreateProductForm = () => {
   } = useContext(StateContext);
 
   const submit = (data) => console.log(data);
+
+  const newProduct = async (data) => {
+    const files =
+      document.getElementById('image').value &&
+      document.getElementById('image').files[0];
+    let formData = new FormData();
+    formData.append('category_id ', data.category_id);
+    formData.append('unity_id', data.unity_id);
+    formData.append('name', data.name);
+    formData.append('short_description', data.short_description);
+    formData.append('description ', data.description);
+    formData.append('mark ', data.mark);
+    formData.append('currency_id ', data.currency_id);
+    formData.append('price ', data.price);
+    formData.append('img_product', files);
+
+    fetch(`http://supplier.hubmine.mx/api/suppliers/product/create/1/`, {
+      method: 'POST',
+      body: formData,
+    }).then((response) => {
+      if (response.status === 201) {
+        setBannerSuccessOpen(true);
+        setLoading(true);
+        setTimeout(() => {
+          setBannerSuccessOpen(false);
+          setLoading(false);
+        }, 3000);
+      } else {
+        setBannerErrorOpen(true);
+        setLoading(true);
+        setTimeout(() => {
+          setBannerErrorOpen(false);
+          setLoading(false);
+        }, 3000);
+      }
+    });
+  };
   return (
     <>
       <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
@@ -69,7 +106,7 @@ const CreateProductForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(submit)}>
+          <form onSubmit={handleSubmit(newProduct)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -257,27 +294,26 @@ const CreateProductForm = () => {
                 )}
               </div>
 
-              {/* CANTIDAD */}
+              {/* UNITY PRODUCT */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
-                  Número de piezas
+                  Categoria del producto
                   <span className='text-rose-500'>*</span>
                 </label>
-                <input
-                  className='form-input w-full'
-                  autoComplete='off'
-                  type='number'
+                <select
+                  className='form-select w-full'
                   {...register('unity_id', {
                     required: {
                       value: true,
                       message: 'El campo es requerido',
                     },
-                    pattern: {
-                      value: /[0-9]/,
-                      message: 'El formato no es correcto',
-                    },
-                  })}
-                />
+                  })}>
+                  <option value=''>Selecciona</option>
+                  <option value='1'>Tonelada</option>
+                  <option value='2'>Metro cúbico</option>
+                  <option value='3'>Unidad</option>
+                  <option value='4'>Kilogramo</option>
+                </select>
                 {errors.unity_id && (
                   <span className='text-red-500 text-sm'>
                     {errors.unity_id.message}
@@ -329,20 +365,20 @@ const CreateProductForm = () => {
                   </h5>
                   <div className='space-x-5'>
                     <label
-                      htmlFor='archivo'
+                      htmlFor='image'
                       className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:text-emerald-200 cursor-pointer img-size'>
                       Selecciona una imagen
                     </label>
                     <input
                       accept='.jpg,.png'
-                      id='archivo'
+                      id='image'
                       type='file'
-                      {...register('picture', {
+                      {...register('img_product', {
                         required: {
-                          value: false,
+                          value: true,
+                          message: 'El campo es requerido',
                         },
                       })}
-                      onChange={valid}
                     />
                     {formatInvalid && (
                       <span className='text-red-500 text-sm'>
