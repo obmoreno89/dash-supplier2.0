@@ -72,6 +72,7 @@ const CreateProductForm = () => {
         }, 3000);
       }
     });
+    setProductReload(true);
   };
   return (
     <>

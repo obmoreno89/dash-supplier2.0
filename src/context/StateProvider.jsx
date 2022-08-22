@@ -1,5 +1,5 @@
 import StateContext from './StateContext';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const StateProvider = ({ children }) => {
@@ -29,6 +29,8 @@ const StateProvider = ({ children }) => {
   //STATE FOR UPDATE STATE
   const [productReload, setProductReload] = useState(false);
   const [plantReload, setPlantReload] = useState(false);
+  //STATE SAVE JSON PRODUCT LIST
+  const [productList, setProductList] = useState([]);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -44,6 +46,9 @@ const StateProvider = ({ children }) => {
 
     navigate('/signin');
   }
+
+  //VARIABLE FOR SUPPLIER ID
+  const supplierId = localStorage.getItem('supplier_id');
 
   //API FOR CODE GENERATOR WITH PHONE
   async function codeGenerator(phone) {
@@ -102,6 +107,24 @@ const StateProvider = ({ children }) => {
     }
   };
 
+  //List all products by supplier
+
+  const getProductList = async () => {
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/product/list?supplier-id=${supplierId}`
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        setProductList(json);
+      });
+    setProductReload(false);
+  };
+
+  useEffect(() => {
+    getProductList();
+  }, [productReload]);
+
   return (
     <StateContext.Provider
       value={{
@@ -136,6 +159,7 @@ const StateProvider = ({ children }) => {
         setProductReload,
         plantReload,
         setPlantReload,
+        productList,
       }}>
       {children}
     </StateContext.Provider>
