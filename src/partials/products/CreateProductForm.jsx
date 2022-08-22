@@ -79,7 +79,7 @@ const CreateProductForm = () => {
                   </label>
                   <input
                     maxLength='30'
-                    className='form-input w-full capitalize'
+                    className='form-input w-full '
                     autoComplete='off'
                     type='text'
                     {...register('name', {
@@ -88,7 +88,7 @@ const CreateProductForm = () => {
                         message: 'El campo es requerido',
                       },
                       pattern: {
-                        value: /[a-zA-Z]/,
+                        value: /[a-zA-Z0-9]/,
                         message: 'El formato no es correcto',
                       },
                     })}
@@ -116,6 +116,15 @@ const CreateProductForm = () => {
                       },
                     })}>
                     <option value=''>Selecciona</option>
+                    <option value='1'>Agregado</option>
+                    <option value='2'>Cemento</option>
+                    <option value='3'>Concreto</option>
+                    <option value='4'>Maquinaria</option>
+                    <option value='5'>Prefabricados</option>
+                    <option value='6'>Sanitarios</option>
+                    <option value='7'>Lavados</option>
+                    <option value='8'>Pisos</option>
+                    <option value='9'>Acero</option>
                   </select>
                   {errors.category_id && (
                     <span className='text-red-500 text-sm'>
@@ -176,6 +185,7 @@ const CreateProductForm = () => {
                     },
                   })}>
                   <option value=''>Selecciona</option>
+                  <option value='1'>Peso mexicano</option>
                 </select>
                 {errors.currency_id && (
                   <span className='text-red-500 text-sm'>
@@ -191,33 +201,33 @@ const CreateProductForm = () => {
                   </label>
                   <div className='relative'>
                     <input
+                      maxLength='10'
                       autoComplete='off'
                       className='form-input w-full pl-8'
-                      type='number'
-                    />
-                    <div
-                      className='absolute inset-0 right-auto flex items-center pointer-events-none'
+                      type='text'
                       {...register('price', {
                         required: {
                           value: true,
                           message: 'El campo es requerido',
                         },
                         pattern: {
-                          value: /[0-9]/,
+                          value: /[0-9/]/,
                           message: 'El formato no es correcto',
                         },
-                      })}>
+                      })}
+                    />
+                    <div className='absolute inset-0 right-auto flex items-center pointer-events-none'>
                       <span className='text-sm text-slate-400 font-medium px-3'>
                         $
                       </span>
                     </div>
-                    {errors.price && (
-                      <span className='text-red-500 text-sm'>
-                        {errors.price.message}
-                      </span>
-                    )}
                   </div>
                 </div>
+                {errors.price && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.price.message}
+                  </span>
+                )}
               </div>
               {/* PRODUCT MARK */}
               <div>
@@ -247,7 +257,7 @@ const CreateProductForm = () => {
                 )}
               </div>
 
-              {/* INPUT INTERBANK KEY */}
+              {/* CANTIDAD */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
                   Número de piezas
