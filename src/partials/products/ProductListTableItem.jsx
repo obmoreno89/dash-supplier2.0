@@ -2,8 +2,11 @@ import React, { useContext } from 'react';
 import EditMenu from '../../components/DropdownEditMenu';
 import { Link } from 'react-router-dom';
 import StateContext from '../../context/StateContext';
+import ModalProductDelete from './helpers/ModalProductDelete';
 
 const ProductListTableItem = (props) => {
+  const { dangerModalOpen, setDangerModalOpen } = useContext(StateContext);
+
   const statusColor = (status) => {
     switch (status) {
       case 'Estado Borrador':
@@ -49,7 +52,7 @@ const ProductListTableItem = (props) => {
           </div>
         </td>
         <td className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-          <div className='text-left'>{props.category}</div>
+          <div className='text-center'>{props.category}</div>
         </td>
         <td className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
           <div className='text-left'>{props.mark}</div>
@@ -76,22 +79,18 @@ const ProductListTableItem = (props) => {
         <td className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
           <div className='text-center'>{hasStock()}</div>
         </td>
-        <td className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px'>
+        <td className='px-3 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px'>
           <div className='flex justify-center items-center'>
-            <EditMenu align='right' className='relative inline-flex shrink-0'>
-              <li>
-                <button
-                  type='button'
-                  className='font-medium text-sm text-slate-600  hover:text-primary flex py-1 px-3'>
-                  Editar producto
-                </button>
-                <button
-                  type='button'
-                  className='font-medium text-sm text-slate-600  hover:text-red-500 flex py-1 px-3'>
-                  Eliminar producto
-                </button>
-              </li>
-            </EditMenu>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setDangerModalOpen(true);
+              }}
+              className='font-semibold text-red-500'>
+              Eliminar
+            </button>
+            {/* {MODAL DELETE PRODUCT} */}
+            <ModalProductDelete id={props.id} />
           </div>
         </td>
       </tr>

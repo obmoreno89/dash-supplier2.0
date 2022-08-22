@@ -35,9 +35,9 @@ const ProductListTable = () => {
         </div>
       ) : null}
       {productList.length ? (
-        <div className='mt-24'>
+        <div className=' mt-24 '>
           {/* Table */}
-          <div className='md:overflow-x-auto '>
+          <div className='overflow-x-auto'>
             <table className='table-auto w-full'>
               {/* Table header */}
               <thead className='text-xs font-semibold uppercase text-slate-500 border-t border-b border-slate-200'>
@@ -65,13 +65,13 @@ const ProductListTable = () => {
                     <div className='font-semibold text-left'>Precio</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Estado</div>
+                    <div className='font-semibold text-center'>Estado</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                     <div className='font-semibold text-left'>¿Con stock?</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-right'>Opciones</div>
+                    <div className='font-semibold text-left'>Opciones</div>
                   </th>
                 </tr>
               </thead>
@@ -80,6 +80,7 @@ const ProductListTable = () => {
                 {productList.map((product) => (
                   <ProductListTableItem
                     key={product.id}
+                    id={product.id}
                     image={product.image}
                     name={product.name}
                     category={product.category}

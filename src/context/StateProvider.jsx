@@ -115,7 +115,6 @@ const StateProvider = ({ children }) => {
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         setProductList(json);
       });
     setProductReload(false);
