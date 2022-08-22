@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ModalConfirmAndReturn from './helpers/ModalConfirmAndReturn';
@@ -8,6 +8,9 @@ import StateContext from '../../context/StateContext';
 
 const CreateProductForm = () => {
   const navigate = useNavigate();
+  const [requiredFile, setRequiredFile] = useState(false);
+
+  const supplierId = localStorage.getItem('supplier_id');
 
   const {
     handleSubmit,
@@ -23,18 +26,15 @@ const CreateProductForm = () => {
     setBannerErrorOpen,
     loading,
     setLoading,
-    formatInvalid,
-    sizeInvalid,
-    valid,
     setProductReload,
   } = useContext(StateContext);
 
-  const submit = (data) => console.log(data);
+  // const submit = (data) => console.log(data);
 
   const newProduct = async (data) => {
-    const files =
-      document.getElementById('image').value &&
-      document.getElementById('image').files[0];
+    const files = document.getElementById('image').value
+      ? document.getElementById('image').files[0]
+      : '';
     let formData = new FormData();
     formData.append('category_id ', data.category_id);
     formData.append('unity_id', data.unity_id);
@@ -46,23 +46,29 @@ const CreateProductForm = () => {
     formData.append('price ', data.price);
     formData.append('img_product', files);
 
-    fetch(`http://supplier.hubmine.mx/api/suppliers/product/create/1/`, {
-      method: 'POST',
-      body: formData,
-    }).then((response) => {
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/product/create/${supplierId}/`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    ).then((response) => {
       if (response.status === 201) {
         setBannerSuccessOpen(true);
         setLoading(true);
         setTimeout(() => {
           setBannerSuccessOpen(false);
           setLoading(false);
+          navigate('/products/list');
         }, 3000);
       } else {
+        setRequiredFile(true);
         setBannerErrorOpen(true);
         setLoading(true);
         setTimeout(() => {
           setBannerErrorOpen(false);
           setLoading(false);
+          setPrueba(false);
         }, 3000);
       }
     });
@@ -92,8 +98,7 @@ const CreateProductForm = () => {
               type='error'
               open={bannerErrorOpen}
               setOpen={setBannerErrorOpen}>
-              Lo sentimos, al parecer tenemos problema con nuestro servidor,
-              vuelva a intentar más tarde
+              Debe de cargar una imagen del producto.
             </Banner>
           </div>
         ) : null}
@@ -360,34 +365,27 @@ const CreateProductForm = () => {
                 </div>
                 {/* INPUT ADJUNTAR ARCHIVO */}
                 <div className='mt-8'>
-                  <h5 className='block text-sm font-medium mb-1'>
-                    Añade una imagen del producto
-                  </h5>
                   <div className='space-x-5'>
                     <label
                       htmlFor='image'
-                      className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:text-emerald-200 cursor-pointer img-size'>
+                      className='block mb-2 text-sm font-md text-orange-900 dark:text-slate-600'>
                       Selecciona una imagen
                     </label>
                     <input
+                      className='block w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-100 dark:border-gray-400 dark:placeholder-gray-400'
                       accept='.jpg,.png'
                       id='image'
                       type='file'
                       {...register('img_product', {
                         required: {
-                          value: true,
+                          value: false,
                           message: 'El campo es requerido',
                         },
                       })}
                     />
-                    {formatInvalid && (
+                    {requiredFile && (
                       <span className='text-red-500 text-sm'>
-                        Soló se permite formato .png y .jpg
-                      </span>
-                    )}
-                    {sizeInvalid && (
-                      <span className='text-red-500 text-sm'>
-                        Soló se permite archivos que pesen menos de un 1MB
+                        El campo es requerido
                       </span>
                     )}
                   </div>

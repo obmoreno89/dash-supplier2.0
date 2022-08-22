@@ -42,7 +42,7 @@ const Logout = ({ align }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
-    localStorage.removeItem('id');
+    localStorage.removeItem('supplier_id');
     navigate('/signin');
   }
 
@@ -62,7 +62,7 @@ const Logout = ({ align }) => {
           alt='User'
         />
         <div className='flex items-center truncate'>
-          <span className='truncate ml-2 text-sm font-medium group-hover:text-slate-800'>
+          <span className='capitalize truncate ml-2 text-sm font-medium group-hover:text-slate-800'>
             {username}
           </span>
           <svg
@@ -89,7 +89,9 @@ const Logout = ({ align }) => {
           onFocus={() => setDropdownOpen(true)}
           onBlur={() => setDropdownOpen(false)}>
           <div className='pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200'>
-            <div className='font-medium text-slate-800'>{username}</div>
+            <div className='font-medium text-slate-800 capitalize'>
+              {username}
+            </div>
             <div className='text-xs text-slate-500 italic'>Administrador</div>
           </div>
           <ul>

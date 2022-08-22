@@ -12,7 +12,7 @@ const StateProvider = ({ children }) => {
   const [formatInvalid, setFormatInvalid] = useState(false);
   const [sizeInvalid, setSizeInvalid] = useState(false);
   //STATE BANNER ERROR
-  const [bannerErrorOpen, setBannerErrorOpen] = useState(true);
+  const [bannerErrorOpen, setBannerErrorOpen] = useState(false);
   //STATE BANNER SUCCESS
   const [bannerSuccessOpen, setBannerSuccessOpen] = useState(false);
   //STATE FOR EYES
