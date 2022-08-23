@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-
+import ModalPlantDelete from './helpers/ModalPlantDelete';
 import StateContext from '../../context/StateContext';
 
 const PlantListTableItem = (props) => {
+  const { setDangerModalOpen } = useContext(StateContext);
   return (
     <>
       <tr>
@@ -34,10 +35,16 @@ const PlantListTableItem = (props) => {
               Editar
             </button>
             <div>|</div>
-            <button className='font-semibold text-red-400 hover:border-b-2 border-slate-500'>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setDangerModalOpen(true);
+              }}
+              className='font-semibold text-red-400 hover:border-b-2 border-slate-500'>
               Eliminar
             </button>
             {/* {MODAL DELETE PLANT} */}
+            <ModalPlantDelete id={props.id} />
           </div>
         </td>
       </tr>

@@ -13,8 +13,6 @@ const PlantListTable = () => {
     plantList,
   } = useContext(StateContext);
 
-  console.log(plantList);
-
   return (
     <div className='bg-white'>
       {bannerSuccessOpen ? (

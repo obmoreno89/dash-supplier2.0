@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
-import EditMenu from '../../components/DropdownEditMenu';
-import { Link } from 'react-router-dom';
 import StateContext from '../../context/StateContext';
 import ModalProductDelete from './helpers/ModalProductDelete';
 
 const ProductListTableItem = (props) => {
-  const { dangerModalOpen, setDangerModalOpen } = useContext(StateContext);
+  const { setDangerModalOpen } = useContext(StateContext);
 
   const statusColor = (status) => {
     switch (status) {
