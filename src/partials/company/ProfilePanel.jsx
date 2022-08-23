@@ -4,13 +4,43 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 function ProfilePanel() {
-  const [sync, setSync] = useState(false);
+  const [logoSupplier, setLogoSupplier] = useState('');
+
+  const handleLogo = (event) => {
+    const change = event.target.value;
+    return setLogoSupplier(change);
+  };
+
+  console.log(logoSupplier);
 
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
+
+  const submit = (data) => console.log(data);
+
+  const principalSupplierId = localStorage.getItem('id');
+
+  const newProduct = async () => {
+    const files = document.getElementById('image').value
+      ? document.getElementById('image').files[0]
+      : '';
+    let formData = new FormData();
+
+    formData.append('img_product', files);
+
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/upload-logo/${principalSupplierId}/`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    )
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  };
 
   return (
     <div className='grow'>
@@ -19,20 +49,33 @@ function ProfilePanel() {
         <h2 className='text-2xl text-slate-800 font-bold mb-5'>Mi Perfil</h2>
         {/* Picture */}
         <section>
-          <div className='flex items-center'>
-            <div className='mr-4'>
-              <img
-                className='w-20 h-20 rounded-full'
-                src={Image}
-                width='80'
-                height='80'
-                alt='User upload'
-              />
+          <form>
+            <div className='flex items-center'>
+              <div className='mr-1'>
+                <img
+                  name='img_product'
+                  className='w-20 h-20 rounded-full'
+                  src={Image}
+                  width='80'
+                  height='80'
+                  alt='User upload'
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor='image'
+                  className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+                  Cambiar
+                </label>
+                <input
+                  accept='.jpg,.png'
+                  id='image'
+                  type='file'
+                  onChange={handleLogo}
+                />
+              </div>
             </div>
-            <button className='btn-sm bg-secondary hover:bg-primary hover:text-white text-primary'>
-              Change
-            </button>
-          </div>
+          </form>
         </section>
         {/* Business Profile */}
         <section>
@@ -216,7 +259,9 @@ function ProfilePanel() {
               className='btn border-slate-200 hover:border-slate-300 text-slate-600'>
               Salir
             </Link>
-            <button className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+            <button
+              onClick={newProduct}
+              className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
               Guardar cambios
             </button>
           </div>

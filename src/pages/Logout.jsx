@@ -40,6 +40,7 @@ const Logout = ({ align }) => {
 
   function Logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
     localStorage.removeItem('supplier_id');
