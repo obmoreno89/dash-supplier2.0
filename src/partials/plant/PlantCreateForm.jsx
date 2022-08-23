@@ -33,6 +33,8 @@ const PlantCreateForm = () => {
     handleCountry,
     handleState,
     city,
+    stateEnable,
+    cityEnable,
   } = useContext(StateContext);
   return (
     <>
@@ -219,6 +221,7 @@ const PlantCreateForm = () => {
                     <span className='text-rose-500'>*</span>
                   </label>
                   <select
+                    disabled={stateEnable}
                     className='form-select w-full'
                     {...register('state_id', {
                       required: {
@@ -248,6 +251,7 @@ const PlantCreateForm = () => {
                   <span className='text-rose-500'>*</span>
                 </label>
                 <select
+                  disabled={cityEnable}
                   className='form-select w-full'
                   {...register('city_id', {
                     required: {

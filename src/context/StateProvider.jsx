@@ -39,6 +39,9 @@ const StateProvider = ({ children }) => {
   const [stateId, setStateId] = useState('');
   //STATE SAVE CITY LIST
   const [city, setCity] = useState([]);
+  //STATE FOR DISABLE INPUT COMPONENT FORM PLANT
+  const [stateEnable, setStateEnable] = useState(true);
+  const [cityEnable, setCityEnable] = useState(true);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -161,12 +164,15 @@ const StateProvider = ({ children }) => {
       `http://supplier.hubmine.mx/api/suppliers/list-states?country-id=${countryId}`
     )
       .then((response) => response.json())
-      .then((json) => setState(json));
+      .then((json) => {
+        setState(json);
+        setStateEnable(false);
+      });
   };
 
   useEffect(() => {
     getState();
-  }, [countryId]);
+  }, [countryId, stateEnable]);
 
   //LIST ALL CITY WAIT ID STATE
   const getCity = async () => {
@@ -174,12 +180,15 @@ const StateProvider = ({ children }) => {
       `http://supplier.hubmine.mx/api/suppliers/list-cities?state-id=${stateId}`
     )
       .then((response) => response.json())
-      .then((json) => setCity(json));
+      .then((json) => {
+        setCity(json);
+        setCityEnable(false);
+      });
   };
 
   useEffect(() => {
     getCity();
-  }, [stateId]);
+  }, [stateId, cityEnable]);
 
   return (
     <StateContext.Provider
@@ -221,6 +230,8 @@ const StateProvider = ({ children }) => {
         state,
         handleState,
         city,
+        stateEnable,
+        cityEnable,
       }}>
       {children}
     </StateContext.Provider>
