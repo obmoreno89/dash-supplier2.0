@@ -28,6 +28,11 @@ const PlantCreateForm = () => {
     sizeInvalid,
     valid,
     setPlantReload,
+    country,
+    state,
+    handleCountry,
+    handleState,
+    city,
   } = useContext(StateContext);
   return (
     <>
@@ -140,7 +145,7 @@ const PlantCreateForm = () => {
                 {/* TYPE PLACE */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
-                    Tipo de ligar
+                    Tipo de lugar
                     <span className='text-rose-500'>*</span>
                   </label>
                   <select
@@ -152,8 +157,16 @@ const PlantCreateForm = () => {
                       },
                     })}>
                     <option value=''>Selecciona</option>
-                    <option value=''>Cedis</option>
-                    <option value=''>Bodega</option>
+                    <option value='1'>Cedis</option>
+                    <option value='2'>Bodega</option>
+                    <option value='3'>Almacén</option>
+                    <option value='4'>Mina</option>
+                    <option value='5'>Pedrera</option>
+                    <option value='6'>Banco de arena</option>
+                    <option value='7'>Planta de concreto</option>
+                    <option value='8'>Bloquera</option>
+                    <option value='9'>Local comercial</option>
+                    <option value='10'>Otros</option>
                   </select>
                   {errors.type_place_id && (
                     <span className='text-red-500 text-sm'>
@@ -183,10 +196,14 @@ const PlantCreateForm = () => {
                       value: true,
                       message: 'El campo es requerido',
                     },
-                  })}>
+                  })}
+                  onChange={(e) => handleCountry(e)}>
                   <option value=''>Selecciona</option>
-                  <option value=''>Mexico</option>
-                  <option value=''>Colombia</option>
+                  {country.map((country) => (
+                    <option key={country.id} value={country.id}>
+                      {country.country}
+                    </option>
+                  ))}
                 </select>
                 {errors.country_id && (
                   <span className='text-red-500 text-sm'>
@@ -208,9 +225,14 @@ const PlantCreateForm = () => {
                         value: true,
                         message: 'El campo es requerido',
                       },
-                    })}>
+                    })}
+                    onChange={(e) => handleState(e)}>
                     <option value=''>Selecciona</option>
-                    <option value=''>Monterrey</option>
+                    {state.map((state) => (
+                      <option key={state.id} value={state.id}>
+                        {state.state}
+                      </option>
+                    ))}
                   </select>
                   {errors.state_id && (
                     <span className='text-red-500 text-sm'>
@@ -219,7 +241,7 @@ const PlantCreateForm = () => {
                   )}
                 </div>
               </div>
-              {/* STATE */}
+              {/* CITY */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
                   Ciudad
@@ -227,18 +249,22 @@ const PlantCreateForm = () => {
                 </label>
                 <select
                   className='form-select w-full'
-                  {...register('state_id', {
+                  {...register('city_id', {
                     required: {
                       value: true,
                       message: 'El campo es requerido',
                     },
                   })}>
                   <option value=''>Selecciona</option>
-                  <option value=''>Los mochis</option>
+                  {city.map((city) => (
+                    <option key={city.id} value={city.id}>
+                      {city.city}
+                    </option>
+                  ))}
                 </select>
-                {errors.state_id && (
+                {errors.city_id && (
                   <span className='text-red-500 text-sm'>
-                    {errors.state_id.message}
+                    {errors.city_id.message}
                   </span>
                 )}
               </div>

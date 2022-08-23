@@ -31,6 +31,14 @@ const StateProvider = ({ children }) => {
   const [plantReload, setPlantReload] = useState(false);
   //STATE SAVE JSON PRODUCT LIST
   const [productList, setProductList] = useState([]);
+  //STATE SAVE COUNTRY ID
+  const [country, setCountry] = useState([]);
+  const [countryId, setCountryId] = useState('');
+  //STATE SAVE STATE ID
+  const [state, setState] = useState([]);
+  const [stateId, setStateId] = useState('');
+  //STATE SAVE CITY LIST
+  const [city, setCity] = useState([]);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -124,6 +132,55 @@ const StateProvider = ({ children }) => {
     getProductList();
   }, [productReload]);
 
+  //FUNCTION FOR SAVE CHANGE STATE COUNTRY
+  const handleCountry = (event) => {
+    const getCountryId = event.target.value;
+    return setCountryId(getCountryId);
+  };
+
+  //FUNCTION FOR SAVE CHANGE STATE STATE
+  const handleState = (event) => {
+    const getStateId = event.target.value;
+    return setStateId(getStateId);
+  };
+
+  // LIST ALL COUNTRY
+  const getCountry = async () => {
+    fetch(`http://supplier.hubmine.mx/api/suppliers/list-countries`)
+      .then((response) => response.json())
+      .then((json) => setCountry(json));
+  };
+
+  useEffect(() => {
+    getCountry();
+  }, []);
+
+  //LIST ALL STATE WAIT ID COUNTRY
+  const getState = async () => {
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/list-states?country-id=${countryId}`
+    )
+      .then((response) => response.json())
+      .then((json) => setState(json));
+  };
+
+  useEffect(() => {
+    getState();
+  }, [countryId]);
+
+  //LIST ALL CITY WAIT ID STATE
+  const getCity = async () => {
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/list-cities?state-id=${stateId}`
+    )
+      .then((response) => response.json())
+      .then((json) => setCity(json));
+  };
+
+  useEffect(() => {
+    getCity();
+  }, [stateId]);
+
   return (
     <StateContext.Provider
       value={{
@@ -159,6 +216,11 @@ const StateProvider = ({ children }) => {
         plantReload,
         setPlantReload,
         productList,
+        country,
+        handleCountry,
+        state,
+        handleState,
+        city,
       }}>
       {children}
     </StateContext.Provider>

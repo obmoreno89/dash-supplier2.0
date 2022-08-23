@@ -71,8 +71,8 @@ const CreateProductForm = () => {
           setPrueba(false);
         }, 3000);
       }
+      setProductReload(true);
     });
-    setProductReload(true);
   };
   return (
     <>
