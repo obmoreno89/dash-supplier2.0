@@ -14,7 +14,12 @@ const PlantCreateForm = () => {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      longitude: '0',
+      latitude: '0',
+    },
+  });
 
   const {
     setDangerModalOpen,
@@ -24,9 +29,7 @@ const PlantCreateForm = () => {
     setBannerErrorOpen,
     loading,
     setLoading,
-    formatInvalid,
-    sizeInvalid,
-    valid,
+    supplierId,
     setPlantReload,
     country,
     state,
@@ -35,7 +38,40 @@ const PlantCreateForm = () => {
     city,
     stateEnable,
     cityEnable,
+    placeList,
   } = useContext(StateContext);
+
+  async function createPlant(plantData) {
+    return fetch(
+      `http://supplier.hubmine.mx/api/suppliers/plant/create/${supplierId}/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(plantData),
+      }
+    ).then((response) => {
+      if (response.status === 201) {
+        setLoading(true);
+        setBannerSuccessOpen(true);
+        setTimeout(() => {
+          navigate('/plant/list');
+          setLoading(false);
+          setBannerSuccessOpen(false);
+        }, 3000);
+      } else {
+        setBannerErrorOpen(true);
+        setLoading(true);
+        setTimeout(() => {
+          setBannerErrorOpen(false);
+          setLoading(false);
+        }, 5000);
+      }
+      setPlantReload(true);
+    });
+  }
+
   return (
     <>
       <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
@@ -75,7 +111,7 @@ const PlantCreateForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(submit)}>
+          <form onSubmit={handleSubmit(createPlant)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -85,7 +121,7 @@ const PlantCreateForm = () => {
                   </label>
                   <input
                     maxLength='30'
-                    className='form-input w-full capitalize'
+                    className='form-input w-full '
                     autoComplete='off'
                     type='text'
                     {...register('name', {
@@ -159,16 +195,11 @@ const PlantCreateForm = () => {
                       },
                     })}>
                     <option value=''>Selecciona</option>
-                    <option value='1'>Cedis</option>
-                    <option value='2'>Bodega</option>
-                    <option value='3'>Almacén</option>
-                    <option value='4'>Mina</option>
-                    <option value='5'>Pedrera</option>
-                    <option value='6'>Banco de arena</option>
-                    <option value='7'>Planta de concreto</option>
-                    <option value='8'>Bloquera</option>
-                    <option value='9'>Local comercial</option>
-                    <option value='10'>Otros</option>
+                    {placeList.map((place) => (
+                      <option key={place.id} value={place.id}>
+                        {place.type_place}
+                      </option>
+                    ))}
                   </select>
                   {errors.type_place_id && (
                     <span className='text-red-500 text-sm'>
@@ -272,6 +303,33 @@ const PlantCreateForm = () => {
                   </span>
                 )}
               </div>
+              {/* ADDRESS */}
+              <div>
+                <label className='block text-sm font-medium mb-1'>
+                  Dirección<span className='text-rose-500'>*</span>
+                </label>
+                <input
+                  maxLength='35'
+                  className='form-input w-full '
+                  autoComplete='off'
+                  type='text'
+                  {...register('address', {
+                    required: {
+                      value: true,
+                      message: 'El campo es requerido',
+                    },
+                    pattern: {
+                      value: /[a-zA-Z]/,
+                      message: 'El formato no es correcto',
+                    },
+                  })}
+                />
+                {errors.address && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.address.message}
+                  </span>
+                )}
+              </div>
             </section>
 
             <article className='mt-10'>
@@ -282,20 +340,19 @@ const PlantCreateForm = () => {
             </article>
             <section className='mt-8'>
               <div>
-                {/* SHORT DESCRIPTION */}
+                {/* OBSERVATIONS */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
                     Referencia de como llegar a la planta
-                    <span className='text-rose-500'>*</span>
                   </label>
                   <textarea
                     maxLength='150'
                     className='form-input w-full'
                     type='text'
                     autoComplete='off'
-                    {...register('description', {
+                    {...register('observations', {
                       required: {
-                        value: true,
+                        value: false,
                         message: 'El campo es requerido',
                       },
                       maxLength: {
@@ -304,9 +361,9 @@ const PlantCreateForm = () => {
                       },
                     })}
                   />
-                  {errors.description && (
+                  {errors.observations && (
                     <span className='text-red-500 text-sm'>
-                      {errors.description.message}
+                      {errors.observations.message}
                     </span>
                   )}
                 </div>
