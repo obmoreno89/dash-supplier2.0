@@ -1,18 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ModalCorfirmAndReturnPlant from './helpers/ModalCorfirmAndReturnPlant';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
 
 const PlantUpdateForm = () => {
+  const [dataPlant, setDataPlant] = useState([]);
   const submit = (data) => console.log(data);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -24,11 +27,46 @@ const PlantUpdateForm = () => {
     setBannerErrorOpen,
     loading,
     setLoading,
-    formatInvalid,
-    sizeInvalid,
-    valid,
     setPlantReload,
+    placeList,
+    handleCountry,
+    handleState,
+    country,
+    state,
+    city,
+    stateEnable,
+    cityEnable,
   } = useContext(StateContext);
+
+  const getPlantDetails = async () => {
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/plant/list/details?plant-id=${id}`
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        setDataPlant(json);
+        console.log(json);
+        setValue('name', json[0].name);
+        setValue('phone_contact', json[0].phone_contact);
+        setValue('type_place', json[0].type_place.type_place);
+        setValue('type_place_id', json[0].type_place.type_place_id);
+        setValue('country', json[0].location.country);
+        setValue('country_id', json[0].location.country_id);
+        setValue('state', json[0].location.state);
+        setValue('state_id', json[0].location.state_id);
+        setValue('city', json[0].location.city);
+        setValue('city_id', json[0].location.city_id);
+        setValue('longitude', json[0].location.longitude);
+        setValue('latitude', json[0].location.latitude);
+        setValue('address', json[0].location.address);
+        setValue('observations', json[0].location.observations);
+      });
+  };
+
+  useEffect(() => {
+    getPlantDetails();
+  }, []);
+
   return (
     <>
       <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
@@ -78,7 +116,7 @@ const PlantUpdateForm = () => {
                   </label>
                   <input
                     maxLength='30'
-                    className='form-input w-full capitalize'
+                    className='form-input w-full '
                     autoComplete='off'
                     type='text'
                     {...register('name', {
@@ -140,7 +178,7 @@ const PlantUpdateForm = () => {
                 {/* TYPE PLACE */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
-                    Tipo de ligar
+                    Tipo de lugar
                     <span className='text-rose-500'>*</span>
                   </label>
                   <select
@@ -151,9 +189,19 @@ const PlantUpdateForm = () => {
                         message: 'El campo es requerido',
                       },
                     })}>
-                    <option value=''>Selecciona</option>
-                    <option value=''>Cedis</option>
-                    <option value=''>Bodega</option>
+                    {dataPlant.map((place) => (
+                      <option
+                        key={place.id}
+                        value={place.type_place.type_place_id}>
+                        {place.type_place.type_place}
+                      </option>
+                    ))}
+                    <option disabled>--Selecciona el tipo de lugar--</option>
+                    {placeList.map((place) => (
+                      <option key={place.id} value={place.id}>
+                        {place.type_place}
+                      </option>
+                    ))}
                   </select>
                   {errors.type_place_id && (
                     <span className='text-red-500 text-sm'>
@@ -183,10 +231,21 @@ const PlantUpdateForm = () => {
                       value: true,
                       message: 'El campo es requerido',
                     },
-                  })}>
-                  <option value=''>Selecciona</option>
-                  <option value=''>Mexico</option>
-                  <option value=''>Colombia</option>
+                  })}
+                  onChange={(e) => handleCountry(e)}>
+                  {dataPlant.map((countryDetails) => (
+                    <option
+                      key={countryDetails.id}
+                      value={countryDetails.location.country_id}>
+                      {countryDetails.location.country}
+                    </option>
+                  ))}
+                  <option disabled>--Selecciona el pais--</option>
+                  {country.map((country) => (
+                    <option key={country.id} value={country.id}>
+                      {country.country}
+                    </option>
+                  ))}
                 </select>
                 {errors.country_id && (
                   <span className='text-red-500 text-sm'>
@@ -202,15 +261,28 @@ const PlantUpdateForm = () => {
                     <span className='text-rose-500'>*</span>
                   </label>
                   <select
+                    disabled={stateEnable}
                     className='form-select w-full'
                     {...register('state_id', {
                       required: {
                         value: true,
                         message: 'El campo es requerido',
                       },
-                    })}>
-                    <option value=''>Selecciona</option>
-                    <option value=''>Monterrey</option>
+                    })}
+                    onChange={(e) => handleState(e)}>
+                    {dataPlant.map((stateDetails) => (
+                      <option
+                        key={stateDetails.id}
+                        value={stateDetails.location.state_id}>
+                        {stateDetails.location.state}
+                      </option>
+                    ))}
+                    <option disabled>--Selecciona el estado--</option>
+                    {state.map((state) => (
+                      <option key={state.id} value={state.id}>
+                        {state.state}
+                      </option>
+                    ))}
                   </select>
                   {errors.state_id && (
                     <span className='text-red-500 text-sm'>
@@ -219,26 +291,65 @@ const PlantUpdateForm = () => {
                   )}
                 </div>
               </div>
-              {/* STATE */}
+              {/* CITY */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
                   Ciudad
                   <span className='text-rose-500'>*</span>
                 </label>
                 <select
+                  disabled={cityEnable}
                   className='form-select w-full'
-                  {...register('state_id', {
+                  {...register('city_id', {
                     required: {
                       value: true,
                       message: 'El campo es requerido',
                     },
                   })}>
-                  <option value=''>Selecciona</option>
-                  <option value=''>Los mochis</option>
+                  {dataPlant.map((cityDetails) => (
+                    <option
+                      key={cityDetails.id}
+                      value={cityDetails.location.city_id}>
+                      {cityDetails.location.city}
+                    </option>
+                  ))}
+                  <option disabled>--Selecciona la ciudad--</option>
+                  {city.map((city) => (
+                    <option key={city.id} value={city.id}>
+                      {city.city}
+                    </option>
+                  ))}
                 </select>
-                {errors.state_id && (
+                {errors.city_id && (
                   <span className='text-red-500 text-sm'>
-                    {errors.state_id.message}
+                    {errors.city_id.message}
+                  </span>
+                )}
+              </div>
+              {/* ADDRESS */}
+              <div>
+                <label className='block text-sm font-medium mb-1'>
+                  Dirección<span className='text-rose-500'>*</span>
+                </label>
+                <input
+                  maxLength='35'
+                  className='form-input w-full '
+                  autoComplete='off'
+                  type='text'
+                  {...register('address', {
+                    required: {
+                      value: true,
+                      message: 'El campo es requerido',
+                    },
+                    pattern: {
+                      value: /[a-zA-Z]/,
+                      message: 'El formato no es correcto',
+                    },
+                  })}
+                />
+                {errors.address && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.address.message}
                   </span>
                 )}
               </div>
@@ -252,20 +363,19 @@ const PlantUpdateForm = () => {
             </article>
             <section className='mt-8'>
               <div>
-                {/* SHORT DESCRIPTION */}
+                {/* OBSERVATIONS */}
                 <div>
                   <label className='block text-sm font-medium mb-1'>
                     Referencia de como llegar a la planta
-                    <span className='text-rose-500'>*</span>
                   </label>
                   <textarea
                     maxLength='150'
                     className='form-input w-full'
                     type='text'
                     autoComplete='off'
-                    {...register('description', {
+                    {...register('observations', {
                       required: {
-                        value: true,
+                        value: false,
                         message: 'El campo es requerido',
                       },
                       maxLength: {
@@ -274,9 +384,9 @@ const PlantUpdateForm = () => {
                       },
                     })}
                   />
-                  {errors.description && (
+                  {errors.observations && (
                     <span className='text-red-500 text-sm'>
-                      {errors.description.message}
+                      {errors.observations.message}
                     </span>
                   )}
                 </div>

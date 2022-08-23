@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import StateContext from '../../context/StateContext';
+
 import ModalProductDelete from './helpers/ModalProductDelete';
 
 const ProductListTableItem = (props) => {

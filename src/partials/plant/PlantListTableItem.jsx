@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import ModalPlantDelete from './helpers/ModalPlantDelete';
 import StateContext from '../../context/StateContext';
+import { Link } from 'react-router-dom';
 
 const PlantListTableItem = (props) => {
   const { setDangerModalOpen } = useContext(StateContext);
@@ -31,9 +32,11 @@ const PlantListTableItem = (props) => {
         </td>
         <td className='px-6 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px'>
           <div className='flex justify-center items-center space-x-1'>
-            <button className='font-semibold text-slate-600 hover:border-b-2 border-slate-500'>
+            <Link
+              to={`/plant/update/${props.id}`}
+              className='font-semibold text-slate-600 hover:border-b-2 border-slate-500'>
               Editar
-            </button>
+            </Link>
             <div>|</div>
             <button
               onClick={(e) => {

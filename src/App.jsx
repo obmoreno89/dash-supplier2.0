@@ -170,7 +170,7 @@ function App() {
 
         <Route
           exact
-          path='/plant/update'
+          path='/plant/update/:id'
           element={
             <PrivateRoute>
               <PlantUpdate />
