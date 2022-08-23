@@ -42,6 +42,10 @@ const StateProvider = ({ children }) => {
   //STATE FOR DISABLE INPUT COMPONENT FORM PLANT
   const [stateEnable, setStateEnable] = useState(true);
   const [cityEnable, setCityEnable] = useState(true);
+  //STATE SAVED TYPE PLACES FORM PLANT
+  const [placeList, setPlaceList] = useState([]);
+  //STATE SAVE PLANT LIST
+  const [plantList, setPlantList] = useState([]);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -190,6 +194,22 @@ const StateProvider = ({ children }) => {
     getCity();
   }, [stateId, cityEnable]);
 
+  //LIST ALL PLACE
+  const getPlaceList = async () => {
+    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/list/type-places/`)
+      .then((response) => response.json())
+      .then((json) => setPlaceList(json));
+  };
+
+  useEffect(() => {
+    getPlaceList();
+  }, []);
+
+  //FUNCTION FOR ALL PLANTS
+  const getPlantList = async () => {
+    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/list?supplier-id=15`);
+  };
+
   return (
     <StateContext.Provider
       value={{
@@ -232,6 +252,9 @@ const StateProvider = ({ children }) => {
         city,
         stateEnable,
         cityEnable,
+        placeList,
+        supplierId,
+        plantList,
       }}>
       {children}
     </StateContext.Provider>
