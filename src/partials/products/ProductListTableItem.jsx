@@ -86,7 +86,7 @@ const ProductListTableItem = (props) => {
                 e.stopPropagation();
                 setDangerModalOpen(true);
               }}
-              className='font-semibold text-red-500 hover:border-b-2 border-slate-500'>
+              className='font-semibold text-red-400 hover:border-b-2 border-slate-500'>
               Eliminar
             </button>
             {/* {MODAL DELETE PRODUCT} */}

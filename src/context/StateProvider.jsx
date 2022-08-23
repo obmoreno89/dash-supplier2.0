@@ -207,8 +207,15 @@ const StateProvider = ({ children }) => {
 
   //FUNCTION FOR ALL PLANTS
   const getPlantList = async () => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/list?supplier-id=15`);
+    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/list?supplier-id=15`)
+      .then((response) => response.json())
+      .then((json) => setPlantList(json));
+    setPlantReload(false);
   };
+
+  useEffect(() => {
+    getPlantList();
+  }, [plantReload]);
 
   return (
     <StateContext.Provider
