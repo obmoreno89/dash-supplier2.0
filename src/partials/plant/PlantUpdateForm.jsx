@@ -36,6 +36,8 @@ const PlantUpdateForm = () => {
     city,
     stateEnable,
     cityEnable,
+    setCityEnable,
+    setStateEnable,
   } = useContext(StateContext);
 
   const getPlantDetails = async () => {
@@ -56,8 +58,6 @@ const PlantUpdateForm = () => {
         setValue('state_id', json[0].location.state_id);
         setValue('city', json[0].location.city);
         setValue('city_id', json[0].location.city_id);
-        setValue('longitude', json[0].location.longitude);
-        setValue('latitude', json[0].location.latitude);
         setValue('address', json[0].location.address);
         setValue('observations', json[0].location.observations);
       });
@@ -66,6 +66,34 @@ const PlantUpdateForm = () => {
   useEffect(() => {
     getPlantDetails();
   }, []);
+
+  const plantUpdate = async (data) => {
+    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/update/${id}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      if (response.status === 200) {
+        setLoading(true);
+        setBannerSuccessOpen(true);
+        setTimeout(() => {
+          setLoading(false);
+          setBannerSuccessOpen(false);
+          navigate('/plant/list');
+        }, 3000);
+      } else {
+        setLoading(true);
+        setBannerErrorOpen(true);
+        setTimeout(() => {
+          setLoading(false);
+          setBannerErrorOpen(false);
+        }, 5000);
+      }
+      setPlantReload(true);
+    });
+  };
 
   return (
     <>
@@ -106,7 +134,7 @@ const PlantUpdateForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(submit)}>
+          <form onSubmit={handleSubmit(plantUpdate)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -411,6 +439,8 @@ const PlantUpdateForm = () => {
                   onClick={(e) => {
                     e.stopPropagation();
                     setDangerModalOpen(true);
+                    setCityEnable(true);
+                    setStateEnable(true);
                   }}
                   type='button'
                   className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>

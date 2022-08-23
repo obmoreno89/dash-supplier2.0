@@ -207,7 +207,9 @@ const StateProvider = ({ children }) => {
 
   //FUNCTION FOR ALL PLANTS
   const getPlantList = async () => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/list?supplier-id=15`)
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/plant/list?supplier-id=${supplierId}`
+    )
       .then((response) => response.json())
       .then((json) => setPlantList(json));
     setPlantReload(false);
@@ -258,7 +260,9 @@ const StateProvider = ({ children }) => {
         handleState,
         city,
         stateEnable,
+        setStateEnable,
         cityEnable,
+        setCityEnable,
         placeList,
         supplierId,
         plantList,

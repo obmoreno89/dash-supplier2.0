@@ -76,7 +76,7 @@ const PlantListTable = () => {
                     id={plant.id}
                     name={plant.name}
                     phone_contact={plant.phone_contact}
-                    type_place={plant.type_place}
+                    type_place={plant.type_place.type_place}
                     country={plant.location.country}
                     state={plant.location.state}
                     city={plant.location.city}
