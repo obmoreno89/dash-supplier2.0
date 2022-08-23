@@ -8,6 +8,8 @@ const StateProvider = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   //STATE LOADING BUTTON
   const [loading, setLoading] = useState(false);
+  //STATE FOR IMAGE MENU
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   //STATE VALIDATION OF IMAGE
   const [formatInvalid, setFormatInvalid] = useState(false);
   const [sizeInvalid, setSizeInvalid] = useState(false);
@@ -266,6 +268,8 @@ const StateProvider = ({ children }) => {
         placeList,
         supplierId,
         plantList,
+        dropdownOpen,
+        setDropdownOpen,
       }}>
       {children}
     </StateContext.Provider>
