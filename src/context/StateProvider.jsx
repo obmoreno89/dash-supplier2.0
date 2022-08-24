@@ -100,6 +100,46 @@ const StateProvider = ({ children }) => {
       });
   }
 
+  //FUNCTION FOR LOGIN SUPPLIER
+  async function loginUser(credentials) {
+    return fetch('http://supplier.hubmine.mx/api/auth/login/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(credentials),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.customer_type_id === 2) {
+          setLoading(true);
+          let result = json;
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('first_name', result.first_name);
+          localStorage.setItem('email', result.email);
+          localStorage.setItem('supplier_id', result.supplier_id);
+          localStorage.setItem('id', result.id);
+
+          setTimeout(() => {
+            navigate('/');
+            setLoading(false);
+          }, 2000);
+        } else if (json.customer_type_id === 1) {
+          setLoading(true);
+          setLocked(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000);
+        } else if (json.code === 401) {
+          setLoading(true);
+          setTimeout(() => {
+            setLocked(true);
+            setLoading(false);
+          }, 2000);
+        }
+      });
+  }
+
   //FUNCTION FOR IMAGE VALIDATION
   const valid = (x) => {
     let imagen = document.getElementById('archivo').files;
@@ -235,6 +275,7 @@ const StateProvider = ({ children }) => {
         setNewsletterModalOpen,
         errorMenssage,
         setErrorMenssage,
+        loginUser,
         logout,
         savedCode,
         setSavedCode,

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Sinlogo from '../images/Sinlogo.png';
 import Transition from '../utils/Transition';
-import UserAvatar from '../images/user-36-03.jpg';
 
 const Logout = ({ align }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -44,6 +44,7 @@ const Logout = ({ align }) => {
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
     localStorage.removeItem('supplier_id');
+
     navigate('/signin');
   }
 
@@ -57,11 +58,12 @@ const Logout = ({ align }) => {
         aria-expanded={dropdownOpen}>
         <img
           className='w-8 h-8 rounded-full'
-          src={UserAvatar}
+          src={Sinlogo}
           width='32'
           height='32'
           alt='User'
         />
+
         <div className='flex items-center truncate'>
           <span className='capitalize truncate ml-2 text-sm font-medium group-hover:text-slate-800'>
             {username}

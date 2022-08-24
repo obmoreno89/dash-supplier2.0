@@ -51,9 +51,7 @@ function ProfilePanel() {
         method: 'POST',
         body: formData,
       }
-    )
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    ).then((response) => response.json());
   };
 
   const getDetailsSupplier = async () => {
