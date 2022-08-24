@@ -52,7 +52,7 @@ const MultiStepFormEnd = () => {
                 <div className='text-sm'>
                   ¿Tienes una cuenta?{' '}
                   <Link
-                    className='font-medium text-primary hover:text-secondary'
+                    className='font-medium text-primary hover:text-slate-500'
                     to='/signin'>
                     Iniciar sesión
                   </Link>
@@ -111,7 +111,7 @@ const MultiStepFormEnd = () => {
                     />
                   </svg>
                   <h1 className='text-3xl text-slate-800 font-bold mb-8'>
-                    Gracias por compartir tus datos. 🙌
+                    Gracias por compartir tus datos 🙌
                   </h1>
                   <Link
                     onClick={logout}

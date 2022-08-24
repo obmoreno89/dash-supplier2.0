@@ -134,7 +134,7 @@ const MultiStepForm = () => {
                   ¿Tienes una cuenta?{' '}
                   <Link
                     onClick={logout}
-                    className='font-medium text-primary hover:text-secondary'
+                    className='font-medium text-primary hover:text-slate-500'
                     to='/signin'>
                     Iniciar sesión
                   </Link>
@@ -256,7 +256,7 @@ const MultiStepForm = () => {
                           <input
                             maxLength='35'
                             autoComplete='off'
-                            className='form-input w-full capitalize'
+                            className='form-input w-full uppercase'
                             type='text'
                             {...register('social_reason', {
                               required: {

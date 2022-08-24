@@ -131,7 +131,7 @@ const PhoneCodeGenerator = () => {
                 <div className='text-sm'>
                   ¿Tienes cuenta?{' '}
                   <Link
-                    className='font-medium text-primary hover:text-secondary'
+                    className='font-medium text-primary hover:text-slate-500'
                     to='/signin'>
                     Iniciar sesión
                   </Link>

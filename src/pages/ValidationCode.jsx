@@ -6,25 +6,29 @@ import verification from '../images/verification.jpg';
 
 const ValidationCode = () => {
   const navigate = useNavigate();
-  const { loading, errorApi, setErrorApi, savedCode, setLoading } =
+  const { errorApi, setErrorApi, savedCode, codeGenerator } =
     useContext(StateContext);
 
   const [otp, setOtp] = useState(new Array(5).fill(''));
-  const [counter, setCounter] = useState(59);
+  const [counter, setCounter] = useState(15);
+  const [containerChange, setContainerChange] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
-  // useEffect(() => {
-  //   if (counter) {
-  //     const timer =
-  //       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-  //     return () => clearInterval(timer);
-  //   } else if (counter === 0) {
-  //     navigate('/signin');
-  //   }
-  // }, [counter]);
+  useEffect(() => {
+    if (counter) {
+      const timer =
+        counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+      return () => clearInterval(timer);
+    } else if (counter === 0) {
+      return setContainerChange(true);
+    }
+  }, [counter]);
 
   const codeValue = { code: otp.join(''), number: savedCode.number };
 
   const phoneUser = savedCode.number;
+  const newCode = { number: phoneUser };
+
   const code = savedCode.code;
 
   const handleChange = (element, index) => {
@@ -49,19 +53,19 @@ const ValidationCode = () => {
       .then((response) => response.json())
       .then((json) => {
         if (json.msg === 'Ok') {
-          setLoading(true);
+          setButtonLoading(true);
           let result = json;
           localStorage.setItem('msg', result.msg);
           setTimeout(() => {
-            setLoading(false);
+            setButtonLoading(false);
             navigate('/signup');
           }, 3000);
         } else {
           setErrorApi(true);
-          setLoading(true);
+          setButtonLoading(true);
           setTimeout(() => {
             setErrorApi(false);
-            setLoading(false);
+            setButtonLoading(false);
           }, 5000);
         }
       });
@@ -150,7 +154,7 @@ const ValidationCode = () => {
                   })}
                 </div>
                 <div className='flex items-center justify-end mt-16'>
-                  {loading ? (
+                  {buttonLoading ? (
                     <LoadingButton />
                   ) : (
                     <>
@@ -166,9 +170,22 @@ const ValidationCode = () => {
               </form>
               {/* Footer */}
               <div className='pt-5 mt-6 space-y-6 '>
-                <div className='text-sm text-center'>
-                  Tu código vence en: {counter}
-                </div>
+                {!containerChange ? (
+                  <div className='text-sm text-center'>
+                    Tu código vence en: {counter} segundos
+                  </div>
+                ) : (
+                  <div className='flex justify-center items-center'>
+                    <button
+                      onClick={() => {
+                        codeGenerator(newCode);
+                      }}
+                      className='text-sm font-medium text-primary hover:text-slate-500'>
+                      Solicitar código nuevo
+                    </button>
+                  </div>
+                )}
+
                 <div className='text-sm text-center'>
                   ¿Este no es tu número?{' '}
                   <Link
