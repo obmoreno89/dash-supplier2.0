@@ -1,20 +1,30 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Image from '../../images/user-avatar-80.png';
+import Sinlogo from '../../images/Sinlogo.png';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../../context/StateContext';
+import LoadingButton from '../../helpers/LoadingButton';
+import Banner from '../../components/Banner';
 
 function ProfilePanel() {
   const [logoSupplier, setLogoSupplier] = useState('');
+  const [supplierData, setSupplierData] = useState([]);
 
-  const { requiredFile, setRequiredFile } = useContext(StateContext);
+  const navigate = useNavigate();
+
+  const {
+    requiredFile,
+    setRequiredFile,
+    bannerErrorOpen,
+    setBannerErrorOpen,
+    loading,
+    setLoading,
+  } = useContext(StateContext);
 
   const handleLogo = (event) => {
     const change = event.target.value;
     return setLogoSupplier(change);
   };
-
-  console.log(logoSupplier);
 
   const {
     handleSubmit,
@@ -52,7 +62,7 @@ function ProfilePanel() {
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        setSupplierData(json[0].bussiness_logo);
         setValue('commercial_brand', json[0].commercial_brand);
         setValue('bussiness_email', json[0].bussiness_email);
         setValue('bussiness_phone', json[0].bussiness_phone);
@@ -65,6 +75,31 @@ function ProfilePanel() {
     getDetailsSupplier();
   }, []);
 
+  const profileUpdate = async (data) => {
+    fetch(`http://supplier.hubmine.mx/api/suppliers/update/${supplierId}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then((response) => {
+      if (response.status === 200) {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          navigate('/');
+        }, 3000);
+      } else {
+        setLoading(true);
+        setBannerErrorOpen(true);
+        setTimeout(() => {
+          setLoading(false);
+          setBannerErrorOpen(false);
+        }, 5000);
+      }
+    });
+  };
+
   return (
     <div className='grow'>
       {/* Panel body */}
@@ -73,18 +108,44 @@ function ProfilePanel() {
           Logo de la compañia
         </h2>
         {/* Picture */}
+        {/* BANNER SUCCESS AND ERROR */}
+        {bannerErrorOpen && (
+          <div className='space-y-3'>
+            <Banner
+              type='error'
+              open={bannerErrorOpen}
+              setOpen={setBannerErrorOpen}>
+              Lo sentimos, al parecer tenemos problema con nuestro servidor,
+              vuelva a intentar más tarde.
+            </Banner>
+          </div>
+        )}
+
         <section>
           <div className='flex items-center'>
-            <div className='mr-1'>
-              <img
-                name='img_product'
-                className='w-20 h-20 rounded-full'
-                src={Image}
-                width='80'
-                height='80'
-                alt='User upload'
-              />
-            </div>
+            {supplierData.length ? (
+              <div className='mr-1'>
+                <img
+                  name='img_product'
+                  className='w-20 h-20 rounded-full'
+                  src={supplierData}
+                  width='80'
+                  height='80'
+                  alt='User upload'
+                />
+              </div>
+            ) : (
+              <div className='mr-1'>
+                <img
+                  name='img_product'
+                  className='w-20 h-20 rounded-full'
+                  src={Sinlogo}
+                  width='80'
+                  height='80'
+                  alt='User upload'
+                />
+              </div>
+            )}
             <div>
               <label
                 htmlFor='image'
@@ -106,7 +167,7 @@ function ProfilePanel() {
           </div>
         </section>
       </div>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(profileUpdate)}>
         <div className='p-6 space-y-6'>
           {/* Business Profile */}
           <section>
@@ -284,17 +345,24 @@ function ProfilePanel() {
           {/* Panel footer */}
           <footer>
             <div className='flex flex-col px-6 py-5 border-t border-slate-200'>
-              <div className='flex self-end'>
+              <div className='flex self-end space-x-3'>
                 <Link
                   to='/'
                   className='btn border-slate-200 hover:border-slate-300 text-slate-600'>
                   Salir
                 </Link>
-                <button
-                  onClick={changeLogo}
-                  className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
-                  Guardar cambios
-                </button>
+                {loading ? (
+                  <LoadingButton />
+                ) : (
+                  <>
+                    <button
+                      onClick={changeLogo}
+                      type='submit'
+                      className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+                      Guardar cambios
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </footer>

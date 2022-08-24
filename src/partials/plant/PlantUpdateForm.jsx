@@ -36,8 +36,6 @@ const PlantUpdateForm = () => {
     city,
     stateEnable,
     cityEnable,
-    setCityEnable,
-    setStateEnable,
   } = useContext(StateContext);
 
   const getPlantDetails = async () => {
@@ -439,8 +437,6 @@ const PlantUpdateForm = () => {
                   onClick={(e) => {
                     e.stopPropagation();
                     setDangerModalOpen(true);
-                    setCityEnable(true);
-                    setStateEnable(true);
                   }}
                   type='button'
                   className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
