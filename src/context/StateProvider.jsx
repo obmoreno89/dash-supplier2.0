@@ -48,6 +48,8 @@ const StateProvider = ({ children }) => {
   const [placeList, setPlaceList] = useState([]);
   //STATE SAVE PLANT LIST
   const [plantList, setPlantList] = useState([]);
+  //STATE FOR REQUIRED FILE
+  const [requiredFile, setRequiredFile] = useState(false);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -270,6 +272,8 @@ const StateProvider = ({ children }) => {
         plantList,
         dropdownOpen,
         setDropdownOpen,
+        requiredFile,
+        setRequiredFile,
       }}>
       {children}
     </StateContext.Provider>

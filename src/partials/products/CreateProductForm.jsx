@@ -8,7 +8,6 @@ import StateContext from '../../context/StateContext';
 
 const CreateProductForm = () => {
   const navigate = useNavigate();
-  const [requiredFile, setRequiredFile] = useState(false);
 
   const supplierId = localStorage.getItem('supplier_id');
 
@@ -27,6 +26,8 @@ const CreateProductForm = () => {
     loading,
     setLoading,
     setProductReload,
+    requiredFile,
+    setRequiredFile,
   } = useContext(StateContext);
 
   // const submit = (data) => console.log(data);
@@ -68,7 +69,7 @@ const CreateProductForm = () => {
         setTimeout(() => {
           setBannerErrorOpen(false);
           setLoading(false);
-          setPrueba(false);
+          setRequiredFile(false);
         }, 3000);
       }
       setProductReload(true);
