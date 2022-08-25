@@ -48,7 +48,7 @@ const CreateProductForm = () => {
     };
   };
 
-  const submit = (data) => console.log(data);
+  //const submit = (data) => console.log(data);
 
   const newProduct = async (data) => {
     const files = document.getElementById('image').value
