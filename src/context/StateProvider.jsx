@@ -50,6 +50,9 @@ const StateProvider = ({ children }) => {
   const [plantList, setPlantList] = useState([]);
   //STATE FOR REQUIRED FILE
   const [requiredFile, setRequiredFile] = useState(false);
+  //STATE SAVE UPLOAD LOGO OR IMAGE PRODUCT
+  const [preview, setPreview] = useState('');
+  const [image, setImage] = useState('');
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -223,6 +226,26 @@ const StateProvider = ({ children }) => {
     getPlantList();
   }, [plantReload]);
 
+  //FUNCTION PREVIEW IMAGE
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setImage(file);
+      setPreview(reader.result);
+    };
+  };
+
+  //FUCTION FOR CLEAN IMAGE OF INPUT FILE
+  const cleanProductImage = () => setPreview('');
+
   return (
     <StateContext.Provider
       value={{
@@ -274,6 +297,9 @@ const StateProvider = ({ children }) => {
         setDropdownOpen,
         requiredFile,
         setRequiredFile,
+        handleImageChange,
+        preview,
+        cleanProductImage,
       }}>
       {children}
     </StateContext.Provider>

@@ -73,7 +73,7 @@ const PhoneCodeGenerator = () => {
                 </p>
               </div>
               {/* Form */}
-              <form onSubmit={handleSubmit(submit)}>
+              <form onSubmit={handleSubmit(codeGenerator)}>
                 <div className='space-y-4 mt-10'>
                   <div>
                     <label

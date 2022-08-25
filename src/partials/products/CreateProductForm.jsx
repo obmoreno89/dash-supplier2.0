@@ -7,8 +7,6 @@ import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
 
 const CreateProductForm = () => {
-  const [preview, setPreview] = useState('');
-  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const supplierId = localStorage.getItem('supplier_id');
@@ -30,23 +28,9 @@ const CreateProductForm = () => {
     setProductReload,
     requiredFile,
     setRequiredFile,
+    preview,
+    handleImageChange,
   } = useContext(StateContext);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      setImage(file);
-      setPreview(reader.result);
-    };
-  };
 
   //const submit = (data) => console.log(data);
 
@@ -79,6 +63,7 @@ const CreateProductForm = () => {
           setBannerSuccessOpen(false);
           setLoading(false);
           navigate('/products/list');
+          handleImageChange();
         }, 3000);
       } else {
         setRequiredFile(true);

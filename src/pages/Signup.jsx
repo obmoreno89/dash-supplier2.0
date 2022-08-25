@@ -46,6 +46,7 @@ function Signup() {
           let result = json;
           localStorage.setItem('id', result.id);
           localStorage.setItem('token', result.token);
+
           setTimeout(() => {
             setReloading(false);
             navigate('/multiStep');

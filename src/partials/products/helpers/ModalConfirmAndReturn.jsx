@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import StateContext from '../../../context/StateContext';
 
 const ModalConfirmAndReturn = () => {
-  const { dangerModalOpen, setDangerModalOpen } = useContext(StateContext);
+  const { dangerModalOpen, setDangerModalOpen, cleanProductImage } =
+    useContext(StateContext);
 
   const navigate = useNavigate();
 
@@ -60,6 +61,7 @@ const ModalConfirmAndReturn = () => {
                 onClick={(e) => {
                   e.stopPropagation();
                   backPage();
+                  cleanProductImage();
                 }}
                 type='button'
                 className='btn-sm bg-rose-500 hover:bg-rose-600 text-white'>

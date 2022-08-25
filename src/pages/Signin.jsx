@@ -8,7 +8,7 @@ import AuthImage from '../images/auth-image.jpg';
 function Signin() {
   const [locked, setLocked] = useState(false);
 
-  // const submit = (data) => console.log(data);
+  const submit = (data) => console.log(data);
 
   const { loading, eye, setLoading, toggleEye } = useContext(StateContext);
 
