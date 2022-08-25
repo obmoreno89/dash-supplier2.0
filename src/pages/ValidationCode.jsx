@@ -71,6 +71,7 @@ const ValidationCode = () => {
         }
       });
   }
+
   return (
     <main className='bg-white'>
       <div className='relative md:flex'>

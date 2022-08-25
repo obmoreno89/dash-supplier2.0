@@ -3,7 +3,7 @@ import React from 'react';
 const PrivateMultistepForm = ({ children }) => {
   const msg = localStorage.getItem('msg');
 
-  if (!msg || !token) {
+  if (!msg) {
     return <Navigate to='/signin' />;
   }
   return children;

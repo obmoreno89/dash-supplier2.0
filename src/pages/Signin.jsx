@@ -34,14 +34,33 @@ function Signin() {
         if (json.customer_type_id === 2) {
           setLoading(true);
           let result = json;
+          let supplierId = json.id;
+          let supplierToken = { token: json.token };
           localStorage.setItem('token', result.token);
           localStorage.setItem('first_name', result.first_name);
           localStorage.setItem('email', result.email);
           localStorage.setItem('supplier_id', result.supplier_id);
           localStorage.setItem('id', result.id);
+          console.log(supplierToken);
+
+          async function codeValidation() {
+            return fetch(
+              `http://supplier.hubmine.mx/api/suppliers/validate/${supplierId}/`,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-type': 'application/json',
+                },
+                body: JSON.stringify(supplierToken),
+              }
+            )
+              .then((response) => response.json())
+              .then((json) => console.log(json));
+          }
+          codeValidation(json);
 
           setTimeout(() => {
-            navigate('/');
+            // navigate('/');
             setLoading(false);
           }, 2000);
         } else if (json.customer_type_id === 1) {
@@ -59,6 +78,41 @@ function Signin() {
         }
       });
   }
+
+  // async function numberValidation(phone) {
+  //   return fetch('http://supplier.hubmine.mx/api/auth/send_register/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(phone),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((json) => {
+  //       if (json.code) {
+  //         setLoading(true);
+  //         async function codeValidation(code) {
+  //           return fetch('http://supplier.hubmine.mx/api/auth/validate/', {
+  //             method: 'POST',
+  //             headers: {
+  //               'Content-type': 'application/json',
+  //             },
+  //             body: JSON.stringify(code),
+  //           }).then((response) => {
+  //             if (response.status === 202) {
+  //               setTimeout(() => {
+  //                 setNewsletterModalOpen(false);
+  //                 setLoading(false);
+  //               }, 4000);
+  //             } else {
+  //               setErrorApi(true);
+  //             }
+  //           });
+  //         }
+  //         codeValidation(json);
+  //       }
+  //     });
+  // }
 
   return (
     <main className='bg-white'>
