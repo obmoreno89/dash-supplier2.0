@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import ModalBlank from '../../../../../hubstyle/src/components/ModalBlank';
+import ModalBlank from '../../../components/ModalBlank';
 import StateContext from '../../../context/StateContext';
 
 const ModalPlantDelete = ({ id }) => {
