@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ModalBlank from '../../../../src/components/ModalBlank';
 import { useNavigate } from 'react-router-dom';
 import StateContext from '../../../context/StateContext';
 
-const ModalConfirmAndReturn = () => {
-  const { dangerModalOpen, setDangerModalOpen, cleanProductImage } =
-    useContext(StateContext);
+const ModalConfirmAndReturn = ({ cleanProductImage }) => {
+  const { dangerModalOpen, setDangerModalOpen } = useContext(StateContext);
 
   const navigate = useNavigate();
 

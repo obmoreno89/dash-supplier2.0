@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import verification from '../images/verification.jpg';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import './pruebas.css';
 
 const PhoneCodeGenerator = () => {
   const {
@@ -81,7 +84,8 @@ const PhoneCodeGenerator = () => {
                       htmlFor='number'>
                       Número de teléfono<span className='text-rose-500'>*</span>
                     </label>
-                    <input
+                    <PhoneInput inputClass='border' />
+                    {/* <input
                       className='form-input w-full capitalize'
                       autoComplete='off'
                       type='number'
@@ -103,7 +107,7 @@ const PhoneCodeGenerator = () => {
                           message: 'Debe de tener 10 caracteres',
                         },
                       })}
-                    />{' '}
+                    />{' '} */}
                     {errors.number && (
                       <span className='text-red-500 text-sm'>
                         {errors.number.message}

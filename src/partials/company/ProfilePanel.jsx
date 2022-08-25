@@ -9,6 +9,8 @@ import Banner from '../../components/Banner';
 function ProfilePanel() {
   const [logoSupplier, setLogoSupplier] = useState('');
   const [supplierData, setSupplierData] = useState([]);
+  const [preview, setPreview] = useState('');
+  const [image, setImage] = useState('');
 
   const navigate = useNavigate();
 
@@ -24,6 +26,23 @@ function ProfilePanel() {
   const handleLogo = (event) => {
     const change = event.target.value;
     return setLogoSupplier(change);
+  };
+
+  //FUNCTION PREVIEW IMAGE
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setImage(file);
+      setPreview(reader.result);
+    };
   };
 
   const {
@@ -141,6 +160,20 @@ function ProfilePanel() {
                   width='80'
                   height='80'
                   alt='User upload'
+                />
+              </div>
+            )}
+
+            {preview && (
+              <div className='mr-1'>
+                <img
+                  name='img_product'
+                  className='w-20 h-20 rounded-full'
+                  src={preview}
+                  width='80'
+                  height='80'
+                  alt='User upload'
+                  onChange={handleImageChange}
                 />
               </div>
             )}

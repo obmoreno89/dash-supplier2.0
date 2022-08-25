@@ -7,6 +7,8 @@ import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
 
 const CreateProductForm = () => {
+  const [preview, setPreview] = useState('');
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const supplierId = localStorage.getItem('supplier_id');
@@ -14,6 +16,7 @@ const CreateProductForm = () => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -28,11 +31,29 @@ const CreateProductForm = () => {
     setProductReload,
     requiredFile,
     setRequiredFile,
-    preview,
-    handleImageChange,
   } = useContext(StateContext);
 
   //const submit = (data) => console.log(data);
+
+  //FUNCTION PREVIEW IMAGE
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setImage(file);
+      setPreview(reader.result);
+    };
+  };
+
+  //FUCTION FOR CLEAN IMAGE OF INPUT FILE
+  const cleanProductImage = () => setPreview('');
 
   const newProduct = async (data) => {
     const files = document.getElementById('image').value
@@ -58,12 +79,12 @@ const CreateProductForm = () => {
     ).then((response) => {
       if (response.status === 201) {
         setBannerSuccessOpen(true);
+        cleanProductImage();
         setLoading(true);
         setTimeout(() => {
           setBannerSuccessOpen(false);
           setLoading(false);
           navigate('/products/list');
-          handleImageChange();
         }, 3000);
       } else {
         setRequiredFile(true);
@@ -465,7 +486,7 @@ const CreateProductForm = () => {
         </div>
       </div>
       {/* MODAL CONFIRM */}
-      <ModalConfirmAndReturn />
+      <ModalConfirmAndReturn cleanProductImage={cleanProductImage} />
     </>
   );
 };
