@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ModalConfirmAndReturn from './helpers/ModalConfirmAndReturn';
@@ -7,6 +7,8 @@ import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
 
 const CreateProductForm = () => {
+  const [preview, setPreview] = useState('');
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const supplierId = localStorage.getItem('supplier_id');
@@ -30,7 +32,23 @@ const CreateProductForm = () => {
     setRequiredFile,
   } = useContext(StateContext);
 
-  // const submit = (data) => console.log(data);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setImage(file);
+      setPreview(reader.result);
+    };
+  };
+
+  const submit = (data) => console.log(data);
 
   const newProduct = async (data) => {
     const files = document.getElementById('image').value
@@ -368,27 +386,65 @@ const CreateProductForm = () => {
                 {/* INPUT ADJUNTAR ARCHIVO */}
                 <div className='mt-8'>
                   <div className='space-x-5'>
-                    <label
-                      htmlFor='image'
-                      className='block mb-2 text-sm font-md text-orange-900 dark:text-slate-600'>
-                      Selecciona una imagen
-                    </label>
-                    <input
-                      className='block w-1/2 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-100 dark:border-gray-400 dark:placeholder-gray-400'
-                      accept='.jpg,.png'
-                      id='image'
-                      type='file'
-                      {...register('img_product', {
-                        required: {
-                          value: false,
-                          message: 'El campo es requerido',
-                        },
-                      })}
-                    />
+                    <div className='flex justify-center items-center w-full'>
+                      <label
+                        htmlFor='image'
+                        className='flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer '>
+                        <div className='flex flex-col justify-center items-center pt-5 pb-6'>
+                          <svg
+                            aria-hidden='true'
+                            className='mb-3 w-10 h-10 text-gray-400'
+                            fill='none'
+                            stroke='currentColor'
+                            viewBox='0 0 24 24'
+                            xmlns='http://www.w3.org/2000/svg'>
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth='2'
+                              d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
+                          </svg>
+                          <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+                            <span className='font-semibold'>
+                              Click en esta area
+                            </span>{' '}
+                            para cargar una imagen
+                          </p>
+                          <p className='text-xs text-gray-500 dark:text-gray-400'>
+                            Carga la imagen de tu producto
+                          </p>
+                        </div>
+                        <input
+                          className='block w-1/2 text-sm text-gray-900 bg-primary rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-100 dark:border-gray-400 dark:placeholder-gray-400'
+                          accept='.jpg,.png'
+                          id='image'
+                          type='file'
+                          {...register('img_product', {
+                            required: {
+                              value: false,
+                              message: 'El campo es requerido',
+                            },
+                          })}
+                          onChange={handleImageChange}
+                        />
+                        {preview && (
+                          <div className='h-20 w-20'>
+                            <img
+                              width='150'
+                              height='150'
+                              src={preview}
+                              alt='Vista previa de carga'
+                            />
+                          </div>
+                        )}
+                      </label>
+                    </div>
                     {requiredFile && (
-                      <span className='text-red-500 text-sm'>
-                        El campo es requerido
-                      </span>
+                      <div className='flex justify-center items-center mt-2'>
+                        <span className='text-red-500 text-sm'>
+                          El campo es requerido
+                        </span>
+                      </div>
                     )}
                   </div>
                 </div>
