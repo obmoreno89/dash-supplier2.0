@@ -12,6 +12,7 @@ function Signup() {
 
   const [reloading, setReloading] = useState(false);
 
+  const number = localStorage.getItem('number');
   const {
     register,
     handleSubmit,
@@ -24,6 +25,7 @@ function Signup() {
       rfc: '',
       country_code: '',
       business_type: '',
+      phone_number: number,
     },
   });
 
@@ -180,8 +182,8 @@ function Signup() {
                       Numero de telefono<span className='text-rose-500'>*</span>
                     </label>
                     <input
-                      maxLength='10'
-                      className='form-input w-full capitalize'
+                      disabled
+                      className='form-input w-full capitalize disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'
                       autoComplete='off'
                       type='number'
                       {...register('phone_number', {
@@ -193,16 +195,9 @@ function Signup() {
                           value: /[0-9]/,
                           message: 'El formato no es correcto',
                         },
-                        minLength: {
-                          value: 10,
-                          message: 'debe de tener 10 caracteres',
-                        },
-                        maxLength: {
-                          value: 10,
-                          message: 'debe de tener 10 caracteres',
-                        },
                       })}
-                    />{' '}
+                    />
+
                     {errors.phone_number && (
                       <span className='text-red-500 text-sm'>
                         {errors.phone_number.message}

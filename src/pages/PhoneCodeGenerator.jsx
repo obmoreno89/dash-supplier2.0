@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import verification from '../images/verification.jpg';
@@ -12,7 +12,9 @@ const PhoneCodeGenerator = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    control,
+
+    formState: { errors, isValid },
   } = useForm();
 
   const submit = (data) => console.log(data);
@@ -84,30 +86,24 @@ const PhoneCodeGenerator = () => {
                       htmlFor='number'>
                       Número de teléfono<span className='text-rose-500'>*</span>
                     </label>
-                    <PhoneInput   country={'mx'} inputProps={{required: true, autoFocus: true}}/>
-                    {/* <input
-                      className='form-input w-full capitalize'
-                      autoComplete='off'
-                      type='number'
-                      {...register('number', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[0-9]/,
-                          message: 'El formato no es correcto',
-                        },
-                        minLength: {
-                          value: 10,
-                          message: 'Debe de tener 10 caracteres',
-                        },
-                        maxLength: {
-                          value: 10,
-                          message: 'Debe de tener 10 caracteres',
-                        },
-                      })}
-                    />{' '} */}
+                    <Controller
+                      control={control}
+                      name='number'
+                      rules={{ required: true }}
+                      render={({ field: { ref, ...field } }) => (
+                        <PhoneInput
+                          {...field}
+                          inputExtraProps={{
+                            ref,
+                            required: true,
+                            autoFocus: true,
+                          }}
+                          country={'mx'}
+                          countryCodeEditable={false}
+                          specialLabel='Player Mobile Number'
+                        />
+                      )}
+                    />
                     {errors.number && (
                       <span className='text-red-500 text-sm'>
                         {errors.number.message}
@@ -122,7 +118,7 @@ const PhoneCodeGenerator = () => {
                     <>
                       <button
                         type='submit'
-                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary'>
+                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary  disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'>
                         Generar código
                       </button>
                     </>
