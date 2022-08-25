@@ -41,7 +41,6 @@ function Signin() {
           localStorage.setItem('email', result.email);
           localStorage.setItem('supplier_id', result.supplier_id);
           localStorage.setItem('id', result.id);
-          console.log(supplierToken);
 
           async function codeValidation() {
             return fetch(
@@ -53,16 +52,21 @@ function Signin() {
                 },
                 body: JSON.stringify(supplierToken),
               }
-            )
-              .then((response) => response.json())
-              .then((json) => console.log(json));
+            ).then((response) => {
+              if (response.status === 202) {
+                setTimeout(() => {
+                  navigate('/');
+                  setLoading(false);
+                }, 2000);
+              } else if (response.status === 401) {
+                setTimeout(() => {
+                  navigate('/multiStep');
+                  setLoading(false);
+                }, 2000);
+              }
+            });
           }
           codeValidation(json);
-
-          setTimeout(() => {
-            // navigate('/');
-            setLoading(false);
-          }, 2000);
         } else if (json.customer_type_id === 1) {
           setLoading(true);
           setLocked(true);
@@ -78,41 +82,6 @@ function Signin() {
         }
       });
   }
-
-  // async function numberValidation(phone) {
-  //   return fetch('http://supplier.hubmine.mx/api/auth/send_register/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify(phone),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       if (json.code) {
-  //         setLoading(true);
-  //         async function codeValidation(code) {
-  //           return fetch('http://supplier.hubmine.mx/api/auth/validate/', {
-  //             method: 'POST',
-  //             headers: {
-  //               'Content-type': 'application/json',
-  //             },
-  //             body: JSON.stringify(code),
-  //           }).then((response) => {
-  //             if (response.status === 202) {
-  //               setTimeout(() => {
-  //                 setNewsletterModalOpen(false);
-  //                 setLoading(false);
-  //               }, 4000);
-  //             } else {
-  //               setErrorApi(true);
-  //             }
-  //           });
-  //         }
-  //         codeValidation(json);
-  //       }
-  //     });
-  // }
 
   return (
     <main className='bg-white'>
