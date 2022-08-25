@@ -216,8 +216,8 @@ function Signin() {
                     </button>
                   </div>
                 </div>
-                <div className='flex items-center justify-between mt-6'>
-                  <div className='mr-1'>
+                <div className='flex items-center mt-6'>
+                  <div>
                     {/* <Link
                       className='text-sm underline hover:no-underline'
                       to='/reset-password'>
@@ -230,7 +230,7 @@ function Signin() {
                     <>
                       <button
                         type='submit'
-                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary'>
                         Iniciar sesión
                       </button>
                     </>

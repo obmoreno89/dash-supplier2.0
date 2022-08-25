@@ -84,7 +84,7 @@ const PhoneCodeGenerator = () => {
                       htmlFor='number'>
                       Número de teléfono<span className='text-rose-500'>*</span>
                     </label>
-                    <PhoneInput inputClass='border' />
+                    <PhoneInput   country={'mx'} inputProps={{required: true, autoFocus: true}}/>
                     {/* <input
                       className='form-input w-full capitalize'
                       autoComplete='off'
@@ -115,14 +115,14 @@ const PhoneCodeGenerator = () => {
                     )}
                   </div>
                 </div>
-                <div className='flex items-center justify-end mt-6'>
+                <div className='flex items-center justify-start mt-6'>
                   {loading ? (
                     <LoadingButton />
                   ) : (
                     <>
                       <button
                         type='submit'
-                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary'>
                         Generar código
                       </button>
                     </>
