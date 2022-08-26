@@ -13,7 +13,50 @@ function ProfilePanel() {
 
   const navigate = useNavigate();
 
-  console.log(preview);
+  const dateContract = () => {
+    if (preview.length) {
+      return (
+        <div className='mr-1'>
+          <img
+            name='img_product'
+            className='w-20 h-20 rounded-full'
+            src={preview}
+            width='80'
+            height='80'
+            alt='User upload'
+          />
+        </div>
+      );
+    } else if (supplierData.length) {
+      return (
+        <div className='mr-1'>
+          <img
+            name='img_product'
+            className='w-20 h-20 rounded-full'
+            src={supplierData}
+            width='80'
+            height='80'
+            alt='User upload'
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className='mr-1'>
+          <img
+            name='img_product'
+            className='w-20 h-20 rounded-full'
+            src={Sinlogo}
+            width='80'
+            height='80'
+            alt='User upload'
+          />
+        </div>
+      );
+    }
+  };
+
+  const cleanLogo = () => setPreview('');
 
   const {
     requiredFile,
@@ -75,6 +118,7 @@ function ProfilePanel() {
     )
       .then((response) => response.json())
       .then((json) => {
+        cleanLogo();
         setSupplierData(json[0].bussiness_logo);
         setValue('commercial_brand', json[0].commercial_brand);
         setValue('bussiness_email', json[0].bussiness_email);
@@ -136,29 +180,7 @@ function ProfilePanel() {
 
         <section>
           <div className='flex items-center'>
-            {preview ? (
-              <div className='mr-1'>
-                <img
-                  name='img_product'
-                  className='w-20 h-20 rounded-full'
-                  src={preview}
-                  width='80'
-                  height='80'
-                  alt='User upload'
-                />
-              </div>
-            ) : (
-              <div className='mr-1'>
-                <img
-                  name='img_product'
-                  className='w-20 h-20 rounded-full'
-                  src={supplierData}
-                  width='80'
-                  height='80'
-                  alt='sin Logo'
-                />
-              </div>
-            )}
+            {dateContract()}
 
             <div>
               <label
@@ -353,6 +375,7 @@ function ProfilePanel() {
             <div className='flex flex-col px-6 py-5 border-t border-slate-200'>
               <div className='flex self-end space-x-3'>
                 <Link
+                  onClick={cleanLogo}
                   to='/'
                   className='btn border-slate-200 hover:border-slate-300 text-slate-600'>
                   Salir

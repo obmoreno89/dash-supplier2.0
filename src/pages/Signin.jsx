@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
-import AuthImage from '../images/auth-image.jpg';
+import AuthImage from '../images/AuthImage.jpg';
 
 function Signin() {
   const [locked, setLocked] = useState(false);
