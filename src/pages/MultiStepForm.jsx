@@ -31,6 +31,12 @@ const MultiStepForm = () => {
     setStep((cur) => cur - 1);
   };
 
+  const cleanLocalStorage = () => {
+    localStorage.removeItem('code');
+    localStorage.removeItem('number');
+    localStorage.removeItem('msg');
+  };
+
   const renderButton = () => {
     if (step > 2) {
       return undefined;
@@ -129,15 +135,6 @@ const MultiStepForm = () => {
                       fill='#8B8A8A'
                     />
                   </svg>
-                </div>
-                <div className='text-sm'>
-                  ¿Tienes una cuenta?{' '}
-                  <Link
-                    onClick={logout}
-                    className='font-medium text-primary hover:text-slate-500'
-                    to='/signin'>
-                    Iniciar sesión
-                  </Link>
                 </div>
               </div>
             </div>

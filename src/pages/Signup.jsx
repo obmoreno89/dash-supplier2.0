@@ -31,6 +31,12 @@ function Signup() {
 
   const submit = (data) => console.log(data);
 
+  const cleanLocalStorage = () => {
+    localStorage.removeItem('code');
+    localStorage.removeItem('msg');
+    localStorage.removeItem('number');
+  };
+
   const navigate = useNavigate();
 
   async function createAccount(data) {
@@ -48,7 +54,8 @@ function Signup() {
           let result = json;
           localStorage.setItem('id', result.id);
           localStorage.setItem('token', result.token);
-
+          localStorage.setItem('first_name', result.first_name);
+          localStorage.setItem('supplier_id', result.supplier_id);
           setTimeout(() => {
             setReloading(false);
             navigate('/multiStep');
@@ -74,7 +81,10 @@ function Signup() {
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
-                <Link className='block' to='/signin'>
+                <Link
+                  className='block'
+                  to='/signin'
+                  onClick={cleanLocalStorage}>
                   <svg
                     width='143'
                     height='33'
@@ -130,7 +140,7 @@ function Signup() {
                     <input
                       maxLength='35'
                       autoComplete='off'
-                      className='form-input w-full'
+                      className='form-input w-full capitalize'
                       type='text'
                       {...register('first_name', {
                         required: {
@@ -324,7 +334,8 @@ function Signup() {
                   Tienes una cuenta?{' '}
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
-                    to='/signin'>
+                    to='/signin'
+                    onClick={cleanLocalStorage}>
                     Iniciar sesión
                   </Link>
                 </div>

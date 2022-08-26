@@ -6,7 +6,7 @@ import LoadingButton from '../helpers/LoadingButton';
 import verification from '../images/verification.jpg';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import './pruebas.css';
+import './customPhoneNumberInput.css';
 
 const PhoneCodeGenerator = () => {
   const {
@@ -14,7 +14,7 @@ const PhoneCodeGenerator = () => {
     handleSubmit,
     control,
 
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm();
 
   const submit = (data) => console.log(data);

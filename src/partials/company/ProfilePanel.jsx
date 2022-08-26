@@ -7,12 +7,13 @@ import LoadingButton from '../../helpers/LoadingButton';
 import Banner from '../../components/Banner';
 
 function ProfilePanel() {
-  const [logoSupplier, setLogoSupplier] = useState('');
   const [supplierData, setSupplierData] = useState([]);
   const [preview, setPreview] = useState('');
   const [image, setImage] = useState('');
 
   const navigate = useNavigate();
+
+  console.log(preview);
 
   const {
     requiredFile,
@@ -22,11 +23,6 @@ function ProfilePanel() {
     loading,
     setLoading,
   } = useContext(StateContext);
-
-  const handleLogo = (event) => {
-    const change = event.target.value;
-    return setLogoSupplier(change);
-  };
 
   //FUNCTION PREVIEW IMAGE
   const handleImageChange = (e) => {
@@ -140,12 +136,12 @@ function ProfilePanel() {
 
         <section>
           <div className='flex items-center'>
-            {supplierData.length ? (
+            {preview ? (
               <div className='mr-1'>
                 <img
                   name='img_product'
                   className='w-20 h-20 rounded-full'
-                  src={supplierData}
+                  src={preview}
                   width='80'
                   height='80'
                   alt='User upload'
@@ -156,27 +152,14 @@ function ProfilePanel() {
                 <img
                   name='img_product'
                   className='w-20 h-20 rounded-full'
-                  src={Sinlogo}
+                  src={supplierData}
                   width='80'
                   height='80'
-                  alt='User upload'
+                  alt='sin Logo'
                 />
               </div>
             )}
 
-            {preview && (
-              <div className='mr-1'>
-                <img
-                  name='img_product'
-                  className='w-20 h-20 rounded-full'
-                  src={preview}
-                  width='80'
-                  height='80'
-                  alt='User upload'
-                  onChange={handleImageChange}
-                />
-              </div>
-            )}
             <div>
               <label
                 htmlFor='image'
@@ -187,7 +170,7 @@ function ProfilePanel() {
                 accept='.jpg,.png'
                 id='image'
                 type='file'
-                onChange={handleLogo}
+                onChange={handleImageChange}
               />
               {requiredFile && (
                 <span className='text-red-500 text-sm'>
@@ -252,14 +235,6 @@ function ProfilePanel() {
                     pattern: {
                       value: /[0-9]/,
                       message: 'El formato no es correcto',
-                    },
-                    minLength: {
-                      value: 10,
-                      message: 'Debe de tener 10 caracteres',
-                    },
-                    maxLength: {
-                      value: 10,
-                      message: 'Debe de tener 10 caracteres',
                     },
                   })}
                 />

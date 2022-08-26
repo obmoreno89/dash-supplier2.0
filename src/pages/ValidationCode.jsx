@@ -14,6 +14,8 @@ const ValidationCode = () => {
   const [containerChange, setContainerChange] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
+  const deleteCodeLocalStorage = () => localStorage.removeItem('code');
+
   useEffect(() => {
     if (counter) {
       const timer =
@@ -82,7 +84,10 @@ const ValidationCode = () => {
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
-                <Link to='/signin' className='block'>
+                <Link
+                  to='/signin'
+                  className='block'
+                  onClick={deleteCodeLocalStorage}>
                   <svg
                     width='143'
                     height='33'
@@ -191,6 +196,7 @@ const ValidationCode = () => {
                 <div className='text-sm text-center'>
                   ¿Este no es tu número?{' '}
                   <Link
+                    onClick={deleteCodeLocalStorage}
                     className='font-medium text-primary hover:text-secondary'
                     to='/code/generator'>
                     Cambiar número
