@@ -16,7 +16,7 @@ const MultiStepFormEnd = () => {
               {/* Header */}
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
-                <Link className='block' to='/signin'>
+                <div className='block'>
                   <svg
                     width='143'
                     height='33'
@@ -48,14 +48,6 @@ const MultiStepFormEnd = () => {
                       fill='#8B8A8A'
                     />
                   </svg>
-                </Link>
-                <div className='text-sm'>
-                  ¿Tienes una cuenta?{' '}
-                  <Link
-                    className='font-medium text-primary hover:text-slate-500'
-                    to='/signin'>
-                    Iniciar sesión
-                  </Link>
                 </div>
               </div>
 

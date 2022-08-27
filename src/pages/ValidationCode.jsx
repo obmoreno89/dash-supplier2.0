@@ -57,7 +57,6 @@ const ValidationCode = () => {
         if (json.msg === 'Ok') {
           setButtonLoading(true);
           let result = json;
-          localStorage.setItem('msg', result.msg);
           localStorage.setItem('number', result.number);
           setTimeout(() => {
             setButtonLoading(false);

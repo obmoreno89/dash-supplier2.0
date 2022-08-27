@@ -2,13 +2,14 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const PrivateMultistepForm = ({ children }) => {
-  const msg = localStorage.getItem('msg');
+  const number = localStorage.getItem('number');
   const token = localStorage.getItem('token');
-  if (!msg) {
+  if (!number) {
     return <Navigate to='/signin' />;
   } else if (!token) {
     return <Navigate to='/signin' />;
   }
+
   return children;
 };
 

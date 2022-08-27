@@ -25,7 +25,7 @@ const Profile = () => {
             <div className='mb-8'>
               {/* Title */}
               <h1 className='text-2xl md:text-3xl text-slate-800 font-bold'>
-                Account Settings 👷🏻‍♀️👷🏻‍♂️
+                Mi compañia 👷🏻‍♀️👷🏻‍♂️
               </h1>
             </div>
 

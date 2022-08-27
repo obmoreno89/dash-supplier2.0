@@ -13,7 +13,7 @@ function ProfilePanel() {
 
   const navigate = useNavigate();
 
-  const dateContract = () => {
+  const containerLogo = () => {
     if (preview.length) {
       return (
         <div className='mr-1'>
@@ -180,7 +180,7 @@ function ProfilePanel() {
 
         <section>
           <div className='flex items-center'>
-            {dateContract()}
+            {containerLogo()}
 
             <div>
               <label
