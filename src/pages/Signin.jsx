@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import StateContext from '../context/StateContext';
@@ -7,6 +7,7 @@ import AuthImage from '../images/AuthImage.jpg';
 
 function Signin() {
   const [locked, setLocked] = useState(false);
+  const [accountValidate, setAccountValidate] = useState(false);
 
   const submit = (data) => console.log(data);
 
@@ -14,11 +15,67 @@ function Signin() {
 
   const navigate = useNavigate();
 
+  const warningAccount = () => {
+    if (!locked) {
+      return (
+        <div className='mt-5'>
+          <div className='bg-amber-100 text-amber-600 px-3 py-2 rounded'>
+            <svg
+              className='inline w-4 h-4 shrink-0 fill-current mr-2'
+              viewBox='0 0 17 17'>
+              <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z' />
+            </svg>
+            <span className='text-sm'>
+              Este sitio es de uso exclusivo para proveedores de Hubmine, si
+              usted es comprador, debe crear una cuenta para poder acceder al
+              sitio.
+            </span>
+          </div>
+        </div>
+      );
+    } else if (accountValidate) {
+      return (
+        <div className='mt-5'>
+          <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
+            <svg
+              className='inline w-4 h-4 shrink-0 fill-current mr-2'
+              viewBox='0 0 17 17'>
+              <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
+            </svg>
+
+            <span className='text-sm'>
+              Al parecer no has completo el formulario para poder acceder al
+              panel de proveedores, en un momento te redirigimos al formulario
+              para completarlo y poder acceder al panel de proveedores.
+            </span>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className='mt-5'>
+          <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
+            <svg
+              className='inline w-4 h-4 shrink-0 fill-current mr-2'
+              viewBox='0 0 17 17'>
+              <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
+            </svg>
+            <span className='text-sm'>
+              Se ha producido un problema al iniciar sesión. Comprueba el correo
+              electrónico y la contraseña. Si usted es comprador no puede
+              acceder al sitio.
+            </span>
+          </div>
+        </div>
+      );
+    }
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: {} });
+  } = useForm();
 
   //FUNCTION FOR LOGIN SUPPLIER
   async function loginUser(credentials) {
@@ -58,11 +115,6 @@ function Signin() {
                   navigate('/');
                   setLoading(false);
                 }, 2000);
-              } else {
-                setTimeout(() => {
-                  navigate('/multiStep');
-                  setLoading(false);
-                }, 2000);
               }
             });
           }
@@ -79,8 +131,16 @@ function Signin() {
             setLocked(true);
             setLoading(false);
           }, 2000);
-        } else {
-          console.log('mal');
+        } else if (json.code === 403) {
+          setLoading(true);
+          setAccountValidate(true);
+          setLocked(true);
+          setTimeout(() => {
+            sessionStorage.setItem('err', json.err);
+            setLocked(false);
+            navigate('/multiStep');
+            setLoading(false);
+          }, 5000);
         }
       });
   }
@@ -273,37 +333,7 @@ function Signin() {
                     Registrate
                   </Link>
                 </div>
-                {!locked ? (
-                  <div className='mt-5'>
-                    <div className='bg-amber-100 text-amber-600 px-3 py-2 rounded'>
-                      <svg
-                        className='inline w-4 h-4 shrink-0 fill-current mr-2'
-                        viewBox='0 0 17 17'>
-                        <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z' />
-                      </svg>
-                      <span className='text-sm'>
-                        Este sitio es de uso exclusivo para proveedores de
-                        Hubmine, si usted es comprador, debe crear una cuenta
-                        para poder acceder al sitio.
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className='mt-5'>
-                    <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
-                      <svg
-                        className='inline w-4 h-4 shrink-0 fill-current mr-2'
-                        viewBox='0 0 17 17'>
-                        <path d='M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm3.5 10.1l-1.4 1.4L8 9.4l-2.1 2.1-1.4-1.4L6.6 8 4.5 5.9l1.4-1.4L8 6.6l2.1-2.1 1.4 1.4L9.4 8l2.1 2.1z' />
-                      </svg>
-                      <span className='text-sm'>
-                        Se ha producido un problema al iniciar sesión. Comprueba
-                        el correo electrónico y la contraseña. Si usted es
-                        comprador no puede acceder al sitio.
-                      </span>
-                    </div>
-                  </div>
-                )}
+                {warningAccount()}
               </div>
             </div>
           </div>
