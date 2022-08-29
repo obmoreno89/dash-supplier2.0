@@ -261,7 +261,11 @@ const PlantCreateForm = () => {
                       },
                     })}
                     onChange={(e) => handleState(e)}>
-                    <option value=''>Selecciona</option>
+                    {!stateEnable ? (
+                      <option value=''>Selecciona</option>
+                    ) : (
+                      <option value=''>Selecciona un pais</option>
+                    )}
                     {state.map((state) => (
                       <option key={state.id} value={state.id}>
                         {state.state}
@@ -290,7 +294,11 @@ const PlantCreateForm = () => {
                       message: 'El campo es requerido',
                     },
                   })}>
-                  <option value=''>Selecciona</option>
+                  {!cityEnable ? (
+                    <option value=''>Selecciona</option>
+                  ) : (
+                    <option value=''>Selecciona un estado</option>
+                  )}
                   {city.map((city) => (
                     <option key={city.id} value={city.id}>
                       {city.city}
