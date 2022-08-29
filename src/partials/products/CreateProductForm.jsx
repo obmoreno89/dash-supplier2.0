@@ -328,7 +328,7 @@ const CreateProductForm = () => {
               {/* UNITY PRODUCT */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
-                  Categoria del producto
+                  Unidad del producto
                   <span className='text-rose-500'>*</span>
                 </label>
                 <select

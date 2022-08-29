@@ -27,7 +27,7 @@ function ProfilePanel() {
           />
         </div>
       );
-    } else if (supplierData.length) {
+    } else if (supplierData) {
       return (
         <div className='mr-1'>
           <img

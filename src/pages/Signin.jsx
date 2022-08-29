@@ -136,7 +136,9 @@ function Signin() {
           setAccountValidate(true);
           setLocked(true);
           setTimeout(() => {
+            console.log(json);
             sessionStorage.setItem('err', json.err);
+            sessionStorage.setItem('id', json.id);
             setLocked(false);
             navigate('/multiStep');
             setLoading(false);
