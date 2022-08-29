@@ -18,7 +18,7 @@ const MultiStepForm = () => {
 
   const navigate = useNavigate();
 
-  let userId = localStorage.getItem('id');
+  let userId = sessionStorage.getItem('id');
 
   const { loading, setLoading, errorMenssage, setErrorMenssage, logout } =
     useContext(StateContext);

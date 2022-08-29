@@ -52,10 +52,10 @@ function Signup() {
         if (json.code === 201) {
           setReloading(true);
           let result = json;
-          localStorage.setItem('id', result.id);
-          localStorage.setItem('token', result.token);
-          localStorage.setItem('first_name', result.first_name);
-          localStorage.setItem('supplier_id', result.supplier_id);
+          sessionStorage.setItem('id', result.id);
+          sessionStorage.setItem('token', result.token);
+          sessionStorage.setItem('first_name', result.first_name);
+
           setTimeout(() => {
             setReloading(false);
             navigate('/multiStep');

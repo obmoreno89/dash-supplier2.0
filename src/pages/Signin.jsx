@@ -18,7 +18,7 @@ function Signin() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: {} });
 
   //FUNCTION FOR LOGIN SUPPLIER
   async function loginUser(credentials) {
@@ -58,7 +58,7 @@ function Signin() {
                   navigate('/');
                   setLoading(false);
                 }, 2000);
-              } else if (response.status === 401) {
+              } else {
                 setTimeout(() => {
                   navigate('/multiStep');
                   setLoading(false);
@@ -79,6 +79,8 @@ function Signin() {
             setLocked(true);
             setLoading(false);
           }, 2000);
+        } else {
+          console.log('mal');
         }
       });
   }

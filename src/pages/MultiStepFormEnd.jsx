@@ -108,8 +108,8 @@ const MultiStepFormEnd = () => {
                   <Link
                     onClick={logout}
                     className='btn bg-secondary hover:bg-primary hover:text-white text-primary'
-                    to='/signin'>
-                    Página principal -&gt;
+                    to='/'>
+                    Ir al panel de proveedores -&gt;
                   </Link>
                 </div>
               </div>
