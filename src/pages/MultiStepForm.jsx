@@ -78,21 +78,25 @@ const MultiStepForm = () => {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(dataMulti),
-    }).then((response) => {
-      if (response.status === 201) {
-        setLoading(true);
-
-        setTimeout(() => {
-          setLoading(false);
-          navigate('/multiStep/end');
-        }, 3000);
-      } else {
-        setErrorMenssage(true);
-        setTimeout(() => {
-          setErrorMenssage(false);
-        }, 3000);
-      }
-    });
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.code === 201) {
+          setLoading(true);
+          localStorage.setItem('first_name', json.first_name);
+          localStorage.setItem('supplier_id', json.supplier_id);
+          localStorage.setItem('token', json.token);
+          setTimeout(() => {
+            setLoading(false);
+            navigate('/multiStep/end');
+          }, 3000);
+        } else {
+          setErrorMenssage(true);
+          setTimeout(() => {
+            setErrorMenssage(false);
+          }, 3000);
+        }
+      });
   }
   return (
     <main className='bg-white'>
