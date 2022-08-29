@@ -144,7 +144,7 @@ function ProfilePanel() {
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
-          navigate('/');
+          navigate('/company/profile');
         }, 3000);
       } else {
         setLoading(true);

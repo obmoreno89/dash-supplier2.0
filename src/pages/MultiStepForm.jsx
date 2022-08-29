@@ -20,7 +20,7 @@ const MultiStepForm = () => {
 
   let userId = sessionStorage.getItem('id');
 
-  const { loading, setLoading, errorMenssage, setErrorMenssage, logout } =
+  const { loading, setLoading, errorMenssage, setErrorMenssage } =
     useContext(StateContext);
 
   const completeFormStep = () => {
@@ -81,6 +81,7 @@ const MultiStepForm = () => {
     }).then((response) => {
       if (response.status === 201) {
         setLoading(true);
+
         setTimeout(() => {
           setLoading(false);
           navigate('/multiStep/end');
