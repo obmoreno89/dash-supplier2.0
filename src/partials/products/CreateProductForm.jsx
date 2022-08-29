@@ -414,7 +414,7 @@ const CreateProductForm = () => {
                             <span className='font-semibold'>
                               Click en esta area
                             </span>{' '}
-                            para cargar una imagen
+                            para cargar o cambiar la imagen
                           </p>
                           <p className='text-xs text-gray-500 dark:text-gray-400'>
                             Carga la imagen de tu producto
@@ -445,6 +445,18 @@ const CreateProductForm = () => {
                         )}
                       </label>
                     </div>
+                    {preview && (
+                      <div className='m-1.5 flex justify-center items-center'>
+                        <button
+                          onClick={(e) => {
+                            cleanProductImage();
+                          }}
+                          type='button'
+                          className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
+                          Eliminar
+                        </button>
+                      </div>
+                    )}
                     {requiredFile && (
                       <div className='flex justify-center items-center mt-2'>
                         <span className='text-red-500 text-sm'>
@@ -475,6 +487,7 @@ const CreateProductForm = () => {
                   onClick={(e) => {
                     e.stopPropagation();
                     setDangerModalOpen(true);
+                    cleanProductImage();
                   }}
                   type='button'
                   className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
