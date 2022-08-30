@@ -404,6 +404,7 @@ const PlantCreateForm = () => {
               </div>
             </section>
           </form>
+          <mapa />
         </div>
       </div>
       {/* MODAL CONFIRM */}
