@@ -5,6 +5,7 @@ import ModalCorfirmAndReturnPlant from './helpers/ModalCorfirmAndReturnPlant';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
+import MyMap from './helpers/MyMap';
 
 const PlantCreateForm = () => {
   const submit = (data) => console.log(data);
@@ -404,7 +405,7 @@ const PlantCreateForm = () => {
               </div>
             </section>
           </form>
-          <mapa />
+          <MyMap />
         </div>
       </div>
       {/* MODAL CONFIRM */}
