@@ -50,9 +50,10 @@ const StateProvider = ({ children }) => {
   const [plantList, setPlantList] = useState([]);
   //STATE FOR REQUIRED FILE
   const [requiredFile, setRequiredFile] = useState(false);
-  //STATE SAVE LAT AND LONG MAP
-  const [lng, setLng] = useState(-99.133179);
-  const [lat, setLat] = useState(18.8704201);
+  //STATE SAVE LAT, LONG AND ADDRESS AT MAP
+  const [lng, setLng] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [value, setValue] = useState(null);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -281,6 +282,8 @@ const StateProvider = ({ children }) => {
         setLng,
         lat,
         setLat,
+        value,
+        setValue,
       }}>
       {children}
     </StateContext.Provider>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ModalCorfirmAndReturnPlant from './helpers/ModalCorfirmAndReturnPlant';
@@ -31,20 +31,24 @@ const PlantCreateForm = () => {
     placeList,
     lat,
     lng,
+    value,
   } = useContext(StateContext);
 
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      longitude: lat,
-      latitude: lng,
+      address: '',
+      longitude: '',
+      latitude: '',
     },
   });
 
-  console.log(lat, lng);
+  const registro = value;
+  console.log(registro);
 
   async function createPlant(plantData) {
     return fetch(
@@ -316,14 +320,22 @@ const PlantCreateForm = () => {
                   </span>
                 )}
               </div>
+            </section>
+            {/* MAP */}
+            <section className='mt-8'>
+              <MyMap />
+            </section>
+            <section className='grid gap-5 md:grid-cols-3 mt-8'>
               {/* ADDRESS */}
-              <div>
+              <div className='mt-5'>
                 <label className='block text-sm font-medium mb-1'>
                   Dirección<span className='text-rose-500'>*</span>
                 </label>
                 <input
+                  disabled
+                  onChange={setValue('address', value)}
                   maxLength='35'
-                  className='form-input w-full '
+                  className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
                   type='text'
                   {...register('address', {
@@ -337,15 +349,64 @@ const PlantCreateForm = () => {
                     },
                   })}
                 />
+
                 {errors.address && (
                   <span className='text-red-500 text-sm'>
                     {errors.address.message}
                   </span>
                 )}
               </div>
+              {/* longitude */}
+              <div className='mt-5'>
+                <label className='block text-sm font-medium mb-1'>
+                  Longitud<span className='text-rose-500'>*</span>
+                </label>
+                <input
+                  disabled
+                  onChange={setValue('longitude', lng)}
+                  maxLength='35'
+                  className='form-input w-full  disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed '
+                  autoComplete='off'
+                  type='text'
+                  {...register('longitude', {
+                    required: {
+                      value: false,
+                      message: 'El campo es requerido',
+                    },
+                  })}
+                />
+                {errors.longitude && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.longitude.message}
+                  </span>
+                )}
+              </div>
+              {/* latitude */}
+              <div className='mt-5'>
+                <label className='block text-sm font-medium mb-1'>
+                  latitud<span className='text-rose-500'>*</span>
+                </label>
+                <input
+                  disabled
+                  onChange={setValue('latitude', lat)}
+                  maxLength='35'
+                  className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
+                  autoComplete='off'
+                  type='text'
+                  {...register('latitude', {
+                    required: {
+                      value: false,
+                      message: 'El campo es requerido',
+                    },
+                  })}
+                />
+                {errors.latitude && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.latitude.message}
+                  </span>
+                )}
+              </div>
             </section>
-            {/* MAP */}
-            <MyMap />
             <article className='mt-10'>
               <h2 className='text-2xl text-slate-800 font-bold mb-6'>
                 Observaciones

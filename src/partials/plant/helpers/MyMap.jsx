@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
+
 import ReactMapGL, {
   Marker,
   NavigationControl,
   GeolocateControl,
-  useControl,
 } from 'react-map-gl';
 import StateContext from '../../../context/StateContext';
 
@@ -20,21 +20,23 @@ const MyMap = () => {
 
   const { setLat, setLng, lat, lng } = useContext(StateContext);
 
-  useEffect(() => {
-    const getMap = async () => {
-      if (!lng && !lat) {
-        fetch('https://ipapi.co/json').then((response) => {
-          return response.json().then((data) => {
-            mapRef.current.flyTo({
-              center: [data.longitude, data.latitude],
-              zoom: 16,
-            });
-            setLat(data.latitude);
-            setLng(data.longitude);
+  const getMap = async () => {
+    if (!lng && !lat) {
+      fetch('https://ipapi.co/json')
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          mapRef.current.flyTo({
+            center: [data.longitude, data.latitude],
+            zoom: 16,
           });
+          setLat(data.latitude);
+          setLng(data.longitude);
         });
-      }
-    };
+    }
+  };
+
+  useEffect(() => {
     getMap();
   }, []);
 
@@ -66,7 +68,7 @@ const MyMap = () => {
             }}
           />
 
-          <Geocoder setLng={setLng} setLat={setLat} />
+          <Geocoder />
         </ReactMapGL>
       </div>
     </>
