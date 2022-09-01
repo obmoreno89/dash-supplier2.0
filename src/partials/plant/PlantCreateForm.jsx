@@ -12,17 +12,6 @@ const PlantCreateForm = () => {
   const navigate = useNavigate();
 
   const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      longitude: lat,
-      latitude: lng,
-    },
-  });
-
-  const {
     setDangerModalOpen,
     bannerSuccessOpen,
     setBannerSuccessOpen,
@@ -43,6 +32,19 @@ const PlantCreateForm = () => {
     lat,
     lng,
   } = useContext(StateContext);
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      longitude: lat,
+      latitude: lng,
+    },
+  });
+
+  console.log(lat, lng);
 
   async function createPlant(plantData) {
     return fetch(
