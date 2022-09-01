@@ -50,7 +50,9 @@ const StateProvider = ({ children }) => {
   const [plantList, setPlantList] = useState([]);
   //STATE FOR REQUIRED FILE
   const [requiredFile, setRequiredFile] = useState(false);
-  //STATE SAVE UPLOAD LOGO OR IMAGE PRODUCT
+  //STATE SAVE LAT AND LONG MAP
+  const [lng, setLng] = useState(-99.133179);
+  const [lat, setLat] = useState(18.8704201);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -275,6 +277,10 @@ const StateProvider = ({ children }) => {
         setDropdownOpen,
         requiredFile,
         setRequiredFile,
+        lng,
+        setLng,
+        lat,
+        setLat,
       }}>
       {children}
     </StateContext.Provider>

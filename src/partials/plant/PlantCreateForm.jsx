@@ -17,8 +17,8 @@ const PlantCreateForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      longitude: '0',
-      latitude: '0',
+      longitude: lat,
+      latitude: lng,
     },
   });
 
@@ -40,6 +40,8 @@ const PlantCreateForm = () => {
     stateEnable,
     cityEnable,
     placeList,
+    lat,
+    lng,
   } = useContext(StateContext);
 
   async function createPlant(plantData) {
@@ -340,7 +342,8 @@ const PlantCreateForm = () => {
                 )}
               </div>
             </section>
-
+            {/* MAP */}
+            <MyMap />
             <article className='mt-10'>
               <h2 className='text-2xl text-slate-800 font-bold mb-6'>
                 Observaciones
@@ -405,7 +408,6 @@ const PlantCreateForm = () => {
               </div>
             </section>
           </form>
-          <MyMap />
         </div>
       </div>
       {/* MODAL CONFIRM */}
