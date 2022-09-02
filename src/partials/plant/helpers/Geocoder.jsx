@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import StateContext from '../../../context/StateContext';
 
 const Geocoder = () => {
-  const { setValue, setLng, setLat } = useContext(StateContext);
+  const { setMapAddress, setLng, setLat } = useContext(StateContext);
   const ctrl = new MapboxGeocoder({
     mapboxgl: mapboxgl,
     accessToken:
@@ -16,7 +16,7 @@ const Geocoder = () => {
     placeholder: 'Busca tu dirección',
     clearAndBlurOnEsc: true,
   }).on('result', function ({ result }) {
-    setValue(result.place_name);
+    setMapAddress(result.place_name);
   });
 
   useControl(() => ctrl);

@@ -16,7 +16,6 @@ const CreateProductForm = () => {
   const {
     handleSubmit,
     register,
-    reset,
     formState: { errors },
   } = useForm();
 
@@ -33,10 +32,29 @@ const CreateProductForm = () => {
     setRequiredFile,
   } = useContext(StateContext);
 
-  //const submit = (data) => console.log(data);
+  const submit = (data) => console.log(data);
+
+  const dragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const dragEnter = (e) => {
+    e.preventDefault();
+  };
+
+  const dragLeave = (e) => {
+    e.preventDefault();
+  };
+
+  const fileDrop = (e) => {
+    e.preventDefault();
+    const files = e.dataTransfer.files;
+    setPreview(files);
+  };
 
   //FUNCTION PREVIEW IMAGE
   const handleImageChange = (e) => {
+    e.preventDefault();
     const file = e.target.files[0];
 
     if (!file) {
@@ -51,6 +69,7 @@ const CreateProductForm = () => {
       setPreview(reader.result);
     };
   };
+  console.log(preview);
 
   //FUCTION FOR CLEAN IMAGE OF INPUT FILE
   const cleanProductImage = () => setPreview('');
@@ -99,6 +118,7 @@ const CreateProductForm = () => {
       setProductReload(true);
     });
   };
+
   return (
     <>
       <div className='px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto'>
@@ -137,7 +157,7 @@ const CreateProductForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(newProduct)}>
+          <form onSubmit={handleSubmit(submit)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -389,82 +409,90 @@ const CreateProductForm = () => {
                     </span>
                   )}
                 </div>
-                {/* INPUT ADJUNTAR ARCHIVO */}
-                <div className='mt-8'>
-                  <div className='space-x-5'>
-                    <div className='flex justify-center items-center w-full'>
-                      <label
-                        htmlFor='image'
-                        className='flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer '>
-                        <div className='flex flex-col justify-center items-center pt-5 pb-6'>
-                          <svg
-                            aria-hidden='true'
-                            className='mb-3 w-10 h-10 text-gray-400'
-                            fill='none'
-                            stroke='currentColor'
-                            viewBox='0 0 24 24'
-                            xmlns='http://www.w3.org/2000/svg'>
-                            <path
-                              strokeLinecap='round'
-                              strokeLinejoin='round'
-                              strokeWidth='2'
-                              d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
-                          </svg>
-                          <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
-                            <span className='font-semibold'>
-                              Click en esta area
-                            </span>{' '}
-                            para cargar o cambiar la imagen
-                          </p>
-                          <p className='text-xs text-gray-500 dark:text-gray-400'>
-                            Carga la imagen de tu producto
-                          </p>
+              </div>
+            </section>
+            <section>
+              {/* INPUT SUBMIT FILE */}
+              <div className='mt-8'>
+                <div className='space-x-5'>
+                  <div
+                    onDragOver={dragOver}
+                    onDragEnter={dragEnter}
+                    onDragLeave={dragLeave}
+                    onDrop={fileDrop}
+                    className='flex justify-center items-center w-full'>
+                    <label
+                      htmlFor='image'
+                      className='flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer '>
+                      <div className='flex flex-col justify-center items-center pt-5 pb-6'>
+                        <svg
+                          aria-hidden='true'
+                          className='mb-3 w-10 h-10 text-gray-400'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'
+                          xmlns='http://www.w3.org/2000/svg'>
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth='2'
+                            d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
+                        </svg>
+                        <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+                          <span className='font-semibold'>
+                            Click en esta area
+                          </span>{' '}
+                          para cargar o cambiar la imagen
+                        </p>
+                        <p className='text-xs text-gray-500 dark:text-gray-400'>
+                          Carga la imagen de tu producto
+                        </p>
+                      </div>
+                      <input
+                        className='block w-1/2 text-sm text-gray-900 bg-primary rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-100 dark:border-gray-400 dark:placeholder-gray-400'
+                        accept='.jpg,.png'
+                        multiple
+                        id='image'
+                        type='file'
+                        {...register('img_product', {
+                          required: {
+                            value: false,
+                            message: 'El campo es requerido',
+                          },
+                        })}
+                        onChange={handleImageChange}
+                      />
+                      {preview && (
+                        <div className='h-20 w-20'>
+                          <img
+                            width='150'
+                            height='150'
+                            src={preview}
+                            alt='Vista previa de carga'
+                          />
                         </div>
-                        <input
-                          className='block w-1/2 text-sm text-gray-900 bg-primary rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-100 dark:border-gray-400 dark:placeholder-gray-400'
-                          accept='.jpg,.png'
-                          id='image'
-                          type='file'
-                          {...register('img_product', {
-                            required: {
-                              value: false,
-                              message: 'El campo es requerido',
-                            },
-                          })}
-                          onChange={handleImageChange}
-                        />
-                        {preview && (
-                          <div className='h-20 w-20'>
-                            <img
-                              width='150'
-                              height='150'
-                              src={preview}
-                              alt='Vista previa de carga'
-                            />
-                          </div>
-                        )}
-                      </label>
-                    </div>
-                    {preview && (
-                      <div className='m-1.5 flex justify-center items-center'>
-                        <button
-                          onClick={(e) => {
-                            cleanProductImage();
-                          }}
-                          type='button'
-                          className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
-                          Eliminar
-                        </button>
-                      </div>
-                    )}
-                    {requiredFile && (
-                      <div className='flex justify-center items-center mt-2'>
-                        <span className='text-red-500 text-sm'>
-                          El campo es requerido
-                        </span>
-                      </div>
-                    )}
+                      )}
+                    </label>
                   </div>
+                  {preview && (
+                    <div className='m-1.5 flex justify-center items-center'>
+                      <button
+                        onClick={(e) => {
+                          cleanProductImage();
+                        }}
+                        type='button'
+                        className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
+                        Eliminar
+                      </button>
+                    </div>
+                  )}
+                  {requiredFile && (
+                    <div className='flex justify-center items-center mt-2'>
+                      <span className='text-red-500 text-sm'>
+                        El campo es requerido
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </section>

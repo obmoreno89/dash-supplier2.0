@@ -31,7 +31,7 @@ const PlantCreateForm = () => {
     placeList,
     lat,
     lng,
-    value,
+    mapAdrress,
   } = useContext(StateContext);
 
   const {
@@ -46,9 +46,6 @@ const PlantCreateForm = () => {
       latitude: '',
     },
   });
-
-  const registro = value;
-  console.log(registro);
 
   async function createPlant(plantData) {
     return fetch(
@@ -333,8 +330,7 @@ const PlantCreateForm = () => {
                 </label>
                 <input
                   disabled
-                  onChange={setValue('address', value)}
-                  maxLength='35'
+                  onChange={setValue('address', mapAdrress)}
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
                   type='text'

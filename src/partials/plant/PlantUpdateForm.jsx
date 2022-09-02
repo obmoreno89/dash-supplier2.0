@@ -5,6 +5,7 @@ import ModalCorfirmAndReturnPlant from './helpers/ModalCorfirmAndReturnPlant';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
+import MyMap from './helpers/MyMap';
 
 const PlantUpdateForm = () => {
   const [dataPlant, setDataPlant] = useState([]);
@@ -36,6 +37,9 @@ const PlantUpdateForm = () => {
     city,
     stateEnable,
     cityEnable,
+    mapAdrress,
+    lat,
+    lng,
   } = useContext(StateContext);
 
   const getPlantDetails = async () => {
@@ -44,7 +48,6 @@ const PlantUpdateForm = () => {
     )
       .then((response) => response.json())
       .then((json) => {
-        setDataPlant(json);
         console.log(json);
         setValue('name', json[0].name);
         setValue('phone_contact', json[0].phone_contact);
@@ -56,8 +59,11 @@ const PlantUpdateForm = () => {
         setValue('state_id', json[0].location.state_id);
         setValue('city', json[0].location.city);
         setValue('city_id', json[0].location.city_id);
-        setValue('address', json[0].location.address);
         setValue('observations', json[0].location.observations);
+        setValue('latitude', json[0].location.latitude);
+        setValue('longitude', json[0].location.longitude);
+        setValue('address', json[0].location.address);
+        setDataPlant(json);
       });
   };
 
@@ -132,7 +138,7 @@ const PlantUpdateForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(plantUpdate)}>
+          <form onSubmit={handleSubmit(submit)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -352,14 +358,21 @@ const PlantUpdateForm = () => {
                   </span>
                 )}
               </div>
+            </section>
+            {/* MAP */}
+            <section className='mt-8'>
+              <MyMap />
+            </section>
+            <section className='grid gap-5 md:grid-cols-3 mt-8'>
               {/* ADDRESS */}
-              <div>
+              <div className='mt-5'>
                 <label className='block text-sm font-medium mb-1'>
                   Dirección<span className='text-rose-500'>*</span>
                 </label>
                 <input
-                  maxLength='35'
-                  className='form-input w-full '
+                  disabled
+                  // onChange={setValue('address', mapAdrress)}
+                  className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
                   type='text'
                   {...register('address', {
@@ -373,14 +386,64 @@ const PlantUpdateForm = () => {
                     },
                   })}
                 />
+
                 {errors.address && (
                   <span className='text-red-500 text-sm'>
                     {errors.address.message}
                   </span>
                 )}
               </div>
+              {/* longitude */}
+              <div className='mt-5'>
+                <label className='block text-sm font-medium mb-1'>
+                  Longitud<span className='text-rose-500'>*</span>
+                </label>
+                <input
+                  disabled
+                  // onChange={setValue('longitude', lng)}
+                  maxLength='35'
+                  className='form-input w-full  disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed '
+                  autoComplete='off'
+                  type='text'
+                  {...register('longitude', {
+                    required: {
+                      value: false,
+                      message: 'El campo es requerido',
+                    },
+                  })}
+                />
+                {errors.longitude && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.longitude.message}
+                  </span>
+                )}
+              </div>
+              {/* latitude */}
+              <div className='mt-5'>
+                <label className='block text-sm font-medium mb-1'>
+                  latitud<span className='text-rose-500'>*</span>
+                </label>
+                <input
+                  disabled
+                  // onChange={setValue('latitude', lat)}
+                  maxLength='35'
+                  className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
+                  autoComplete='off'
+                  type='text'
+                  {...register('latitude', {
+                    required: {
+                      value: false,
+                      message: 'El campo es requerido',
+                    },
+                  })}
+                />
+                {errors.latitude && (
+                  <span className='text-red-500 text-sm'>
+                    {errors.latitude.message}
+                  </span>
+                )}
+              </div>
             </section>
-
             <article className='mt-10'>
               <h2 className='text-2xl text-slate-800 font-bold mb-6'>
                 Observaciones

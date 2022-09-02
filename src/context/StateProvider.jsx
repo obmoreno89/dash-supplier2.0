@@ -53,7 +53,7 @@ const StateProvider = ({ children }) => {
   //STATE SAVE LAT, LONG AND ADDRESS AT MAP
   const [lng, setLng] = useState(null);
   const [lat, setLat] = useState(null);
-  const [value, setValue] = useState(null);
+  const [mapAdrress, setMapAddress] = useState(null);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -211,7 +211,7 @@ const StateProvider = ({ children }) => {
 
   useEffect(() => {
     getPlaceList();
-  }, [supplierId]);
+  }, []);
 
   //FUNCTION FOR ALL PLANTS
   const getPlantList = async () => {
@@ -225,7 +225,7 @@ const StateProvider = ({ children }) => {
 
   useEffect(() => {
     getPlantList();
-  }, [plantReload]);
+  }, [plantReload, supplierId]);
 
   return (
     <StateContext.Provider
@@ -282,8 +282,8 @@ const StateProvider = ({ children }) => {
         setLng,
         lat,
         setLat,
-        value,
-        setValue,
+        mapAdrress,
+        setMapAddress,
       }}>
       {children}
     </StateContext.Provider>
