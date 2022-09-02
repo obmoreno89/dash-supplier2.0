@@ -48,8 +48,18 @@ const CreateProductForm = () => {
 
   const fileDrop = (e) => {
     e.preventDefault();
-    const files = e.dataTransfer.files;
-    setPreview(files);
+    const files = e.dataTransfer.files[0];
+    if (!files) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(files);
+
+    reader.onload = () => {
+      setImage(files);
+      setPreview(reader.result);
+    };
   };
 
   //FUNCTION PREVIEW IMAGE
