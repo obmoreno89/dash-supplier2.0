@@ -329,7 +329,6 @@ const PlantCreateForm = () => {
                   Dirección<span className='text-rose-500'>*</span>
                 </label>
                 <input
-                  disabled
                   onChange={setValue('address', mapAdrress)}
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 
@@ -8,24 +8,26 @@ const baseStyle = {
   alignItems: 'center',
   padding: '20px',
   borderWidth: 2,
-  borderRadius: 2,
+  borderRadius: 4,
   borderColor: '#eeeeee',
   borderStyle: 'dashed',
   backgroundColor: '#fafafa',
   color: '#bdbdbd',
   transition: 'border .3s ease-in-out',
+  cursor: 'pointer',
+  width: '100%',
 };
 
 const activeStyle = {
-  borderColor: '#2196f3',
+  borderColor: '#0DB1AC',
 };
 
 const acceptStyle = {
-  borderColor: '#00e676',
+  borderColor: '#0DB1AC',
 };
 
 const rejectStyle = {
-  borderColor: '#ff1744',
+  borderColor: '#0DB1AC',
 };
 
 function ImageDropzone({ files, setFiles }) {
@@ -48,7 +50,8 @@ function ImageDropzone({ files, setFiles }) {
     isDragReject,
   } = useDropzone({
     onDrop,
-    accept: 'image/jpeg, image/png',
+    accept: 'image/*',
+    multiple: false,
   });
 
   const style = useMemo(
@@ -60,10 +63,13 @@ function ImageDropzone({ files, setFiles }) {
     }),
     [isDragActive, isDragReject, isDragAccept]
   );
+  console.log(files);
 
   const thumbs = files.map((file) => (
-    <div key={file.name}>
-      <img src={file.preview} alt={file.name} />
+    <div className='mt-5' key={file.name}>
+      <p className='mt-3 font-semibold text-center'>Vista previa</p>
+      <img className='w-44 mt-2' src={file.preview} alt={file.name} />
+      <p className='text-center'>{file.name}</p>
     </div>
   ));
 
@@ -83,11 +89,33 @@ function ImageDropzone({ files, setFiles }) {
   } = useForm();
 
   return (
-    <section>
-      <div {...getRootProps({ style })}>
+    <section className='flex flex-col justify-center items-center w-full'>
+      <label {...getRootProps({ style })}>
+        <div className='flex flex-col justify-center items-center pt-5 pb-6'>
+          <svg
+            aria-hidden='true'
+            className='mb-3 w-10 h-10 text-gray-400'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
+          </svg>
+          <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
+            <span className='font-semibold'>Click para cargar imagen</span> o
+            arrastra y suelta
+          </p>
+          <p className='text-xs text-gray-500 dark:text-gray-400'>
+            Puedes cambiar tu imagen haciendo las mismas indicaciones
+          </p>
+        </div>
         <input {...getInputProps()} />
-        <div>Drag and drop your images here.</div>
-      </div>
+      </label>
+
       <aside>{thumbs}</aside>
     </section>
   );
