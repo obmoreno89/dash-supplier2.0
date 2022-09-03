@@ -1,23 +1,30 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ModalConfirmAndReturn from './helpers/ModalConfirmAndReturn';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
 import StateContext from '../../context/StateContext';
+import ImageDropzone from './helpers/ImageDropzone';
 
 const CreateProductForm = () => {
   const [preview, setPreview] = useState('');
   const [image, setImage] = useState('');
   const navigate = useNavigate();
+  const [files, setFiles] = useState([]);
 
   const supplierId = localStorage.getItem('supplier_id');
 
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      img_product: files,
+    },
+  });
 
   const {
     setDangerModalOpen,
@@ -34,60 +41,7 @@ const CreateProductForm = () => {
 
   const submit = (data) => console.log(data);
 
-  const dragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const dragEnter = (e) => {
-    e.preventDefault();
-  };
-
-  const dragLeave = (e) => {
-    e.preventDefault();
-  };
-
-  const fileDrop = (e) => {
-    e.preventDefault();
-    const files = e.dataTransfer.files[0];
-    if (!files) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(files);
-
-    reader.onload = () => {
-      setImage(files);
-      setPreview(reader.result);
-    };
-  };
-
-  //FUNCTION PREVIEW IMAGE
-  const handleImageChange = (e) => {
-    e.preventDefault();
-    const file = e.target.files[0];
-
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      setImage(file);
-      setPreview(reader.result);
-    };
-  };
-  console.log(preview);
-
-  //FUCTION FOR CLEAN IMAGE OF INPUT FILE
-  const cleanProductImage = () => setPreview('');
-
   const newProduct = async (data) => {
-    const files = document.getElementById('image').value
-      ? document.getElementById('image').files[0]
-      : '';
     let formData = new FormData();
     formData.append('category_id ', data.category_id);
     formData.append('unity_id', data.unity_id);
@@ -97,7 +51,7 @@ const CreateProductForm = () => {
     formData.append('mark ', data.mark);
     formData.append('currency_id ', data.currency_id);
     formData.append('price ', data.price);
-    formData.append('img_product', files);
+    formData.append('img_product', files[0]);
 
     fetch(
       `http://supplier.hubmine.mx/api/suppliers/product/create/${supplierId}/`,
@@ -108,7 +62,7 @@ const CreateProductForm = () => {
     ).then((response) => {
       if (response.status === 201) {
         setBannerSuccessOpen(true);
-        cleanProductImage();
+
         setLoading(true);
         setTimeout(() => {
           setBannerSuccessOpen(false);
@@ -167,7 +121,7 @@ const CreateProductForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(submit)}>
+          <form onSubmit={handleSubmit(newProduct)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -423,87 +377,18 @@ const CreateProductForm = () => {
             </section>
             <section>
               {/* INPUT SUBMIT FILE */}
-              <div className='mt-8'>
-                <div className='space-x-5'>
-                  <div
-                    onDragOver={dragOver}
-                    onDragEnter={dragEnter}
-                    onDragLeave={dragLeave}
-                    onDrop={fileDrop}
-                    className='flex justify-center items-center w-full'>
-                    <label
-                      htmlFor='image'
-                      className='flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer '>
-                      <div className='flex flex-col justify-center items-center pt-5 pb-6'>
-                        <svg
-                          aria-hidden='true'
-                          className='mb-3 w-10 h-10 text-gray-400'
-                          fill='none'
-                          stroke='currentColor'
-                          viewBox='0 0 24 24'
-                          xmlns='http://www.w3.org/2000/svg'>
-                          <path
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
-                            strokeWidth='2'
-                            d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
-                        </svg>
-                        <p className='mb-2 text-sm text-gray-500 dark:text-gray-400'>
-                          <span className='font-semibold'>
-                            Click en esta area
-                          </span>{' '}
-                          para cargar o cambiar la imagen
-                        </p>
-                        <p className='text-xs text-gray-500 dark:text-gray-400'>
-                          Carga la imagen de tu producto
-                        </p>
-                      </div>
-                      <input
-                        className='block w-1/2 text-sm text-gray-900 bg-primary rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-100 dark:border-gray-400 dark:placeholder-gray-400'
-                        accept='.jpg,.png'
-                        multiple
-                        id='image'
-                        type='file'
-                        {...register('img_product', {
-                          required: {
-                            value: false,
-                            message: 'El campo es requerido',
-                          },
-                        })}
-                        onChange={handleImageChange}
-                      />
-                      {preview && (
-                        <div className='h-20 w-20'>
-                          <img
-                            width='150'
-                            height='150'
-                            src={preview}
-                            alt='Vista previa de carga'
-                          />
-                        </div>
-                      )}
-                    </label>
-                  </div>
-                  {preview && (
-                    <div className='m-1.5 flex justify-center items-center'>
-                      <button
-                        onClick={(e) => {
-                          cleanProductImage();
-                        }}
-                        type='button'
-                        className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
-                        Eliminar
-                      </button>
-                    </div>
-                  )}
-                  {requiredFile && (
-                    <div className='flex justify-center items-center mt-2'>
-                      <span className='text-red-500 text-sm'>
-                        El campo es requerido
-                      </span>
-                    </div>
-                  )}
-                </div>
+              <div className='mt-8 w-full'>
+                <ImageDropzone
+                  files={files}
+                  setFiles={setFiles}
+                  {...register('img_product', {
+                    required: {
+                      value: false,
+                      message: 'El campo es requerido',
+                    },
+                  })}
+                  onChange={setValue('img_product', files)}
+                />
               </div>
             </section>
             <section className='w-full flex space-x-6 justify-center items-center mt-10'>
@@ -537,7 +422,7 @@ const CreateProductForm = () => {
         </div>
       </div>
       {/* MODAL CONFIRM */}
-      <ModalConfirmAndReturn cleanProductImage={cleanProductImage} />
+      <ModalConfirmAndReturn />
     </>
   );
 };
