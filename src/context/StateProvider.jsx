@@ -53,7 +53,7 @@ const StateProvider = ({ children }) => {
   //STATE SAVE LAT, LONG AND ADDRESS AT MAP
   const [lng, setLng] = useState(null);
   const [lat, setLat] = useState(null);
-  const [mapAdrress, setMapAddress] = useState(null);
+  const [mapAddress, setMapAddress] = useState(null);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -282,7 +282,7 @@ const StateProvider = ({ children }) => {
         setLng,
         lat,
         setLat,
-        mapAdrress,
+        mapAddress,
         setMapAddress,
       }}>
       {children}

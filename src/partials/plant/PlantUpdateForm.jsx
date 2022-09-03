@@ -9,16 +9,10 @@ import MyMap from './helpers/MyMap';
 
 const PlantUpdateForm = () => {
   const [dataPlant, setDataPlant] = useState([]);
+
   const submit = (data) => console.log(data);
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const {
-    handleSubmit,
-    register,
-    setValue,
-    formState: { errors },
-  } = useForm();
 
   const {
     setDangerModalOpen,
@@ -37,10 +31,18 @@ const PlantUpdateForm = () => {
     city,
     stateEnable,
     cityEnable,
-    mapAdrress,
+    mapAddress,
+    setMapAddress,
     lat,
     lng,
   } = useContext(StateContext);
+
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
   const getPlantDetails = async () => {
     fetch(
@@ -48,7 +50,6 @@ const PlantUpdateForm = () => {
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         setValue('name', json[0].name);
         setValue('phone_contact', json[0].phone_contact);
         setValue('type_place', json[0].type_place.type_place);
@@ -64,6 +65,7 @@ const PlantUpdateForm = () => {
         setValue('longitude', json[0].location.longitude);
         setValue('address', json[0].location.address);
         setDataPlant(json);
+        setMapAddress(json[0].location.address);
       });
   };
 
@@ -138,7 +140,7 @@ const PlantUpdateForm = () => {
             </h2>
             <div className='border-t border-slate-200'></div>
           </article>
-          <form onSubmit={handleSubmit(submit)}>
+          <form onSubmit={handleSubmit(plantUpdate)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
@@ -370,8 +372,7 @@ const PlantUpdateForm = () => {
                   Dirección<span className='text-rose-500'>*</span>
                 </label>
                 <input
-                  disabled
-                  // onChange={setValue('address', mapAdrress)}
+                  onChange={setValue('address', mapAddress)}
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
                   type='text'
@@ -400,7 +401,7 @@ const PlantUpdateForm = () => {
                 </label>
                 <input
                   disabled
-                  // onChange={setValue('longitude', lng)}
+                  onChange={setValue('longitude', lng)}
                   maxLength='35'
                   className='form-input w-full  disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed '
                   autoComplete='off'
@@ -425,7 +426,7 @@ const PlantUpdateForm = () => {
                 </label>
                 <input
                   disabled
-                  // onChange={setValue('latitude', lat)}
+                  onChange={setValue('latitude', lat)}
                   maxLength='35'
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
