@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ModalConfirmAndReturn from './helpers/ModalConfirmAndReturn';
@@ -8,8 +8,6 @@ import StateContext from '../../context/StateContext';
 import ImageDropzone from './helpers/ImageDropzone';
 
 const CreateProductForm = () => {
-  const [preview, setPreview] = useState('');
-  const [image, setImage] = useState('');
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
 
@@ -377,6 +375,7 @@ const CreateProductForm = () => {
             </section>
             <section>
               {/* INPUT SUBMIT FILE */}
+
               <div className='mt-8 w-full'>
                 <ImageDropzone
                   files={files}

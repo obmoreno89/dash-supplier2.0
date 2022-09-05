@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 
@@ -31,7 +31,6 @@ const rejectStyle = {
 };
 
 function ImageDropzone({ files, setFiles }) {
-  console.log(files);
   const onDrop = useCallback((acceptedFiles) => {
     setFiles(
       acceptedFiles.map((file) =>
@@ -50,8 +49,10 @@ function ImageDropzone({ files, setFiles }) {
     isDragReject,
   } = useDropzone({
     onDrop,
-    'image/png': ['.png'],
-    'image/jpeg': ['.jpg', '.jpeg'],
+    accept: {
+      'image/png': ['.png'],
+      'image/jpeg': ['.jpg', '.jpeg'],
+    },
     multiple: false,
   });
 
@@ -102,9 +103,9 @@ function ImageDropzone({ files, setFiles }) {
             viewBox='0 0 24 24'
             xmlns='http://www.w3.org/2000/svg'>
             <path
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
               d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
           </svg>
           <p className='mb-2 text-sm text-gray-500 dark:text-gray-400 font-semibold'>

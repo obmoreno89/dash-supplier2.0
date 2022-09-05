@@ -32,6 +32,7 @@ const PlantCreateForm = () => {
     lat,
     lng,
     mapAddress,
+    setMapAddress,
   } = useContext(StateContext);
 
   const {
@@ -329,6 +330,7 @@ const PlantCreateForm = () => {
                   Dirección<span className='text-rose-500'>*</span>
                 </label>
                 <input
+                  disabled={!mapAddress}
                   onChange={setValue('address', mapAddress)}
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
