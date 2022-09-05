@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../../context/StateContext';
 import LoadingButton from '../../helpers/LoadingButton';
 import Banner from '../../components/Banner';
+import imageDropzone from '../products/helpers/ImageDropzone';
 
 function ProfilePanel() {
   const [supplierData, setSupplierData] = useState([]);
@@ -145,14 +146,14 @@ function ProfilePanel() {
         setTimeout(() => {
           setLoading(false);
           navigate('/company/profile');
-        }, 3000);
+        }, 1500);
       } else {
         setLoading(true);
         setBannerErrorOpen(true);
         setTimeout(() => {
           setLoading(false);
           setBannerErrorOpen(false);
-        }, 5000);
+        }, 1500);
       }
     });
   };
@@ -210,7 +211,7 @@ function ProfilePanel() {
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-1'>
               Perfil del negocio
             </h2>
-            <p className='text-sm'>Editas los datos de tu compañia.</p>
+            <p className='text-sm'>Edita los datos de tu compañia.</p>
             <div className='sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5'>
               <div className='sm:w-1/3'>
                 {/* COMERCIAL BRAND */}

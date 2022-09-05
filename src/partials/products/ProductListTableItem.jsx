@@ -63,7 +63,7 @@ const ProductListTableItem = (props) => {
           <div className='text-center'>{props.currency_badge}</div>
         </td>
         <td className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-          <div className='text-left'>{props.price}</div>
+          <div className='text-left'>${props.price}</div>
         </td>
         <td className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
           <div className='text-left'>

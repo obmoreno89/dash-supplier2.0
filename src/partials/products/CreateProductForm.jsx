@@ -33,7 +33,6 @@ const CreateProductForm = () => {
     loading,
     setLoading,
     setProductReload,
-    requiredFile,
     setRequiredFile,
   } = useContext(StateContext);
 
@@ -409,7 +408,6 @@ const CreateProductForm = () => {
                   onClick={(e) => {
                     e.stopPropagation();
                     setDangerModalOpen(true);
-                    cleanProductImage();
                   }}
                   type='button'
                   className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>

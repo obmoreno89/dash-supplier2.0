@@ -58,7 +58,7 @@ const PlantList = () => {
 
                 {/* Export button */}
                 <Link
-                  to='/products/create'
+                  to='/plant/create'
                   className='btn bg-secondary hover:bg-primary text-primary hover:text-white'>
                   Añadir Planta
                 </Link>

@@ -88,14 +88,14 @@ const PlantUpdateForm = () => {
           setLoading(false);
           setBannerSuccessOpen(false);
           navigate('/plant/list');
-        }, 3000);
+        }, 1500);
       } else {
         setLoading(true);
         setBannerErrorOpen(true);
         setTimeout(() => {
           setLoading(false);
           setBannerErrorOpen(false);
-        }, 5000);
+        }, 1500);
       }
       setPlantReload(true);
     });

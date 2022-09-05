@@ -19,12 +19,12 @@ const ModalProductDelete = ({ id }) => {
         setBannerSuccessOpen(true);
         setTimeout(() => {
           setBannerSuccessOpen(false);
-        }, 3000);
+        }, 1500);
       } else {
         setBannerErrorOpen(true);
         setTimeout(() => {
           setBannerErrorOpen(false);
-        }, 5000);
+        }, 1500);
       }
     });
     setProductReload(true);
@@ -51,7 +51,7 @@ const ModalProductDelete = ({ id }) => {
             {/* Modal header */}
             <div className='mb-2'>
               <div className='text-lg font-semibold text-slate-800'>
-                ¿Seguro de que quieres eliminar el producto?
+                ¿Seguro de quieres eliminar el producto?
               </div>
             </div>
             {/* Modal content */}

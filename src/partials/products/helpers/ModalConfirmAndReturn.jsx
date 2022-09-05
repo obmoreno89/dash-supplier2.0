@@ -34,7 +34,7 @@ const ModalConfirmAndReturn = ({ cleanProductImage }) => {
             {/* Modal header */}
             <div className='mb-2'>
               <div className='text-lg font-semibold text-slate-800'>
-                ¿Seguro de que quieres dejar esta página?
+                ¿Seguro que quieres dejar esta página?
               </div>
             </div>
             {/* Modal content */}

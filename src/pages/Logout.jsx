@@ -44,6 +44,7 @@ const Logout = ({ align }) => {
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
     localStorage.removeItem('supplier_id');
+    sessionStorage.clear();
 
     navigate('/signin');
   }

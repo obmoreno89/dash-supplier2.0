@@ -19,12 +19,12 @@ const ModalPlantDelete = ({ id }) => {
         setBannerSuccessOpen(true);
         setTimeout(() => {
           setBannerSuccessOpen(false);
-        }, 3000);
+        }, 1500);
       } else {
         setBannerErrorOpen(true);
         setTimeout(() => {
           setBannerErrorOpen(false);
-        }, 5000);
+        }, 1500);
       }
     });
     setPlantReload(true);
@@ -50,7 +50,7 @@ const ModalPlantDelete = ({ id }) => {
             {/* Modal header */}
             <div className='mb-2'>
               <div className='text-lg font-semibold text-slate-800'>
-                ¿Seguro de que quieres eliminar la planta?
+                ¿Seguro que quieres eliminar la planta?
               </div>
             </div>
             {/* Modal content */}
