@@ -3,9 +3,8 @@ import { Navigate } from 'react-router-dom';
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem('token');
-  const err = sessionStorage.getItem('err');
 
-  if (!token && !err) {
+  if (!token) {
     return <Navigate to='/signin' />;
   }
   return children;

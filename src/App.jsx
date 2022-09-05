@@ -78,6 +78,7 @@ function App() {
           }
         />
         <Route
+          exact
           path='/code/validation'
           element={
             <PrivateCodeValidation>
@@ -88,9 +89,9 @@ function App() {
         <Route
           path='/signup'
           element={
-            <PrivateMultistepForm>
+            <PrivateRoute>
               <Signup />
-            </PrivateMultistepForm>
+            </PrivateRoute>
           }
         />
         <Route

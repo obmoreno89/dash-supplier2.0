@@ -2,7 +2,8 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 function PrivateCodeValidation({ children }) {
-  const code = localStorage.getItem('code');
+  let code = sessionStorage.getItem('code');
+  console.log(code);
 
   if (!code) {
     return <Navigate to='/signin' />;
