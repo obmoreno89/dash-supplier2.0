@@ -31,7 +31,7 @@ const PlantCreateForm = () => {
     placeList,
     lat,
     lng,
-    mapAdrress,
+    mapAddress,
   } = useContext(StateContext);
 
   const {
@@ -65,14 +65,14 @@ const PlantCreateForm = () => {
           navigate('/plant/list');
           setLoading(false);
           setBannerSuccessOpen(false);
-        }, 3000);
+        }, 1500);
       } else {
         setBannerErrorOpen(true);
         setLoading(true);
         setTimeout(() => {
           setBannerErrorOpen(false);
           setLoading(false);
-        }, 5000);
+        }, 1500);
       }
       setPlantReload(true);
     });
@@ -225,7 +225,7 @@ const PlantCreateForm = () => {
               {/* COUNTRY */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
-                  pais
+                  Pais
                   <span className='text-rose-500'>*</span>
                 </label>
                 <select
@@ -329,7 +329,7 @@ const PlantCreateForm = () => {
                   Dirección<span className='text-rose-500'>*</span>
                 </label>
                 <input
-                  onChange={setValue('address', mapAdrress)}
+                  onChange={setValue('address', mapAddress)}
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed'
                   autoComplete='off'
                   type='text'

@@ -60,7 +60,7 @@ const PlantList = () => {
                 <Link
                   to='/products/create'
                   className='btn bg-secondary hover:bg-primary text-primary hover:text-white'>
-                  Crear Planta
+                  Añadir Planta
                 </Link>
               </div>
             </div>

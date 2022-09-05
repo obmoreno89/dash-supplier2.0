@@ -113,7 +113,7 @@ const PlantListTable = () => {
                 Crea las plantas, las cuales implementaran la logística de
                 entrega.
               </div>
-              <Link to='/products/create'>
+              <Link to='/plant/create'>
                 <button className='btn bg-secondary hover:bg-primary hover:text-white text-primary'>
                   <svg
                     className='w-4 h-4 fill-current opacity-50 shrink-0'

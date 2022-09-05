@@ -50,7 +50,8 @@ function ImageDropzone({ files, setFiles }) {
     isDragReject,
   } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    'image/png': ['.png'],
+    'image/jpeg': ['.jpg', '.jpeg'],
     multiple: false,
   });
 
@@ -65,9 +66,11 @@ function ImageDropzone({ files, setFiles }) {
   );
 
   const thumbs = files.map((file) => (
-    <div className='mt-5' key={file.name}>
+    <div
+      className='mt-5 flex flex-col justify-center items-center'
+      key={file.name}>
       <p className='mt-3 font-semibold text-center'>Vista previa</p>
-      <img className='w-44 mt-2' src={file.preview} alt={file.name} />
+      <img className='w-44 mt-2 ' src={file.preview} alt={file.name} />
       <p className='text-center'>{file.name}</p>
     </div>
   ));
