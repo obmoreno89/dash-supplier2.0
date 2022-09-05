@@ -68,7 +68,7 @@ const CreateProductForm = () => {
           setBannerSuccessOpen(false);
           setLoading(false);
           navigate('/products/list');
-        }, 3000);
+        }, 1500);
       } else {
         setRequiredFile(true);
         setBannerErrorOpen(true);
@@ -77,7 +77,7 @@ const CreateProductForm = () => {
           setBannerErrorOpen(false);
           setLoading(false);
           setRequiredFile(false);
-        }, 3000);
+        }, 1500);
       }
       setProductReload(true);
     });
@@ -99,7 +99,7 @@ const CreateProductForm = () => {
               type='success'
               open={bannerSuccessOpen}
               setOpen={setBannerSuccessOpen}>
-              operación exitosa. Redirigiendo...
+              Operación exitosa. Redirigiendo...
             </Banner>
           </div>
         ) : bannerErrorOpen ? (
@@ -225,7 +225,7 @@ const CreateProductForm = () => {
               {/* CURRENCY TYPE */}
               <div>
                 <label className='block text-sm font-medium mb-1'>
-                  Tipo de moneda
+                  Moneda
                   <span className='text-rose-500'>*</span>
                 </label>
                 <select

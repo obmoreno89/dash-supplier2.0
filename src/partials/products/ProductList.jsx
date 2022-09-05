@@ -62,7 +62,7 @@ const ProductList = () => {
                 <Link
                   to='/products/create'
                   className='btn bg-secondary hover:bg-primary text-primary hover:text-white'>
-                  Crear producto
+                  Añadir producto
                 </Link>
               </div>
             </div>
