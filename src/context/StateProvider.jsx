@@ -92,7 +92,7 @@ const StateProvider = ({ children }) => {
           setTimeout(() => {
             setLoading(false);
             navigate('/code/validation');
-          }, 3000);
+          }, 1500);
         } else {
           setErrorApi(true);
           setLoading(true);
