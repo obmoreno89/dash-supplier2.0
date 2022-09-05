@@ -11,6 +11,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import PrivateCodeValidation from './routes/PrivateCodeValidation';
 import PrivateMultistepForm from './routes/PrivateMultistepForm';
+import PrivateSignup from './routes/PrivateSignup';
 
 // Import pages
 import Dashboard from './pages/Dashboard';
@@ -86,12 +87,13 @@ function App() {
             </PrivateCodeValidation>
           }
         />
+
         <Route
           path='/signup'
           element={
-            <PrivateRoute>
+            <PrivateSignup>
               <Signup />
-            </PrivateRoute>
+            </PrivateSignup>
           }
         />
         <Route
@@ -105,20 +107,19 @@ function App() {
         <Route
           path='/multiStep'
           element={
-            <PrivateRoute>
+            <PrivateMultistepForm>
               <MultiStepForm />
-            </PrivateRoute>
+            </PrivateMultistepForm>
           }
         />
         <Route
           path='/multiStep/end'
           element={
-            <PrivateRoute>
+            <PrivateMultistepForm>
               <MultiStepFormEnd />
-            </PrivateRoute>
+            </PrivateMultistepForm>
           }
         />
-
         {/* Dashboard */}
         <Route
           exact
@@ -129,7 +130,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         {/* Products */}
         <Route
           exact
@@ -168,7 +168,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         <Route
           exact
           path='/plant/update/:id'
@@ -188,7 +187,6 @@ function App() {
             </PrivateRoute>
           }
         />
-
         {/* Vista previa de Componentes */}
         <Route path='/component/form' element={<FormPage />} />
         <Route path='/component/dropdown' element={<DropdownPage />} />

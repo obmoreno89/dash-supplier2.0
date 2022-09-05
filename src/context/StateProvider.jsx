@@ -85,7 +85,6 @@ const StateProvider = ({ children }) => {
       .then((response) => response.json())
       .then((json) => {
         if (json.code) {
-          console.log(json);
           setSavedCode(json);
           let result = json;
           sessionStorage.setItem('code', result.code);

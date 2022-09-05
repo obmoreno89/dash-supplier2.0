@@ -57,7 +57,7 @@ const ValidationCode = () => {
         if (json.msg === 'Ok') {
           setButtonLoading(true);
           let result = json;
-          localStorage.setItem('number', result.number);
+          sessionStorage.setItem('number', result.number);
           setTimeout(() => {
             setButtonLoading(false);
             navigate('/signup');

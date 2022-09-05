@@ -106,7 +106,6 @@ const MultiStepFormEnd = () => {
                     Gracias por compartir tus datos 🙌
                   </h1>
                   <Link
-                    onClick={logout}
                     className='btn bg-secondary hover:bg-primary hover:text-white text-primary'
                     to='/'>
                     Ir al panel de proveedores -&gt;

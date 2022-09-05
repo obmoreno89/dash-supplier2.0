@@ -1,14 +1,14 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-const PrivateMultistepForm = ({ children }) => {
-  let id = sessionStorage.getItem('id');
+const PrivateSignup = ({ children }) => {
+  let number = sessionStorage.getItem('number');
 
-  if (!id) {
+  if (!number) {
     return <Navigate to='/signin' />;
   }
 
   return children;
 };
 
-export default PrivateMultistepForm;
+export default PrivateSignup;

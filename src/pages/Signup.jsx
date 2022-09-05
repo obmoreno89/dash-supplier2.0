@@ -12,7 +12,8 @@ function Signup() {
 
   const [reloading, setReloading] = useState(false);
 
-  const number = localStorage.getItem('number');
+  const number = sessionStorage.getItem('number');
+
   const {
     register,
     handleSubmit,
@@ -51,11 +52,11 @@ function Signup() {
       .then((json) => {
         if (json.code === 201) {
           setReloading(true);
+          console.log(json);
           let result = json;
           sessionStorage.setItem('id', result.id);
           sessionStorage.setItem('token', result.token);
           sessionStorage.setItem('first_name', result.first_name);
-
           setTimeout(() => {
             setReloading(false);
             navigate('/multiStep');
