@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Sinlogo from '../../images/Sinlogo.png';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../../context/StateContext';
@@ -13,14 +12,8 @@ function ProfilePanel() {
 
   const navigate = useNavigate();
 
-  const {
-    requiredFile,
-    setRequiredFile,
-    bannerErrorOpen,
-    setBannerErrorOpen,
-    loading,
-    setLoading,
-  } = useContext(StateContext);
+  const { bannerErrorOpen, setBannerErrorOpen, loading, setLoading } =
+    useContext(StateContext);
 
   const {
     handleSubmit,
