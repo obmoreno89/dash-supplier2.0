@@ -3,7 +3,7 @@ import ModalBlank from '../../../../src/components/ModalBlank';
 import { useNavigate } from 'react-router-dom';
 import StateContext from '../../../context/StateContext';
 
-const ModalConfirmAndReturn = ({ cleanProductImage }) => {
+const ModalConfirmAndReturn = () => {
   const { dangerModalOpen, setDangerModalOpen } = useContext(StateContext);
 
   const navigate = useNavigate();
@@ -60,7 +60,6 @@ const ModalConfirmAndReturn = ({ cleanProductImage }) => {
                 onClick={(e) => {
                   e.stopPropagation();
                   backPage();
-                  cleanProductImage();
                 }}
                 type='button'
                 className='btn-sm bg-rose-500 hover:bg-rose-600 text-white'>

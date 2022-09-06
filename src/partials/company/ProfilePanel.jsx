@@ -5,59 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../../context/StateContext';
 import LoadingButton from '../../helpers/LoadingButton';
 import Banner from '../../components/Banner';
-import imageDropzone from '../products/helpers/ImageDropzone';
+import LogoDropzone from './helpers/LogoDropzone';
 
 function ProfilePanel() {
   const [supplierData, setSupplierData] = useState([]);
-  const [preview, setPreview] = useState('');
-  const [image, setImage] = useState('');
+  const [logo, setLogo] = useState([]);
 
   const navigate = useNavigate();
-
-  const containerLogo = () => {
-    if (preview.length) {
-      return (
-        <div className='mr-1'>
-          <img
-            name='img_product'
-            className='w-20 h-20 rounded-full'
-            src={preview}
-            width='80'
-            height='80'
-            alt='User upload'
-          />
-        </div>
-      );
-    } else if (supplierData) {
-      return (
-        <div className='mr-1'>
-          <img
-            name='img_product'
-            className='w-20 h-20 rounded-full'
-            src={supplierData}
-            width='80'
-            height='80'
-            alt='User upload'
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div className='mr-1'>
-          <img
-            name='img_product'
-            className='w-20 h-20 rounded-full'
-            src={Sinlogo}
-            width='80'
-            height='80'
-            alt='User upload'
-          />
-        </div>
-      );
-    }
-  };
-
-  const cleanLogo = () => setPreview('');
 
   const {
     requiredFile,
@@ -67,23 +21,6 @@ function ProfilePanel() {
     loading,
     setLoading,
   } = useContext(StateContext);
-
-  //FUNCTION PREVIEW IMAGE
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      setImage(file);
-      setPreview(reader.result);
-    };
-  };
 
   const {
     handleSubmit,
@@ -97,12 +34,9 @@ function ProfilePanel() {
   const supplierId = localStorage.getItem('supplier_id');
 
   const changeLogo = async () => {
-    const files = document.getElementById('image').value
-      ? document.getElementById('image').files[0]
-      : '';
     let formData = new FormData();
 
-    formData.append('logo', files);
+    formData.append('logo', logo[0]);
 
     fetch(
       `http://supplier.hubmine.mx/api/suppliers/upload-logo/${supplierId}/`,
@@ -119,7 +53,6 @@ function ProfilePanel() {
     )
       .then((response) => response.json())
       .then((json) => {
-        cleanLogo();
         setSupplierData(json[0].bussiness_logo);
         setValue('commercial_brand', json[0].commercial_brand);
         setValue('bussiness_email', json[0].bussiness_email);
@@ -165,6 +98,7 @@ function ProfilePanel() {
         <h2 className='text-xl text-slate-800 font-bold mb-5'>
           Logo de la compañia
         </h2>
+
         {/* Picture */}
         {/* BANNER SUCCESS AND ERROR */}
         {bannerErrorOpen && (
@@ -181,26 +115,11 @@ function ProfilePanel() {
 
         <section>
           <div className='flex items-center'>
-            {containerLogo()}
-
-            <div>
-              <label
-                htmlFor='image'
-                className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
-                Cambiar
-              </label>
-              <input
-                accept='.jpg,.png'
-                id='image'
-                type='file'
-                onChange={handleImageChange}
-              />
-              {requiredFile && (
-                <span className='text-red-500 text-sm'>
-                  El campo es requerido
-                </span>
-              )}
-            </div>
+            <LogoDropzone
+              supplierData={supplierData}
+              logo={logo}
+              setLogo={setLogo}
+            />
           </div>
         </section>
       </div>
@@ -211,7 +130,7 @@ function ProfilePanel() {
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-1'>
               Perfil del negocio
             </h2>
-            <p className='text-sm'>Edita los datos de tu compañia.</p>
+            <p className='text-sm'>Editas los datos de tu compañia.</p>
             <div className='sm:flex sm:items-center space-y-4 sm:space-y-0 sm:space-x-4 mt-5'>
               <div className='sm:w-1/3'>
                 {/* COMERCIAL BRAND */}
@@ -376,7 +295,6 @@ function ProfilePanel() {
             <div className='flex flex-col px-6 py-5 border-t border-slate-200'>
               <div className='flex self-end space-x-3'>
                 <Link
-                  onClick={cleanLogo}
                   to='/'
                   className='btn border-slate-200 hover:border-slate-300 text-slate-600'>
                   Salir
