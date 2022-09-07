@@ -35,6 +35,8 @@ const PlantUpdateForm = () => {
     setMapAddress,
     lat,
     lng,
+    setLat,
+    setLng,
   } = useContext(StateContext);
 
   const {
@@ -66,6 +68,8 @@ const PlantUpdateForm = () => {
         setValue('address', json[0].location.address);
         setDataPlant(json);
         setMapAddress(json[0].location.address);
+        setLng(json[0].location.longitude);
+        setLat(json[0].location.latitude);
       });
   };
 

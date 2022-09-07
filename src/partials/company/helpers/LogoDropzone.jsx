@@ -127,11 +127,13 @@ function LogoDropzone({ logo, setLogo, supplierData }) {
         className='flex justify-center items-center ml-5'
         {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p className='text-sm font-semibold'>Cambiar</p>
+        <p className='text-primary text-sm font-semibold hover:text-slate-500'>
+          Cambiar
+        </p>
       </div>
-      <div>
+      <section>
         <div>{containerLogo()}</div>
-      </div>
+      </section>
     </section>
   );
 }
