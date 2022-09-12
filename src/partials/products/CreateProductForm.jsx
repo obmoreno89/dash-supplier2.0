@@ -50,10 +50,13 @@ const CreateProductForm = () => {
     formData.append('price ', data.price);
     formData.append('img_product', files[0]);
 
-    fetch(`http://dev.hubmine.mx/api/suppliers/product/create/${supplierId}/`, {
-      method: 'POST',
-      body: formData,
-    }).then((response) => {
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/product/create/${supplierId}/`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    ).then((response) => {
       if (response.status === 201) {
         setBannerSuccessOpen(true);
 

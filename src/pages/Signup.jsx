@@ -41,7 +41,7 @@ function Signup() {
   const navigate = useNavigate();
 
   async function createAccount(data) {
-    return fetch('http://dev.hubmine.mx/api/auth/register/', {
+    return fetch('http://supplier.hubmine.mx/api/auth/register/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

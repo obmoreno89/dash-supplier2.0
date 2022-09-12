@@ -50,7 +50,7 @@ const PlantCreateForm = () => {
 
   async function createPlant(plantData) {
     return fetch(
-      `http://dev.hubmine.mx/api/suppliers/plant/create/${supplierId}/`,
+      `http://supplier.hubmine.mx/api/suppliers/plant/create/${supplierId}/`,
       {
         method: 'POST',
         headers: {

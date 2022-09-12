@@ -12,7 +12,7 @@ const ModalProductDelete = ({ id }) => {
   } = useContext(StateContext);
 
   const ProductDelete = async (id) => {
-    fetch(`http://dev.hubmine.mx/api/suppliers/product/delete/${id}/`, {
+    fetch(`http://supplier.hubmine.mx/api/suppliers/product/delete/${id}/`, {
       method: 'DELETE',
     }).then((response) => {
       if (response.status === 204) {
