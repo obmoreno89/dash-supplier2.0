@@ -22,7 +22,7 @@ const ModalVerification = () => {
   }, []);
 
   async function numberValidation(phone) {
-    return fetch('http://supplier.hubmine.mx/api/auth/send_register/', {
+    return fetch('http://dev.hubmine.mx/api/auth/send_register/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -34,7 +34,7 @@ const ModalVerification = () => {
         if (json.code) {
           setLoading(true);
           async function codeValidation(code) {
-            return fetch('http://supplier.hubmine.mx/api/auth/validate/', {
+            return fetch('http://dev.hubmine.mx/api/auth/validate/', {
               method: 'POST',
               headers: {
                 'Content-type': 'application/json',

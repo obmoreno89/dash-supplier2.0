@@ -77,7 +77,7 @@ function Signin() {
 
   //FUNCTION FOR LOGIN SUPPLIER
   async function loginUser(credentials) {
-    return fetch('http://supplier.hubmine.mx/api/auth/login/', {
+    return fetch('http://dev.hubmine.mx/api/auth/login/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -100,7 +100,7 @@ function Signin() {
 
           async function codeValidation() {
             return fetch(
-              `http://supplier.hubmine.mx/api/suppliers/validate/${supplierId}/`,
+              `http://dev.hubmine.mx/api/suppliers/validate/${supplierId}/`,
               {
                 method: 'POST',
                 headers: {

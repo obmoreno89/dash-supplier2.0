@@ -31,18 +31,15 @@ function ProfilePanel() {
 
     formData.append('logo', logo[0]);
 
-    fetch(
-      `http://supplier.hubmine.mx/api/suppliers/upload-logo/${supplierId}/`,
-      {
-        method: 'POST',
-        body: formData,
-      }
-    ).then((response) => response.json());
+    fetch(`http://dev.hubmine.mx/api/suppliers/upload-logo/${supplierId}/`, {
+      method: 'POST',
+      body: formData,
+    }).then((response) => response.json());
   };
 
   const getDetailsSupplier = async () => {
     fetch(
-      `http://supplier.hubmine.mx/api/suppliers/details?supplier-id=${supplierId}`
+      `http://dev.hubmine.mx/api/suppliers/details?supplier-id=${supplierId}`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -60,7 +57,7 @@ function ProfilePanel() {
   }, []);
 
   const profileUpdate = async (data) => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/update/${supplierId}/`, {
+    fetch(`http://dev.hubmine.mx/api/suppliers/update/${supplierId}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

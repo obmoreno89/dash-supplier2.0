@@ -75,7 +75,7 @@ const StateProvider = ({ children }) => {
 
   //API FOR CODE GENERATOR WITH PHONE
   async function codeGenerator(phone) {
-    return fetch('http://supplier.hubmine.mx/api/auth/send_register/', {
+    return fetch('http://dev.hubmine.mx/api/auth/send_register/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -134,7 +134,7 @@ const StateProvider = ({ children }) => {
 
   const getProductList = async () => {
     fetch(
-      `http://supplier.hubmine.mx/api/suppliers/product/list?supplier-id=${supplierId}`
+      `http://dev.hubmine.mx/api/suppliers/product/list?supplier-id=${supplierId}`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -161,7 +161,7 @@ const StateProvider = ({ children }) => {
 
   // LIST ALL COUNTRY
   const getCountry = async () => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/list-countries`)
+    fetch(`http://dev.hubmine.mx/api/suppliers/list-countries`)
       .then((response) => response.json())
       .then((json) => setCountry(json));
   };
@@ -173,7 +173,7 @@ const StateProvider = ({ children }) => {
   //LIST ALL STATE WAIT ID COUNTRY
   const getState = async () => {
     fetch(
-      `http://supplier.hubmine.mx/api/suppliers/list-states?country-id=${countryId}`
+      `http://dev.hubmine.mx/api/suppliers/list-states?country-id=${countryId}`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -188,9 +188,7 @@ const StateProvider = ({ children }) => {
 
   //LIST ALL CITY WAIT ID STATE
   const getCity = async () => {
-    fetch(
-      `http://supplier.hubmine.mx/api/suppliers/list-cities?state-id=${stateId}`
-    )
+    fetch(`http://dev.hubmine.mx/api/suppliers/list-cities?state-id=${stateId}`)
       .then((response) => response.json())
       .then((json) => {
         setCity(json);
@@ -204,7 +202,7 @@ const StateProvider = ({ children }) => {
 
   //LIST ALL PLACE
   const getPlaceList = async () => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/list/type-places/`)
+    fetch(`http://dev.hubmine.mx/api/suppliers/plant/list/type-places/`)
       .then((response) => response.json())
       .then((json) => setPlaceList(json));
   };
@@ -216,7 +214,7 @@ const StateProvider = ({ children }) => {
   //FUNCTION FOR ALL PLANTS
   const getPlantList = async () => {
     fetch(
-      `http://supplier.hubmine.mx/api/suppliers/plant/list?supplier-id=${supplierId}`
+      `http://dev.hubmine.mx/api/suppliers/plant/list?supplier-id=${supplierId}`
     )
       .then((response) => response.json())
       .then((json) => setPlantList(json));

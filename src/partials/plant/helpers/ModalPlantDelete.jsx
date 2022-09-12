@@ -12,7 +12,7 @@ const ModalPlantDelete = ({ id }) => {
   } = useContext(StateContext);
 
   const PlantDelete = async (id) => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/delete/${id}/`, {
+    fetch(`http://dev.hubmine.mx/api/suppliers/plant/delete/${id}/`, {
       method: 'DELETE',
     }).then((response) => {
       if (response.status === 204) {
