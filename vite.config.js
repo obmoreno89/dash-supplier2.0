@@ -12,7 +12,7 @@ export default defineConfig({
   },
   // '/dash-supplier2.0/'
   plugins: [react()],
-  base: '/',
+  base: '/dash-supplier2.0/',
   resolve: {
     alias: [
       {
