@@ -18,8 +18,6 @@ function PhoneCodeGenerator() {
     formState: { errors },
   } = useForm();
 
-  const submit = (data) => console.log(data);
-
   const { loading, codeGenerator, errorApi } = useContext(StateContext);
 
   return (
