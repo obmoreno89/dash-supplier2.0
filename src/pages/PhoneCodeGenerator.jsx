@@ -9,7 +9,7 @@ import 'react-phone-input-2/lib/style.css';
 import './customPhoneNumberInput.css';
 import logohubsupplier from '../images/logohubsupplier.svg';
 
-const PhoneCodeGenerator = () => {
+function PhoneCodeGenerator() {
   const {
     register,
     handleSubmit,
@@ -143,6 +143,6 @@ const PhoneCodeGenerator = () => {
       </div>
     </main>
   );
-};
+}
 
 export default PhoneCodeGenerator;
