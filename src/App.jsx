@@ -104,14 +104,7 @@ function App() {
             </PublicRoute>
           }
         />
-        <Route
-          path='/multiStep'
-          element={
-            <PrivateMultistepForm>
-              <MultiStepForm />
-            </PrivateMultistepForm>
-          }
-        />
+        <Route path='/multiStep' element={<MultiStepForm />} />
         <Route
           path='/multiStep/end'
           element={
@@ -149,7 +142,7 @@ function App() {
             </PrivateRoute>
           }
         />
-      
+
         <Route
           exact
           path='/plant/create'
