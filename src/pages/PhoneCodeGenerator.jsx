@@ -42,8 +42,8 @@ function PhoneCodeGenerator() {
               </h1>
               <div>
                 <p className='text-sm'>
-                  Introduce un número de teléfono para que puedas generar un
-                  código de verificación.
+                  Introduce un número de teléfono con tu código del pais, para
+                  que puedas generar un código de verificación.
                 </p>
               </div>
               {/* Form */}
@@ -52,10 +52,11 @@ function PhoneCodeGenerator() {
                   {/* INPUT PHONE */}
                   <div>
                     <label className='block text-sm font-medium mb-1'>
-                      Numero de telefono del contacto
+                      Numero de telefono
                       <span className='text-rose-500'>*</span>
                     </label>
                     <input
+                      placeholder='ej: (+52)-271-152-14-22'
                       className='form-input w-full capitalize'
                       autoComplete='off'
                       type='number'
