@@ -105,14 +105,7 @@ function App() {
           }
         />
         <Route path='/multiStep' element={<MultiStepForm />} />
-        <Route
-          path='/multiStep/end'
-          element={
-            <PrivateMultistepForm>
-              <MultiStepFormEnd />
-            </PrivateMultistepForm>
-          }
-        />
+        <Route path='/multiStep/end' element={<MultiStepFormEnd />} />
         {/* Dashboard */}
         <Route
           exact
