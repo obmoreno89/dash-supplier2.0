@@ -149,7 +149,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* Plant */}
+      
         <Route
           exact
           path='/plant/create'
