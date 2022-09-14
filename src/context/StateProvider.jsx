@@ -188,7 +188,9 @@ const StateProvider = ({ children }) => {
 
   //LIST ALL CITY WAIT ID STATE
   const getCity = async () => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/list-cities?state-id=${stateId}`)
+    fetch(
+      `http://supplier.hubmine.mx/api/suppliers/list-cities?state-id=${stateId}`
+    )
       .then((response) => response.json())
       .then((json) => {
         setCity(json);

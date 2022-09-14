@@ -27,10 +27,9 @@ function Dashboard() {
 
             {/* Cards */}
             <div className='grid grid-cols-12 gap-6'>
-              {/* Line chart (Analytics) */}
-              <AnalyticsCard01 />
-              {/* Polar chart (Sessions By Gender) */}
-              <AnalyticsCard10 />
+              {/* <AnalyticsCard01 />
+            
+              <AnalyticsCard10 /> */}
             </div>
           </div>
         </main>
