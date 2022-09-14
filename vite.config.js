@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import postcss from './postcss.config.js';
 import react from '@vitejs/plugin-react';
 
-
 export default defineConfig({
   define: {
     'process.env': process.env,
@@ -12,6 +11,7 @@ export default defineConfig({
   },
   // '/dash-supplier2.0/'
   plugins: [react()],
+  mode: 'development',
   base: '/',
   resolve: {
     alias: [
@@ -25,5 +25,6 @@ export default defineConfig({
   },
   build: {
     chunkSizeWarningLimit: 1800,
+    minify: false,
   },
 });
