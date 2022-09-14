@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Question from '../images/question.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
-import StateContext from '../context/StateContext';
 import logohubsupplier from '../images/logohubsupplier.svg';
 
 const MultiStepFormEnd = () => {

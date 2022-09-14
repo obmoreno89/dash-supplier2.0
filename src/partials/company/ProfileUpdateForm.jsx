@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import ModalCorfirmAndReturnProfile from './helpers/ModalCorfirmAndReturnProfile';
 import Banner from '../../components/Banner';
 import LoadingButton from '../../helpers/LoadingButton';
@@ -8,7 +7,6 @@ import StateContext from '../../context/StateContext';
 
 const ProfileUpdateForm = () => {
   const submit = (data) => console.log(data);
-  const navigate = useNavigate();
 
   const {
     handleSubmit,

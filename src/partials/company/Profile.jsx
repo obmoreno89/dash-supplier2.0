@@ -4,7 +4,6 @@ import Header from '../../partials/Header';
 import SettingsSidebar from './SettingsSidebar';
 import ProfilePanel from './ProfilePanel';
 import StateContext from '../../context/StateContext';
-import ProfileUpdateForm from './ProfileUpdateForm';
 
 const Profile = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(StateContext);
