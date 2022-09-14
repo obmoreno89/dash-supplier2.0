@@ -10,7 +10,7 @@ import './charts/ChartjsConfig';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import PrivateCodeValidation from './routes/PrivateCodeValidation';
-import PrivateMultistepForm from './routes/PrivateMultistepForm';
+
 import PrivateSignup from './routes/PrivateSignup';
 
 // Import pages
@@ -104,22 +104,8 @@ function App() {
             </PublicRoute>
           }
         />
-        <Route
-          path='/multiStep'
-          element={
-            <PrivateMultistepForm>
-              <MultiStepForm />
-            </PrivateMultistepForm>
-          }
-        />
-        <Route
-          path='/multiStep/end'
-          element={
-            <PrivateMultistepForm>
-              <MultiStepFormEnd />
-            </PrivateMultistepForm>
-          }
-        />
+        <Route path='/multiStep' element={<MultiStepForm />} />
+        <Route path='/multiStep/end' element={<MultiStepFormEnd />} />
         {/* Dashboard */}
         <Route
           exact
