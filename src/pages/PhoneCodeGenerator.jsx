@@ -4,21 +4,21 @@ import { useForm, Controller } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/AuthImage.jpg';
+import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import './customPhoneNumberInput.css';
 import logohubsupplier from '../images/logohubsupplier.svg';
 
 function PhoneCodeGenerator() {
   const {
+    register,
     handleSubmit,
     control,
-    register,
+
     formState: { errors },
   } = useForm();
 
   const { loading, codeGenerator, errorApi } = useContext(StateContext);
-
-  const submit = (data) => console.log(data);
 
   return (
     <main className='bg-white'>
@@ -49,27 +49,30 @@ function PhoneCodeGenerator() {
               {/* Form */}
               <form onSubmit={handleSubmit(codeGenerator)}>
                 <div className='space-y-4 mt-10'>
-                  {/* INPUT PHONE */}
                   <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      Numero de telefono del contacto
-                      <span className='text-rose-500'>*</span>
+                    <label
+                      className='block text-sm font-medium mb-1'
+                      htmlFor='number'>
+                      Número de teléfono<span className='text-rose-500'>*</span>
                     </label>
-                    <input
-                      className='form-input w-full capitalize'
-                      autoComplete='off'
-                      type='number'
-                      {...register('number', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[0-9]/,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />{' '}
+                    <Controller
+                      control={control}
+                      name='number'
+                      rules={{ required: true }}
+                      render={({ field: { ref, ...field } }) => (
+                        <PhoneInput
+                          {...field}
+                          inputExtraProps={{
+                            ref,
+                            required: true,
+                            autoFocus: true,
+                          }}
+                          country={'mx'}
+                          countryCodeEditable={false}
+                          specialLabel='Player Mobile Number'
+                        />
+                      )}
+                    />
                     {errors.number && (
                       <span className='text-red-500 text-sm'>
                         {errors.number.message}
