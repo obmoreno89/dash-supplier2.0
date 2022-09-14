@@ -11,8 +11,7 @@ export default defineConfig({
   },
   // '/dash-supplier2.0/'
   plugins: [react()],
-  mode: 'development',
-  base: '/',
+  base: '/dash-supplier2.0/',
   resolve: {
     alias: [
       {
@@ -23,8 +22,9 @@ export default defineConfig({
       },
     ],
   },
+  mode: 'development',
   build: {
-    chunkSizeWarningLimit: 1800,
     minify: false,
+    chunkSizeWarningLimit: 3000,
   },
 });
