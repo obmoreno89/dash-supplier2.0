@@ -48,7 +48,7 @@ const PlantUpdateForm = () => {
 
   const getPlantDetails = async () => {
     fetch(
-      `http://supplier.hubmine.mx/api/suppliers/plant/list/details?plant-id=${id}`
+      `https://dev.hubmine.mx/api/suppliers/plant/list/details?plant-id=${id}`
     )
       .then((response) => response.json())
       .then((json) => {
@@ -78,7 +78,7 @@ const PlantUpdateForm = () => {
   }, []);
 
   const plantUpdate = async (data) => {
-    fetch(`http://supplier.hubmine.mx/api/suppliers/plant/update/${id}/`, {
+    fetch(`https://dev.hubmine.mx/api/suppliers/plant/update/${id}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

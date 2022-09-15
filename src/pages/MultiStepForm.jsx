@@ -73,7 +73,7 @@ const MultiStepForm = () => {
   };
 
   async function userQuestion(dataMulti) {
-    return fetch(`http://supplier.hubmine.mx/api/suppliers/create/${userId}/`, {
+    return fetch(`https://dev.hubmine.mx/api/suppliers/create/${userId}/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

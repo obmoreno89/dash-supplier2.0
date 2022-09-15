@@ -46,7 +46,7 @@ const ValidationCode = () => {
   };
 
   async function codeValidation() {
-    return fetch('http://supplier.hubmine.mx/api/auth/validate/', {
+    return fetch('https://dev.hubmine.mx/api/auth/validate/', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

@@ -51,7 +51,7 @@ const CreateProductForm = () => {
     formData.append('img_product', files[0]);
 
     fetch(
-      `http://supplier.hubmine.mx/api/suppliers/product/create/${supplierId}/`,
+      `https://dev.hubmine.mx/api/suppliers/product/create/${supplierId}/`,
       {
         method: 'POST',
         body: formData,
