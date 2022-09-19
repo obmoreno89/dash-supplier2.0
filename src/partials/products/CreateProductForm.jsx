@@ -34,6 +34,7 @@ const CreateProductForm = () => {
     setLoading,
     setProductReload,
     setRequiredFile,
+    categories,
   } = useContext(StateContext);
 
   const submit = (data) => console.log(data);
@@ -165,15 +166,11 @@ const CreateProductForm = () => {
                       },
                     })}>
                     <option value=''>Selecciona</option>
-                    <option value='1'>Agregado</option>
-                    <option value='2'>Cemento</option>
-                    <option value='3'>Concreto</option>
-                    <option value='4'>Maquinaria</option>
-                    <option value='5'>Prefabricados</option>
-                    <option value='6'>Sanitarios</option>
-                    <option value='7'>Lavados</option>
-                    <option value='8'>Pisos</option>
-                    <option value='9'>Acero</option>
+                    {categories.map((categories) => (
+                      <option key={categories.id} value={categories.id}>
+                        {categories.category_name}
+                      </option>
+                    ))}
                   </select>
                   {errors.category_id && (
                     <span className='text-red-500 text-sm'>
@@ -234,7 +231,7 @@ const CreateProductForm = () => {
                     },
                   })}>
                   <option value=''>Selecciona</option>
-                  <option value='1'>Peso mexicano</option>
+                  <option value='1'>Dolar estadounidense</option>
                 </select>
                 {errors.currency_id && (
                   <span className='text-red-500 text-sm'>

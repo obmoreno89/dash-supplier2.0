@@ -54,6 +54,8 @@ const StateProvider = ({ children }) => {
   const [lng, setLng] = useState(null);
   const [lat, setLat] = useState(null);
   const [mapAddress, setMapAddress] = useState(null);
+  //STATE FOR SAVE PRODUCT CATEGORIES
+  const [categories, setCategories] = useState([]);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -227,6 +229,16 @@ const StateProvider = ({ children }) => {
     getPlantList();
   }, [plantReload, supplierId]);
 
+  const getCategories = () => {
+    fetch(`https://dev.hubmine.mx/api/suppliers/product/list-categories/`)
+      .then((response) => response.json())
+      .then((json) => setCategories(json));
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   return (
     <StateContext.Provider
       value={{
@@ -284,6 +296,7 @@ const StateProvider = ({ children }) => {
         setLat,
         mapAddress,
         setMapAddress,
+        categories,
       }}>
       {children}
     </StateContext.Provider>
