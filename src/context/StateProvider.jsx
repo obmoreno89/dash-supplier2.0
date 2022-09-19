@@ -229,6 +229,7 @@ const StateProvider = ({ children }) => {
     getPlantList();
   }, [plantReload, supplierId]);
 
+  //FUNCTION GET CATEGORIES PRODUCT DATA
   const getCategories = () => {
     fetch(`https://dev.hubmine.mx/api/suppliers/product/list-categories/`)
       .then((response) => response.json())
