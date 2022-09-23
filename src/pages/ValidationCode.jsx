@@ -102,9 +102,6 @@ const ValidationCode = () => {
                   Te enviamos un código al:
                 </h5>
                 <span className='text-red-500 font-bold'>{phoneUser}</span>
-                <span className='text-red-500 font-bold'>
-                  tu codigo: {code}
-                </span>
               </div>
               <div>
                 <p className='text-sm'>
