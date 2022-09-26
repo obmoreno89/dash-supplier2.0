@@ -111,7 +111,7 @@ function Signin() {
             ).then((response) => {
               if (response.status === 202) {
                 setTimeout(() => {
-                  navigate('/');
+                  navigate('/products/list');
                   setLoading(false);
                 }, 1500);
               }

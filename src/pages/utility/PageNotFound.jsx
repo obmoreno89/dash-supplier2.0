@@ -27,8 +27,8 @@ function PageNotFound() {
                   Hmm... esta página no existe. ¡Intenta buscar otra cosa!
                 </div>
                 <Link
-                  to='/'
-                  className='btn bg-primary hover:bg-indigo-600 text-white'>
+                  to='/products/list'
+                  className='btn bg-primary hover:bg-secondary hover:text-primary text-white'>
                   Volver al Inicio
                 </Link>
               </div>

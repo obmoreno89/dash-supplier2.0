@@ -145,7 +145,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <div>
             <ul className='mt-3'>
               {/* Dashboard */}
-              <SidebarLinkGroup
+              {/* <SidebarLinkGroup
                 activecondition={
                   pathname === '/' || pathname.includes('dashboard')
                 }>
@@ -199,7 +199,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               Dashboard
                             </span>
                           </div>
-                          {/* Icon */}
+
                           <div className='flex shrink-0 ml-2'>
                             <svg
                               className={`w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${
@@ -231,7 +231,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup>
+              </SidebarLinkGroup> */}
 
               {/* ARHIVE */}
               <SidebarLinkGroup activecondition={pathname.includes('product')}>
