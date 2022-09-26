@@ -63,7 +63,7 @@ function App() {
       <Routes>
         {/* Auth */}
         <Route
-          path='/signin'
+          path='/hubmine-supplier/signin'
           element={
             <PublicRoute>
               <Signin />

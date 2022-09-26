@@ -81,7 +81,7 @@ const MultiStepFormEnd = () => {
 
                   <Link
                     className='btn bg-secondary hover:bg-primary hover:text-white text-primary'
-                    to='/'>
+                    to='/products/list'>
                     Ingresar a proveedores -&gt;
                   </Link>
                 </div>

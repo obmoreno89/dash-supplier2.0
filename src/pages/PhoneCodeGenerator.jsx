@@ -30,7 +30,7 @@ function PhoneCodeGenerator() {
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
-                <Link to='/signin' className='block'>
+                <Link to='/hubmine-supplier/signin' className='block'>
                   <img src={logohubsupplier} alt='logo hubmine' />
                 </Link>
               </div>
@@ -99,7 +99,7 @@ function PhoneCodeGenerator() {
                   ¿Tienes cuenta?{' '}
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
-                    to='/signin'>
+                    to='/hubmine-supplier/signin'>
                     Iniciar sesión
                   </Link>
                 </div>

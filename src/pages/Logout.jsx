@@ -46,7 +46,7 @@ const Logout = ({ align }) => {
     localStorage.removeItem('supplier_id');
     sessionStorage.clear();
 
-    navigate('/signin');
+    navigate('/hubmine-supplier/signin');
   }
 
   return (
