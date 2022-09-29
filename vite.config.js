@@ -11,7 +11,7 @@ export default defineConfig({
   },
   // '/dash-supplier2.0/'
   plugins: [react()],
-  base: 'hubmine-supplier/signin',
+  base: '/',
   resolve: {
     alias: [
       {

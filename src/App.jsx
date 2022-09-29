@@ -120,7 +120,7 @@ function App() {
           }
         />
         {/* Dashboard */}
-        {/* <Route
+        <Route
           exact
           path='/'
           element={
@@ -128,7 +128,7 @@ function App() {
               <Dashboard />
             </PrivateRoute>
           }
-        /> */}
+        />
         {/* Products */}
         <Route
           exact

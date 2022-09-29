@@ -145,7 +145,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <div>
             <ul className='mt-3'>
               {/* Dashboard */}
-              {/* <SidebarLinkGroup
+              <SidebarLinkGroup
                 activecondition={
                   pathname === '/' || pathname.includes('dashboard')
                 }>
@@ -231,7 +231,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     </React.Fragment>
                   );
                 }}
-              </SidebarLinkGroup> */}
+              </SidebarLinkGroup>
 
               {/* ARHIVE */}
               <SidebarLinkGroup activecondition={pathname.includes('product')}>
