@@ -61,7 +61,6 @@ function App() {
   return (
     <StateProvider>
       <Routes>
-        {/* Auth */}
         <Route
           path='/hubmine-supplier/signin'
           element={
