@@ -298,7 +298,7 @@ function Signin() {
                   ¿No tienes cuenta?{' '}
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
-                    to='/hubmine-supplier/signin/code/generator'>
+                    to='/code/generator'>
                     Registrate
                   </Link>
                 </div>
