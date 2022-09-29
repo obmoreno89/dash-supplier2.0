@@ -62,7 +62,7 @@ function App() {
     <StateProvider>
       <Routes>
         <Route
-          path='/hubmine-supplier/signin'
+          path='/signin'
           element={
             <PublicRoute>
               <Signin />

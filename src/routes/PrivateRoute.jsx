@@ -5,7 +5,7 @@ function PrivateRoute({ children }) {
   const token = localStorage.getItem('token');
 
   if (!token) {
-    return <Navigate to='/hubmine-supplier/signin' />;
+    return <Navigate to='/signin' />;
   }
   return children;
 }

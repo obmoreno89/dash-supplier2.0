@@ -11,7 +11,7 @@ export default defineConfig({
   },
   // '/dash-supplier2.0/'
   plugins: [react()],
-  base: '/dashboard',
+  base: '/',
   resolve: {
     alias: [
       {
