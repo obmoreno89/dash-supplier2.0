@@ -27,7 +27,7 @@ function Dashboard() {
 
             {/* Cards */}
             <div className='grid grid-cols-12 gap-6'>
-              <AnalyticsCard01 />
+              {/* <AnalyticsCard01 /> */}
             </div>
           </div>
         </main>

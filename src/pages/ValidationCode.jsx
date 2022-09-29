@@ -85,7 +85,7 @@ const ValidationCode = () => {
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
                 <Link
-                  to='/hubmine-supplier/signin'
+                  to='/signin'
                   className='block'
                   onClick={deleteCodeLocalStorage}>
                   <img src={logohubsupplier} alt='logo hubmine' />

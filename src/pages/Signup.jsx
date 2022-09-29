@@ -83,7 +83,7 @@ function Signup() {
                 {/* Logo */}
                 <Link
                   className='block'
-                  to='/hubmine-supplier/signin'
+                  to='/signin'
                   onClick={cleanLocalStorage}>
                   <img src={logohubsupplier} alt='Logo hubmine' />
                 </Link>
@@ -304,7 +304,7 @@ function Signup() {
                   Tienes una cuenta?{' '}
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
-                    to='/hubmine-supplier/signin'
+                    to='/signin'
                     onClick={cleanLocalStorage}>
                     Iniciar sesión
                   </Link>

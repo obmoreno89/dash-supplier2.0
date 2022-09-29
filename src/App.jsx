@@ -122,7 +122,7 @@ function App() {
         {/* Dashboard */}
         <Route
           exact
-          path='/dashboard'
+          path='/'
           element={
             <PrivateRoute>
               <Dashboard />
