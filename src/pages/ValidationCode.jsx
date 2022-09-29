@@ -27,7 +27,7 @@ const ValidationCode = () => {
     }
   }, [counter]);
 
-  const codeValue = { code: otp.join(''), number: savedCode.number };
+  const codeValue = { code: otp.join(''), number: `+${savedCode.number}` };
 
   const phoneUser = savedCode.number;
   const newCode = { number: phoneUser };

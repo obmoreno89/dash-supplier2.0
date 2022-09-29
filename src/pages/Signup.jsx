@@ -165,7 +165,7 @@ function Signup() {
                       disabled
                       className='form-input w-full capitalize disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'
                       autoComplete='off'
-                      type='number'
+                      type='text'
                       {...register('phone_number', {
                         required: {
                           value: true,

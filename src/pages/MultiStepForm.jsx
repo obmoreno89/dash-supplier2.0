@@ -220,7 +220,7 @@ const MultiStepForm = () => {
                         Datos fiscales ✨
                       </h1>
                       <div className='space-y-4 mb-8'>
-                        {/* Company Name */}
+                        {/* SOCIAL REASON */}
                         <div>
                           <label className='block text-sm font-medium mb-1'>
                             Razón social{' '}
@@ -231,7 +231,7 @@ const MultiStepForm = () => {
                             autoComplete='off'
                             className='form-input w-full uppercase'
                             type='text'
-                            {...register('social_reason', {
+                            {...register('legal_entity_name', {
                               required: {
                                 value: true,
                                 message: 'El campo es requerido',
@@ -242,13 +242,13 @@ const MultiStepForm = () => {
                               },
                             })}
                           />
-                          {errors.social_reason && (
+                          {errors.legal_entity_name && (
                             <span className='text-red-500 text-sm'>
-                              {errors.social_reason.message}
+                              {errors.legal_entity_name.message}
                             </span>
                           )}
                         </div>
-                        {/* INPUT RFC */}
+                        {/* INPUT NIF */}
                         <div>
                           <label className='block text-sm font-medium mb-1'>
                             RFC<span className='text-rose-500'>*</span>
@@ -258,7 +258,7 @@ const MultiStepForm = () => {
                             className='uppercase form-input w-full '
                             autoComplete='off'
                             type='text'
-                            {...register('rfc', {
+                            {...register('nif', {
                               required: {
                                 value: true,
                                 message: 'El campo es requerido',
@@ -273,9 +273,9 @@ const MultiStepForm = () => {
                               },
                             })}
                           />{' '}
-                          {errors.rfc && (
+                          {errors.nif && (
                             <span className='text-red-500 text-sm'>
-                              {errors.rfc.message}
+                              {errors.nif.message}
                             </span>
                           )}
                         </div>

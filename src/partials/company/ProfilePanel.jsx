@@ -47,8 +47,8 @@ function ProfilePanel() {
         setValue('commercial_brand', json[0].commercial_brand);
         setValue('bussiness_email', json[0].bussiness_email);
         setValue('bussiness_phone', json[0].bussiness_phone);
-        setValue('rfc', json[0].rfc);
-        setValue('social_reason', json[0].social_reason);
+        setValue('nif', json[0].nif);
+        setValue('legal_entity_name', json[0].legal_entity_name);
       });
   };
 
@@ -186,7 +186,7 @@ function ProfilePanel() {
                   className='uppercase form-input w-full '
                   autoComplete='off'
                   type='text'
-                  {...register('rfc', {
+                  {...register('nif', {
                     required: {
                       value: true,
                       message: 'El campo es requerido',
@@ -201,9 +201,9 @@ function ProfilePanel() {
                     },
                   })}
                 />{' '}
-                {errors.rfc && (
+                {errors.nif && (
                   <span className='text-red-500 text-sm'>
-                    {errors.rfc.message}
+                    {errors.nif.message}
                   </span>
                 )}
               </div>
@@ -261,7 +261,7 @@ function ProfilePanel() {
                 className='form-input w-full uppercase'
                 autoComplete='off'
                 type='text'
-                {...register('social_reason', {
+                {...register('legal_entity_name', {
                   required: {
                     value: true,
                     message: 'El campo es requerido',
@@ -272,9 +272,9 @@ function ProfilePanel() {
                   },
                 })}
               />
-              {errors.social_reason && (
+              {errors.legal_entity_name && (
                 <span className='text-red-500 text-sm'>
-                  {errors.social_reason.message}
+                  {errors.legal_entity_name.message}
                 </span>
               )}
             </div>
