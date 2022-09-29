@@ -77,7 +77,6 @@ function Signup() {
         {/* Content */}
         <div className='md:w-1/2'>
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
-            {/* Header */}
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
