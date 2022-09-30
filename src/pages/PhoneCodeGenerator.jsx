@@ -56,7 +56,7 @@ function PhoneCodeGenerator() {
                       <span className='text-rose-500'>*</span>
                     </label>
                     <input
-                      placeholder='Ej: +522711521422'
+                      placeholder='Ej: +573101521422'
                       className='form-input w-full capitalize'
                       autoComplete='off'
                       type='number'

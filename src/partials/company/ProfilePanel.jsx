@@ -179,10 +179,10 @@ function ProfilePanel() {
               {/* INPUT RFC */}
               <div className='sm:w-1/3'>
                 <label className='block text-sm font-medium mb-1'>
-                  RFC<span className='text-rose-500'>*</span>
+                  RUT<span className='text-rose-500'>*</span>
                 </label>
                 <input
-                  maxLength='13'
+                  maxLength='11'
                   className='uppercase form-input w-full '
                   autoComplete='off'
                   type='text'
@@ -197,7 +197,7 @@ function ProfilePanel() {
                     },
                     minLength: {
                       value: 13,
-                      message: 'El RFC debe de tener 13 caracteres',
+                      message: 'El RUT debe de tener 11 caracteres',
                     },
                   })}
                 />{' '}
@@ -248,13 +248,14 @@ function ProfilePanel() {
           {/* reason social */}
           <section>
             <h2 className='text-xl leading-snug text-slate-800 font-bold mb-1'>
-              Razón social
+              Nombre legal de la empresa
             </h2>
-            <p className='text-sm'>Edita la razón social de tu compañia.</p>
+            <p className='text-sm'>Edita el nombre de tu compañia.</p>
             <div className='sm:w-1/3 mt-5'>
               {/* SOCIAL REASON */}
               <label className='block text-sm font-medium mb-1'>
-                Razón social<span className='text-rose-500'>*</span>
+                Nombre legal de la empresa
+                <span className='text-rose-500'>*</span>
               </label>
               <input
                 maxLength='30'

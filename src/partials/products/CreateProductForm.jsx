@@ -231,7 +231,7 @@ const CreateProductForm = () => {
                     },
                   })}>
                   <option value=''>Selecciona</option>
-                  <option value='1'>Dolar estadounidense</option>
+                  <option value='1'>Peso colombiano</option>
                 </select>
                 {errors.currency_id && (
                   <span className='text-red-500 text-sm'>
