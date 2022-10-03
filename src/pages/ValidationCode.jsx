@@ -27,7 +27,7 @@ const ValidationCode = () => {
     }
   }, [counter]);
 
-  const codeValue = { code: otp.join(''), number: `+${savedCode.number}` };
+  const codeValue = { code: otp.join(''), number: `${savedCode.number}` };
 
   const phoneUser = savedCode.number;
   const newCode = { number: phoneUser };
@@ -102,6 +102,7 @@ const ValidationCode = () => {
                   Te enviamos un código al:
                 </h5>
                 <span className='text-red-500 font-bold'>{phoneUser}</span>
+                <span className='text-red-500 font-bold'>{code}</span>
               </div>
               <div>
                 <p className='text-sm'>

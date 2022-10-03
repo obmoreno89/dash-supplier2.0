@@ -11,7 +11,6 @@ import logohubsupplier from '../images/logohubsupplier.svg';
 function PhoneCodeGenerator() {
   const {
     handleSubmit,
-    control,
     register,
     formState: { errors },
   } = useForm();
@@ -59,7 +58,7 @@ function PhoneCodeGenerator() {
                       placeholder='Ej: +573101521422'
                       className='form-input w-full capitalize'
                       autoComplete='off'
-                      type='number'
+                      type='text'
                       {...register('number', {
                         required: {
                           value: true,
@@ -96,7 +95,7 @@ function PhoneCodeGenerator() {
               <div className='pt-5 mt-6 '>
                 {/* Warning */}
                 <div className='text-sm'>
-                  ¿Tienes cuenta?{' '}
+                  ¿Tienes cuenta?
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
                     to='/signin'>

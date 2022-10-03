@@ -32,12 +32,6 @@ const MultiStepForm = () => {
     setStep((cur) => cur - 1);
   };
 
-  const cleanLocalStorage = () => {
-    localStorage.removeItem('code');
-    localStorage.removeItem('number');
-    localStorage.removeItem('msg');
-  };
-
   const renderButton = () => {
     if (step > 2) {
       return undefined;
@@ -268,7 +262,7 @@ const MultiStepForm = () => {
                                 message: 'El formato no es correcto',
                               },
                               minLength: {
-                                value: 13,
+                                value: 11,
                                 message: 'El RUT debe de tener 11 caracteres',
                               },
                             })}
