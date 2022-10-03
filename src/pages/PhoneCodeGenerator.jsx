@@ -59,7 +59,7 @@ function PhoneCodeGenerator() {
                       placeholder='Ej: +522711521422'
                       className='form-input w-full capitalize'
                       autoComplete='off'
-                      type='number'
+                      type='text'
                       {...register('number', {
                         required: {
                           value: true,
