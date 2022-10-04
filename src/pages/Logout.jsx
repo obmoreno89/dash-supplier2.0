@@ -62,7 +62,7 @@ const Logout = ({ align }) => {
           src={Sinlogo}
           width='32'
           height='32'
-          alt='User'
+          alt='User nidata'
         />
 
         <div className='flex items-center truncate'>
