@@ -63,7 +63,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply text-sm text-slate-800 bg-white border;
+    @apply text-sm text-slate-800 bg-white border h-12;
 }
 
 .form-input,
@@ -71,13 +71,18 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-multiselect,
 .form-select,
 .form-checkbox {
-    @apply rounded;
+    @apply rounded-2xl;
+}
+
+.button-login{
+    @apply mt-6 w-full h-12 rounded-2xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary
 }
 
 .form-input,
 .form-textarea,
 .form-multiselect,
-.form-select {
+.form-select
+ {
     @apply leading-5 py-2 px-3 border-slate-200 hover:border-slate-300 focus:border-primary shadow-sm;
 }
 
