@@ -88,7 +88,7 @@ const ValidationCode = () => {
                   to='/signin'
                   className='block'
                   onClick={deleteCodeLocalStorage}>
-                  <img src={logohubsupplier} alt='logo hubmine' />
+                  <img src={logohubsupplier} alt='Logo' />
                 </Link>
               </div>
             </div>
@@ -109,7 +109,7 @@ const ValidationCode = () => {
                   {otp.map((data, index) => {
                     return (
                       <input
-                        className='form-input w-12 text-xl'
+                        className='form-input w-12 text-xl text-center'
                         type='text'
                         name='otp'
                         maxLength='1'

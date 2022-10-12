@@ -222,24 +222,33 @@ function Signin() {
                         },
                       })}
                     />
-                    <div className='absolute top-8 inset-2 right-0 flex items-center pointer-events-none'>
-                      <img src={icons.lock} alt='Correo' />
-                    </div>
+                    <section className='relative'>
+                      <figure className='absolute inset-2 -top-10 right-0 flex items-center pointer-events-none'>
+                        <img src={icons.lock} alt='Candado' />
+                      </figure>
+                      <button
+                        type='button'
+                        className='absolute inset-2 -top-10 left-auto flex items-center pointer-events-none'>
+                        {eye ? (
+                          <img
+                            onClick={toggleEye}
+                            src={icons.openEye}
+                            alt='Ojo abierto'
+                          />
+                        ) : (
+                          <img
+                            onClick={toggleEye}
+                            src={icons.closedEye}
+                            alt='Ojo cerrado'
+                          />
+                        )}
+                      </button>
+                    </section>
                     {errors.password && (
                       <span className='text-red-500 text-sm'>
                         {errors.password.message}
                       </span>
                     )}
-                    <button
-                      onClick={toggleEye}
-                      type='button'
-                      className='absolute top-8 inset-2 left-0 flex items-center justify-end'>
-                      {eye ? (
-                        <img src={icons.openEye} alt='Ojo abierto' />
-                      ) : (
-                        <img src={icons.closedEye} alt='Ojo cerrado' />
-                      )}
-                    </button>
                   </div>
                 </div>
                 <div className='flex items-center mt-6'>
@@ -261,7 +270,7 @@ function Signin() {
                   )}
                 </div>
               </form>
-              {/* Footer */}
+
               <footer className='pt-5'>
                 {/* Warning */}
                 <section className='text-sm font-bold flex justify-center space-x-1'>
