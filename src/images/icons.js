@@ -8,6 +8,7 @@ import alert from './icons/alert.svg';
 import user from './icons/user.svg';
 import arrowRight from './icons/arrowRight.svg';
 import arrowLeft from './icons/arrowLeft.svg';
+import check from './icons/check.svg';
 
 export default {
   email,
@@ -20,4 +21,5 @@ export default {
   aquaLock,
   arrowRight,
   arrowLeft,
+  check,
 };

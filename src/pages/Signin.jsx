@@ -35,7 +35,7 @@ function Signin() {
     } else if (accountValidate) {
       return (
         <div className='mt-5'>
-          <div className='bg-amber-50 text-gray-600 px-2 py-2 rounded-2xl'>
+          <div className='bg-amber-50 text-gray-600 px-2 py-2 rounded-2xl flex space-x-1'>
             <figure>
               <img className='w-9' src={icons.alert} alt='Alerta' />
             </figure>
