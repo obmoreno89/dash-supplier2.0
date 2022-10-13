@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/AuthImage.jpg';
-import logohubsupplier from '../images/logohubsupplier.svg';
 import icons from '../images/icons';
 
 function Signin() {
@@ -152,7 +151,7 @@ function Signin() {
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-28'>
                 {/* Logo */}
                 <div className='block'>
-                  <img src={logohubsupplier} alt='Logo' />
+                  <img src={icons.logoSupplier} alt='Logo' />
                 </div>
               </div>
             </div>

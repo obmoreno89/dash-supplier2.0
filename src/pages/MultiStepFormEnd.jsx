@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import constructionCrane from '../images/constructionCrane.png';
-import logohubsupplier from '../images/logohubsupplier.svg';
 import icons from '../images/icons';
 
 const MultiStepFormEnd = () => {
@@ -16,7 +15,7 @@ const MultiStepFormEnd = () => {
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-32'>
                 {/* Logo */}
                 <figure className='block'>
-                  <img src={logohubsupplier} alt='Logo hubmine' />
+                  <img src={icons.logoSupplier} alt='Logo hubmine' />
                 </figure>
               </div>
             </div>

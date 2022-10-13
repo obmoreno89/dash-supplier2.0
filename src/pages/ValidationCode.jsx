@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import CreateAccount from '../images/createAccount.jpg';
-import logohubsupplier from '../images/logohubsupplier.svg';
+import icons from '../images/icons';
 
 const ValidationCode = () => {
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ const ValidationCode = () => {
                   to='/signin'
                   className='block'
                   onClick={deleteCodeLocalStorage}>
-                  <img src={logohubsupplier} alt='Logo' />
+                  <img src={icons.logoSupplier} alt='Logo' />
                 </Link>
               </div>
             </div>

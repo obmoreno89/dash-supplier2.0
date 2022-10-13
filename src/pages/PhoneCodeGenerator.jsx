@@ -6,7 +6,7 @@ import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/AuthImage.jpg';
 import 'react-phone-input-2/lib/style.css';
 import './customPhoneNumberInput.css';
-import logohubsupplier from '../images/logohubsupplier.svg';
+import icons from '../images/icons';
 
 function PhoneCodeGenerator() {
   const {
@@ -30,7 +30,7 @@ function PhoneCodeGenerator() {
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
                 {/* Logo */}
                 <Link to='/signin' className='block'>
-                  <img src={logohubsupplier} alt='logo hubmine' />
+                  <img src={icons.logoSupplier} alt='logo hubmine' />
                 </Link>
               </div>
             </div>

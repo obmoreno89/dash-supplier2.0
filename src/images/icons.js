@@ -9,6 +9,9 @@ import user from './icons/user.svg';
 import arrowRight from './icons/arrowRight.svg';
 import arrowLeft from './icons/arrowLeft.svg';
 import check from './icons/check.svg';
+import cleanLogo from './icons/cleanLogo.svg';
+import logoSupplier from './icons/logohubsupplier.svg';
+import logoSidebar from './icons/logoSidebar.svg';
 
 export default {
   email,
@@ -22,4 +25,7 @@ export default {
   arrowRight,
   arrowLeft,
   check,
+  cleanLogo,
+  logoSupplier,
+  logoSidebar,
 };

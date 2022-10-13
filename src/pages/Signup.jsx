@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import AuthDecoration from '../images/auth-decoration.png';
+
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import CreateAccount from '../images/createAccount.jpg';
-import logohubsupplier from '../images/logohubsupplier.svg';
+
 import icons from '../images/icons';
 
 function Signup() {
@@ -83,7 +83,7 @@ function Signup() {
                   className='block'
                   to='/signin'
                   onClick={cleanLocalStorage}>
-                  <img src={logohubsupplier} alt='Logo' />
+                  <img src={icons.logoSupplier} alt='Logo' />
                 </Link>
               </div>
             </div>

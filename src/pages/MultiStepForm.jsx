@@ -1,11 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Question from '../images/question.jpg';
-import AuthDecoration from '../images/auth-decoration.png';
 import { useForm } from 'react-hook-form';
-import LoadingButton from '../helpers/LoadingButton';
 import StateContext from '../context/StateContext';
-import logohubmine from '../images/logohubsupplier.svg';
 import icons from '../images/icons';
 
 const MultiStepForm = () => {
@@ -99,7 +96,7 @@ const MultiStepForm = () => {
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-32'>
                 {/* Logo */}
                 <div className='block'>
-                  <img src={logohubmine} alt='Logo hubmine' />
+                  <img src={icons.logoSupplier} alt='Logo hubmine' />
                 </div>
               </div>
             </div>
