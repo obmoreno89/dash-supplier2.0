@@ -60,7 +60,7 @@ const MultiStepForm = () => {
             disabled={!isValid}
             type='button'
             onClick={completeFormStep}
-            className='btn bg-primary hover:bg-teal-400 rounded-2xl hover:text-white text-primary ml-auto disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none h-14'>
+            className='btn bg-primary hover:bg-teal-400 rounded-2xl ml-auto disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none h-12'>
             <img src={icons.arrowRight} alt='Flecha derecha' />
           </button>
         </section>
@@ -184,39 +184,37 @@ const MultiStepForm = () => {
                       <div className='max-w-md mx-auto w-full mb-12'>
                         <div className='relative'>
                           <div
-                            className='absolute left-0 top-1/2 -mt-px w-full h-0.5 bg-slate-200'
+                            className='absolute left-0 top-1/2 -mt-px w-11/12 h-0.5 bg-slate-200'
                             aria-hidden='true'></div>
                           <section className='relative flex justify-between w-full'>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-primary text-white'>
+                            <aside className='w-13 h-13 flex justify-center items-center'>
+                              <div className='flex items-center justify-center w-10 h-10 rounded-full text-lg font-semibold bg-slate-100 text-gray-800'>
                                 1
                               </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-primary text-white'>
+                            </aside>
+                            <aside className='bg-cyan-50 rounded-full w-14 h-14 flex justify-center items-center'>
+                              <div className='flex items-center justify-center w-10 h-10 rounded-full text-lg font-semibold bg-primary text-white'>
                                 2
                               </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-slate-100 text-slate-500'>
+                            </aside>
+                            <aside className='w-14 h-14 flex justify-center items-center'>
+                              <div className='flex items-center justify-center w-10 h-10 rounded-full text-lg font-semibold bg-slate-100 text-gray-800'>
                                 3
                               </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-slate-100 text-slate-500'>
-                                4
-                              </div>
-                            </div>
+                            </aside>
                           </section>
                         </div>
                       </div>
-                      <h1 className='text-3xl text-slate-800 font-bold mb-6'>
-                        Datos fiscales ✨
-                      </h1>
+                      <article className='mb-6'>
+                        <h1 className='text-3xl text-slate-800 font-bold '>
+                          Datos fiscales
+                        </h1>
+                        <p>¿Con qué nombre es conocida tu empresa?</p>
+                      </article>
                       <div className='space-y-4 mb-8'>
                         {/* SOCIAL REASON */}
                         <div>
-                          <label className='block text-sm font-medium mb-1'>
+                          <label className='block text-sm font-semibold mb-1'>
                             Nombre legal de la empresa
                             <span className='text-rose-500'>*</span>
                           </label>
@@ -244,7 +242,7 @@ const MultiStepForm = () => {
                         </div>
                         {/* INPUT NIF */}
                         <div>
-                          <label className='block text-sm font-medium mb-1'>
+                          <label className='block text-sm font-semibold mb-1'>
                             RUT<span className='text-rose-500'>*</span>
                           </label>
                           <input
@@ -376,8 +374,8 @@ const MultiStepForm = () => {
                         <button
                           type='button'
                           onClick={previousFormStep}
-                          className='text-sm underline hover:no-underline  '>
-                          &lt;- Regresar
+                          className='btn bg-white border-primary hover:border-slate-800 rounded-2xl h-12'>
+                          <img src={icons.arrowLeft} alt='Flecha izquierda' />
                         </button>
                       </div>
                     )}
