@@ -6,6 +6,7 @@ import openEye from './icons/openEye.svg';
 import closedEye from './icons/closedEye.svg';
 import alert from './icons/alert.svg';
 import user from './icons/user.svg';
+import arrowRight from './icons/arrowRight.svg';
 
 export default {
   email,
@@ -16,4 +17,5 @@ export default {
   user,
   aquaEmail,
   aquaLock,
+  arrowRight,
 };

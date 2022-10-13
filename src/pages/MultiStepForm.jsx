@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import LoadingButton from '../helpers/LoadingButton';
 import StateContext from '../context/StateContext';
 import logohubmine from '../images/logohubsupplier.svg';
+import icons from '../images/icons';
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(0);
@@ -53,15 +54,16 @@ const MultiStepForm = () => {
       );
     } else {
       return (
-        <div>
+        <section className='space-x-3 flex items-center'>
+          <span className='font-bold'>Siguiente</span>
           <button
             disabled={!isValid}
             type='button'
             onClick={completeFormStep}
-            className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-auto disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'>
-            Siguiente paso -&gt;
+            className='btn bg-primary hover:bg-teal-400 rounded-2xl hover:text-white text-primary ml-auto disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none h-14'>
+            <img src={icons.arrowRight} alt='Flecha derecha' />
           </button>
-        </div>
+        </section>
       );
     }
   };
@@ -101,7 +103,7 @@ const MultiStepForm = () => {
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
             <div className='flex-1'>
               {/* Header */}
-              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
+              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-32'>
                 {/* Logo */}
                 <div className='block'>
                   <img src={logohubmine} alt='Logo hubmine' />
@@ -118,39 +120,37 @@ const MultiStepForm = () => {
                       <div className='max-w-md mx-auto w-full mb-12'>
                         <div className='relative'>
                           <div
-                            className='absolute left-0 top-1/2 -mt-px w-full h-0.5 bg-slate-200'
+                            className='absolute left-0 top-1/2 -mt-px w-11/12 h-0.5 bg-slate-200'
                             aria-hidden='true'></div>
                           <section className='relative flex justify-between w-full'>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-primary text-white'>
+                            <aside className='bg-cyan-50 rounded-full w-14 h-14 flex justify-center items-center'>
+                              <div className='flex items-center justify-center w-10 h-10 rounded-full text-lg font-semibold bg-primary text-white'>
                                 1
                               </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-slate-100 text-slate-500'>
+                            </aside>
+                            <aside className='w-14 h-14 flex justify-center items-center'>
+                              <div className='flex items-center justify-center w-10 h-10 rounded-full text-lg font-semibold bg-slate-100 text-gray-800'>
                                 2
                               </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-slate-100 text-slate-500'>
+                            </aside>
+                            <aside className='w-14 h-14 flex justify-center items-center'>
+                              <div className='flex items-center justify-center w-10 h-10 rounded-full text-lg font-semibold bg-slate-100 text-gray-800'>
                                 3
                               </div>
-                            </div>
-                            <div>
-                              <div className='flex items-center justify-center w-6 h-6 rounded-full text-xs font-semibold bg-slate-100 text-slate-500'>
-                                4
-                              </div>
-                            </div>
+                            </aside>
                           </section>
                         </div>
                       </div>
-                      <h1 className='text-3xl text-slate-800 font-bold mb-6'>
-                        Cuéntanos sobre tu empresa ✨
-                      </h1>
+                      <article className='mb-6'>
+                        <h1 className='text-3xl text-slate-800 font-bold '>
+                          Cuéntanos sobre tu empresa
+                        </h1>
+                        <p>¿Con qué nombre es conocida tu empresa?</p>
+                      </article>
                       <div className='space-y-4 mb-8'>
                         {/* Company Name */}
                         <div>
-                          <label className='block text-sm font-medium mb-1'>
+                          <label className='block text-sm font-semibold mb-1'>
                             Marca comercial (Nombre)
                             <span className='text-rose-500'>*</span>
                           </label>
@@ -414,13 +414,6 @@ const MultiStepForm = () => {
             width='760'
             height='1024'
             alt='Onboarding'
-          />
-          <img
-            className='absolute top-1/4 left-0 transform -translate-x-1/2 ml-8 hidden lg:block'
-            src={AuthDecoration}
-            width='218'
-            height='224'
-            alt='Authentication decoration'
           />
         </div>
       </div>
