@@ -12,6 +12,9 @@ import check from './icons/check.svg';
 import cleanLogo from './icons/cleanLogo.svg';
 import logoSupplier from './icons/logohubsupplier.svg';
 import logoSidebar from './icons/logoSidebar.svg';
+import box from './icons/box.svg';
+import smallArrowRight from './icons/smallArrowRight.svg';
+import smallArrowDown from './icons/smallArrowDown.svg';
 
 export default {
   email,
@@ -28,4 +31,7 @@ export default {
   cleanLogo,
   logoSupplier,
   logoSidebar,
+  box,
+  smallArrowRight,
+  smallArrowDown,
 };

@@ -3,15 +3,24 @@ import SearchModal from '../components/ModalSearch';
 import Notifications from '../components/DropdownNotifications';
 import Help from '../components/DropdownHelp';
 import UserMenu from '../pages/Logout';
+import icons from '../images/icons';
 
-function Header({ sidebarOpen, setSidebarOpen }) {
+function HeaderPrueba({ sidebarOpen, setSidebarOpen }) {
   return (
-    <header className='sticky top-0 bg-white border-b border-slate-200 z-30'>
+    <header className='sticky top-0 z-30'>
       <div className='px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16 -mb-px'>
           {/* Header: Left side */}
           <div className='flex'>
             {/* Hamburger button */}
+            <figure className='flex space-x-3'>
+              <img src={icons.box} alt='Caja' />
+              <h5 className='font-semibold text-gray-400 flex'>
+                Productos
+                <img src={icons.smallArrowRight} alt='Flecha derecha' />
+                <span className='text-primary'>Lista de Productos</span>
+              </h5>
+            </figure>
             <button
               className='text-slate-500 hover:text-slate-600 lg:hidden'
               aria-controls='sidebar'
@@ -33,7 +42,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
           <div className='flex items-center space-x-3'>
             <Help align='right' />
             {/*  Divider */}
-            <hr className='w-px h-6 bg-slate-200 mx-3' />
+            <hr />
             <UserMenu align='right' />
           </div>
         </div>
@@ -42,4 +51,4 @@ function Header({ sidebarOpen, setSidebarOpen }) {
   );
 }
 
-export default Header;
+export default HeaderPrueba;

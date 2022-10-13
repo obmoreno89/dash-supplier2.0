@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Sidebar from '../../partials/Sidebar';
-import Header from '../../partials/Header';
+import HeaderGlobal from '../HeaderGlobal';
 import { Link } from 'react-router-dom';
 import ProductListTable from './ProductListTable';
 
@@ -17,7 +17,10 @@ const ProductList = () => {
       {/* Content area */}
       <div className='relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white'>
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <HeaderGlobal
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
 
         <main>
           {/* Content */}
