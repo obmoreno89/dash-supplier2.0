@@ -119,9 +119,11 @@ function Signup() {
                         },
                       })}
                     />
-                    <div className='absolute top-8 inset-2 right-0 flex items-center pointer-events-none'>
-                      <img src={icons.user} alt='Usuario' />
-                    </div>
+                    <section className='relative'>
+                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                        <img src={icons.user} alt='Usuario' />
+                      </figure>
+                    </section>
                     {errors.first_name && (
                       <span className='text-red-500 text-sm'>
                         {errors.first_name.message}
@@ -149,9 +151,11 @@ function Signup() {
                         },
                       })}
                     />
-                    <figure className='absolute top-8 inset-2 right-0 flex items-center pointer-events-none'>
-                      <img src={icons.user} alt='Usuario' />
-                    </figure>
+                    <section className='relative'>
+                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                        <img src={icons.user} alt='Usuario' />
+                      </figure>
+                    </section>
                     {errors.last_name && (
                       <span className='text-red-500 text-sm'>
                         {errors.last_name.message}
@@ -207,9 +211,11 @@ function Signup() {
                         },
                       })}
                     />
-                    <figure className='absolute top-9 inset-2.5 right-0 flex items-center pointer-events-none'>
-                      <img src={icons.aquaEmail} alt='Email' />
-                    </figure>
+                    <section className='relative'>
+                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                        <img src={icons.aquaEmail} alt='Email' />
+                      </figure>
+                    </section>
                     {errors.email && (
                       <span className='text-red-500 text-sm'>
                         {errors.email.message}
@@ -232,31 +238,33 @@ function Signup() {
                         },
                       })}
                     />
-                    <figure className='absolute top-9 inset-2 right-0 flex items-center pointer-events-none'>
-                      <img src={icons.aquaLock} alt='Candado' />
-                    </figure>
+                    <section className='relative'>
+                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                        <img src={icons.aquaLock} alt='Candado' />
+                      </figure>
+                      <button
+                        type='button'
+                        className='absolute inset-3 -top-9 left-auto flex items-center'>
+                        {eye ? (
+                          <img
+                            onClick={toggleEye}
+                            src={icons.openEye}
+                            alt='Ojo abierto'
+                          />
+                        ) : (
+                          <img
+                            onClick={toggleEye}
+                            src={icons.closedEye}
+                            alt='Ojo cerrado'
+                          />
+                        )}
+                      </button>
+                    </section>
                     {errors.password && (
                       <span className='text-red-500 text-sm'>
                         {errors.password.message}
                       </span>
                     )}
-                    <button
-                      type='button'
-                      className='absolute right-0 top-6.5 mt-3 mr-4'>
-                      {eye ? (
-                        <img
-                          onClick={toggleEye}
-                          src={icons.openEye}
-                          alt='Ojo abierto'
-                        />
-                      ) : (
-                        <img
-                          onClick={toggleEye}
-                          src={icons.closedEye}
-                          alt='Ojo cerrado'
-                        />
-                      )}
-                    </button>
                   </div>
                 </div>
                 <div className='mt-3'>

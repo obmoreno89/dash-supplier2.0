@@ -228,7 +228,7 @@ function Signin() {
                       </figure>
                       <button
                         type='button'
-                        className='absolute inset-2 -top-10 left-auto flex items-center pointer-events-none'>
+                        className='absolute inset-2 -top-10 left-auto flex items-center'>
                         {eye ? (
                           <img
                             onClick={toggleEye}
