@@ -6,7 +6,7 @@ import UserMenu from '../pages/Logout';
 
 function Header({ sidebarOpen, setSidebarOpen }) {
   return (
-    <header className='sticky top-0 bg-white border-b border-slate-200 z-30'>
+    <header className='sticky top-0 bg-white'>
       <div className='px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16 -mb-px'>
           {/* Header: Left side */}
@@ -33,7 +33,7 @@ function Header({ sidebarOpen, setSidebarOpen }) {
           <div className='flex items-center space-x-3'>
             <Help align='right' />
             {/*  Divider */}
-            <hr className='w-px h-6 bg-slate-200 mx-3' />
+            <hr />
             <UserMenu align='right' />
           </div>
         </div>

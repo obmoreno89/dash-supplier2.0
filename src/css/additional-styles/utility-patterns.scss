@@ -49,6 +49,10 @@
     @apply px-2 py-0.5;
 }
 
+.button-login{
+    @apply mt-6 w-full h-12 rounded-2xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary
+}
+
 // Forms
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
@@ -72,10 +76,6 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox {
     @apply rounded-2xl;
-}
-
-.button-login{
-    @apply mt-6 w-full h-12 rounded-2xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary
 }
 
 .form-input,

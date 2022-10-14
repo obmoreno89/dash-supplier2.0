@@ -15,6 +15,8 @@ import logoSidebar from './icons/logoSidebar.svg';
 import box from './icons/box.svg';
 import smallArrowRight from './icons/smallArrowRight.svg';
 import smallArrowDown from './icons/smallArrowDown.svg';
+import figureFrame from './icons/frameFigure.svg';
+import symbolPlus from './icons/symbolPlus.svg';
 
 export default {
   email,
@@ -34,4 +36,6 @@ export default {
   box,
   smallArrowRight,
   smallArrowDown,
+  figureFrame,
+  symbolPlus,
 };

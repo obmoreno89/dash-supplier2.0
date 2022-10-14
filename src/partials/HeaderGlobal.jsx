@@ -3,9 +3,15 @@ import SearchModal from '../components/ModalSearch';
 import Notifications from '../components/DropdownNotifications';
 import Help from '../components/DropdownHelp';
 import UserMenu from '../pages/Logout';
-import icons from '../images/icons';
 
-function HeaderPrueba({ sidebarOpen, setSidebarOpen }) {
+function HeaderGlobal({
+  sidebarOpen,
+  setSidebarOpen,
+  headerTitle,
+  icons,
+  arrowIcon,
+  headerSubTitle,
+}) {
   return (
     <header className='sticky top-0 z-30'>
       <div className='px-4 sm:px-6 lg:px-8'>
@@ -14,11 +20,11 @@ function HeaderPrueba({ sidebarOpen, setSidebarOpen }) {
           <div className='flex'>
             {/* Hamburger button */}
             <figure className='flex space-x-3'>
-              <img src={icons.box} alt='Caja' />
-              <h5 className='font-semibold text-gray-400 flex'>
-                Productos
-                <img src={icons.smallArrowRight} alt='Flecha derecha' />
-                <span className='text-primary'>Lista de Productos</span>
+              <img src={icons} alt='Caja' />
+              <h5 className='font-semibold text-gray-400 flex space-x-3'>
+                {headerTitle}
+                <img className='ml-3' src={arrowIcon} alt='Flecha derecha' />
+                <p className='text-primary'>{headerSubTitle}</p>
               </h5>
             </figure>
             <button
@@ -51,4 +57,4 @@ function HeaderPrueba({ sidebarOpen, setSidebarOpen }) {
   );
 }
 
-export default HeaderPrueba;
+export default HeaderGlobal;
