@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import ProductListTableItem from './ProductListTableItem';
 import StateContext from '../../context/StateContext';
 import Banner from '../../components/Banner';
-import NoTable from './helpers/NoTable';
+import NoTable from '../plant/helpers/NoTable';
 import icons from '../../images/icons';
+import SearchAndFilterProducts from './helpers/SearchAndFilterProducts';
 
 const ProductListTable = () => {
   const {
@@ -35,9 +36,9 @@ const ProductListTable = () => {
           </Banner>
         </div>
       ) : null}
-      {!productList.length ? (
+      {productList.length ? (
         <div className=' mt-24 '>
-          {/* Table */}
+          <SearchAndFilterProducts />
           <div className='overflow-x-auto'>
             <table className='table-auto w-full'>
               {/* Table header */}

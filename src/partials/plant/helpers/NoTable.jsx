@@ -16,7 +16,7 @@ function NoTable({ icon, noticeTitle, noticeSubTitle, buttonTitle, symbol }) {
           <Link
             to='/products/create'
             className='flex justify-center items-center'>
-            <button className='mt-3 w-1/2 h-12 rounded-2xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary flex justify-center items-center'>
+            <button className='mt-3 w-1/2 h-12 rounded-xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary flex justify-center items-center'>
               <img src={symbol} alt='Simbolo de suma' />
               <span className='ml-2'>{buttonTitle}</span>
             </button>
