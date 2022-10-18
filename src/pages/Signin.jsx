@@ -5,7 +5,6 @@ import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/AuthImage.jpg';
 import icons from '../images/icons';
-import { SmoothCorners } from 'react-smooth-corners';
 
 function Signin() {
   const [locked, setLocked] = useState(false);
@@ -141,17 +140,6 @@ function Signin() {
       });
   }
 
-  const Button = () => {
-    return (
-      <SmoothCorners
-        corners='12, 3'
-        borderRadius='12px'
-        style={{ padding: '10px 30px', background: 'blue' }}
-        as='button'>
-        Click to view
-      </SmoothCorners>
-    );
-  };
   return (
     <main className='bg-white'>
       <div className='relative md:flex'>
@@ -179,23 +167,7 @@ function Signin() {
                   </p>
                 </div>
               </article>
-              <div className=''>
-                <SmoothCorners
-                  corners='50, 3'
-                  style={{
-                    padding: '0px 0px',
-                    width: '100%',
-                    borderRadius: '12px',
-                    border: '1px solid black',
-                  }}
-                  as='div'>
-                  <input
-                    placeholder='ingresa tu email'
-                    type='text'
-                    className='bg-transparent border-0 focus:ring-0 w-full rounded-none'
-                  />
-                </SmoothCorners>
-              </div>
+
               <form onSubmit={handleSubmit(loginUser)}>
                 <div className='space-y-4'>
                   <div>

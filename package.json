@@ -23,7 +23,6 @@
     "react-map-gl": "^7.0.19",
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.2.1",
-    "react-smooth-corners": "^1.0.4",
     "react-transition-group": "^4.4.1",
     "save": "^2.5.0"
   },

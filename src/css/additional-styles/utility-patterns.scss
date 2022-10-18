@@ -50,7 +50,7 @@
 }
 
 .button-login{
-    @apply mt-6 w-full h-12 rounded-2xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary
+    @apply mt-6 w-full h-12 rounded-xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary
 }
 
 // Forms
@@ -75,7 +75,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-multiselect,
 .form-select,
 .form-checkbox {
-    @apply rounded-2xl;
+    @apply rounded-xl;
 }
 
 .form-input,
