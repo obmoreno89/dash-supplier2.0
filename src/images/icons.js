@@ -19,6 +19,7 @@ import figureFrame from './icons/frameFigure.svg';
 import symbolPlus from './icons/symbolPlus.svg';
 import trash from './icons/trash.svg';
 import upload from './icons/upload.svg';
+import plants from './icons/plants.svg';
 
 export default {
   email,
@@ -42,4 +43,5 @@ export default {
   symbolPlus,
   trash,
   upload,
+  plants,
 };

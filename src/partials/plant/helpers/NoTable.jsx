@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NoTable({ icon, noticeTitle, noticeSubTitle, buttonTitle, symbol }) {
+function NoTable({ icon, noticeTitle, noticeSubTitle }) {
   return (
     <section className='mt-40'>
       <section className='max-w-2xl m-auto mt-16'>
@@ -13,14 +13,6 @@ function NoTable({ icon, noticeTitle, noticeSubTitle, buttonTitle, symbol }) {
             {noticeTitle}
           </h2>
           <div className='mb-6'>{noticeSubTitle}</div>
-          <Link
-            to='/products/create'
-            className='flex justify-center items-center'>
-            <button className='mt-3 w-1/2 h-12 rounded-xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary flex justify-center items-center'>
-              <img src={symbol} alt='Simbolo de suma' />
-              <span className='ml-2'>{buttonTitle}</span>
-            </button>
-          </Link>
         </div>
       </section>
     </section>

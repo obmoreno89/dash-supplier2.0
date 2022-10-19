@@ -94,13 +94,23 @@ const ProductListTable = () => {
           </div>
         </div>
       ) : (
-        <NoTable
-          icon={icons.figureFrame}
-          noticeTitle='No tienes productos para mostrar'
-          noticeSubTitle='Añade tus productos haciendo click aquí debajo'
-          buttonTitle='Añadir Producto'
-          symbol={icons.symbolPlus}
-        />
+        <>
+          <NoTable
+            icon={icons.figureFrame}
+            noticeTitle='No tienes productos para mostrar'
+            noticeSubTitle='Añade tus productos haciendo click aquí debajo'
+          />
+          <section className='flex justify-center items-start'>
+            <Link
+              to='/products/create'
+              className='flex justify-center items-center w-1/2'>
+              <button className='mt-3 w-1/2 h-12 rounded-xl bg-primary text-white font-semibold hover:bg-secondary hover:text-primary flex justify-center items-center'>
+                <img src={icons.symbolPlus} alt='Simbolo de suma' />
+                <span className='ml-2'>Añadir producto</span>
+              </button>
+            </Link>
+          </section>
+        </>
       )}
     </div>
   );
