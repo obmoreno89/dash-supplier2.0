@@ -3,7 +3,7 @@ import React from 'react';
 const LoadingButton = (props) => {
   return (
     <button
-      className='mt-6 font-semibold btn w-full h-12 rounded-2xl disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'
+      className='mt-6 font-semibold btn w-full h-12 rounded-xl disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'
       disabled>
       <svg
         className='animate-spin w-4 h-4 fill-current shrink-0'

@@ -18,6 +18,7 @@ import smallArrowDown from './icons/smallArrowDown.svg';
 import figureFrame from './icons/frameFigure.svg';
 import symbolPlus from './icons/symbolPlus.svg';
 import trash from './icons/trash.svg';
+import upload from './icons/upload.svg';
 
 export default {
   email,
@@ -40,4 +41,5 @@ export default {
   figureFrame,
   symbolPlus,
   trash,
+  upload,
 };
