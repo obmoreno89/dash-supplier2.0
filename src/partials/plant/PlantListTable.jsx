@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Banner from '../../components/Banner';
 import NoTable from './helpers/NoTable';
 import icons from '../../images/icons';
+import SearchAndFilterPlants from './helpers/SearchAndFilterPlants';
 
 const PlantListTable = () => {
   const {
@@ -39,11 +40,11 @@ const PlantListTable = () => {
       ) : null}
       {plantList.length ? (
         <div className='mt-24'>
-          {/* Table */}
-          <div className='overflow-x-auto'>
+          <SearchAndFilterPlants />
+          <div className='overflow-x-auto rounded-xl border'>
             <table className='table-auto w-full'>
               {/* Table header */}
-              <thead className='text-xs font-semibold uppercase text-slate-500 border-t border-b border-slate-200'>
+              <thead className='text-xs font-semibold text-slate-500 border-t border-b border-slate-200'>
                 <tr>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                     <div className='font-semibold text-left'>
@@ -51,22 +52,22 @@ const PlantListTable = () => {
                     </div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Teléfono</div>
+                    <p className='font-semibold text-left'>Teléfono</p>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Tipo de lugar</div>
+                    <p className='font-semibold text-left'>Tipo de lugar</p>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Pais</div>
+                    <p className='font-semibold text-center'>Pais</p>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Estado</div>
+                    <p className='font-semibold text-center'>Estado</p>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Ciudad</div>
+                    <p className='font-semibold text-center'>Ciudad</p>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-center'>Opciones</div>
+                    <p className='font-semibold text-center'>Opciones</p>
                   </th>
                 </tr>
               </thead>

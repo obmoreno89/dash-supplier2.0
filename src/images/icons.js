@@ -20,6 +20,7 @@ import symbolPlus from './icons/symbolPlus.svg';
 import trash from './icons/trash.svg';
 import upload from './icons/upload.svg';
 import plants from './icons/plants.svg';
+import pencil from './icons/pencil.svg';
 
 export default {
   email,
@@ -44,4 +45,5 @@ export default {
   trash,
   upload,
   plants,
+  pencil,
 };

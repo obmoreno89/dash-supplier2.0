@@ -5,6 +5,7 @@ import Banner from '../../components/Banner';
 import NoTable from '../plant/helpers/NoTable';
 import icons from '../../images/icons';
 import SearchAndFilterProducts from './helpers/SearchAndFilterProducts';
+import { Link } from 'react-router-dom';
 
 const ProductListTable = () => {
   const {
