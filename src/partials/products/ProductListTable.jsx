@@ -14,6 +14,9 @@ const ProductListTable = () => {
     setBannerErrorOpen,
     productList,
   } = useContext(StateContext);
+
+  console.log(productList);
+
   return (
     <div className='bg-white'>
       {bannerSuccessOpen ? (
@@ -39,38 +42,31 @@ const ProductListTable = () => {
       {productList.length ? (
         <div className=' mt-24 '>
           <SearchAndFilterProducts />
-          <div className='overflow-x-auto'>
+          <div className='overflow-x-auto rounded-xl border'>
             <table className='table-auto w-full'>
               {/* Table header */}
-              <thead className='text-xs font-semibold uppercase text-slate-500 border-t border-b border-slate-200'>
+              <thead className='text-xs font-semibold capitalize text-slate-500 border-b border-slate-200'>
                 <tr>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>
-                      Nombre del producto
-                    </div>
+                    <div className='font-semibold text-left'>Producto</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Categoria</div>
-                  </th>
-                  <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Marca</div>
+                    <div className='font-semibold text-center'>Marca</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                     <div className='font-semibold text-left'>Descripción</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>
-                      Tipo de moneda
-                    </div>
+                    <div className='font-semibold text-center'>Moneda</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>Precio</div>
+                    <div className='font-semibold text-center'>Precio</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                     <div className='font-semibold text-center'>Estado</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
-                    <div className='font-semibold text-left'>¿Con stock?</div>
+                    <div className='font-semibold text-center'>Stock</div>
                   </th>
                   <th className='px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap'>
                     <div className='font-semibold text-left'>Opciones</div>

@@ -37,7 +37,7 @@ function SearchAndFilterProducts() {
           </section>
           <section>
             <Link
-              to='products/create'
+              to='/products/create'
               className='button-login w-52 flex justify-center items-center space-x-2'>
               <img src={icons.symbolPlus} alt='Simbolo de mas' />
               <span>Añadir Producto</span>
