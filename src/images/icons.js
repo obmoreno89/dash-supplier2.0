@@ -21,6 +21,7 @@ import trash from './icons/trash.svg';
 import upload from './icons/upload.svg';
 import plants from './icons/plants.svg';
 import pencil from './icons/pencil.svg';
+import location from './icons/location.svg';
 
 export default {
   email,
@@ -46,4 +47,5 @@ export default {
   upload,
   plants,
   pencil,
+  location,
 };

@@ -22,7 +22,7 @@ function SearchAndFilterPlants() {
         </section>
         <section>
           <Link
-            to='/products/create'
+            to='/plant/create'
             className='button-login w-52 flex justify-center items-center space-x-2'>
             <img src={icons.symbolPlus} alt='Simbolo de mas' />
             <span>Añadir planta</span>
