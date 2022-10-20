@@ -326,6 +326,7 @@ const PlantCreateForm = () => {
                   Dirección <span className='text-gray-700'>*</span>
                 </label>
                 <input
+                  placeholder='Dirección de la planta'
                   disabled={!mapAddress}
                   onChange={setValue('address', mapAddress)}
                   className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed pl-9'
@@ -359,6 +360,7 @@ const PlantCreateForm = () => {
                   Longitud <span className='text-gray-700'>*</span>
                 </label>
                 <input
+                  placeholder='Longitud'
                   disabled
                   onChange={setValue('longitude', lng)}
                   maxLength='35'
@@ -384,6 +386,7 @@ const PlantCreateForm = () => {
                   latitud <span className='text-gray-700'>*</span>
                 </label>
                 <input
+                  placeholder='Latitud'
                   disabled
                   onChange={setValue('latitude', lat)}
                   maxLength='35'
@@ -418,6 +421,7 @@ const PlantCreateForm = () => {
                     <span className='text-gray-700'>*</span>
                   </label>
                   <textarea
+                    placeholder='Referencia...'
                     maxLength='150'
                     className='form-input w-full h-32'
                     type='text'

@@ -22,7 +22,7 @@ const PlantUpdate = () => {
           headerTitle='Plantas'
           icons={icons.plants}
           arrowIcon={icons.smallArrowDown}
-          headerSubTitle='Lista de plantas'
+          headerSubTitle='Editar planta de recolección'
         />
 
         <main>
