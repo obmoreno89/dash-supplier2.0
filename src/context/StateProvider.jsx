@@ -56,6 +56,7 @@ const StateProvider = ({ children }) => {
   const [mapAddress, setMapAddress] = useState(null);
   //STATE FOR SAVE PRODUCT CATEGORIES
   const [categories, setCategories] = useState([]);
+  const [companyName, setCompanyName] = useState(null);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -298,6 +299,8 @@ const StateProvider = ({ children }) => {
         mapAddress,
         setMapAddress,
         categories,
+        setCompanyName,
+        companyName,
       }}>
       {children}
     </StateContext.Provider>

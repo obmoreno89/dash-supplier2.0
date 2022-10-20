@@ -21,7 +21,7 @@ function HeaderGlobal({
             {/* Hamburger button */}
             <figure className='flex space-x-3'>
               <img src={icons} alt='Caja' />
-              <h5 className='font-semibold text-gray-400 flex space-x-3'>
+              <h5 className='capitalize font-semibold text-gray-400 flex space-x-3'>
                 {headerTitle}
                 <img className='ml-3' src={arrowIcon} alt='Flecha derecha' />
                 <p className='text-primary'>{headerSubTitle}</p>

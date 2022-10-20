@@ -5,10 +5,10 @@ import sinLogo from '../../../images/Sinlogo.png';
 
 const baseStyle = {
   padding: '20px',
-  width: '80px',
-  height: '10px',
-  borderRadius: 4,
-  borderColor: '#eeeeee',
+  width: '100px',
+  height: '45px',
+  borderRadius: 13,
+  borderColor: '#000000',
   borderStyle: 'dashed',
   backgroundColor: '#D8F6F0',
   color: '#0DB1AC',

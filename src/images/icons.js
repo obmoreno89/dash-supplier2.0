@@ -22,6 +22,7 @@ import upload from './icons/upload.svg';
 import plants from './icons/plants.svg';
 import pencil from './icons/pencil.svg';
 import location from './icons/location.svg';
+import myCompany from './icons/myCompany.svg';
 
 export default {
   email,
@@ -48,4 +49,5 @@ export default {
   plants,
   pencil,
   location,
+  myCompany,
 };
