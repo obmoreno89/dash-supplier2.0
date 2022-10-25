@@ -232,7 +232,7 @@ const CreateProductForm = () => {
                     },
                   })}>
                   <option value=''>Selecciona una categoria</option>
-                  <option value='1'>Peso colombiano</option>
+                  <option value='1'>MXN</option>
                 </select>
                 {errors.currency_id && (
                   <span className='text-red-500 text-sm'>
