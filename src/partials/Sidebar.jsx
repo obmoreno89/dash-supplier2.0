@@ -86,13 +86,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           {/* Logo */}
 
           {sidebarExpanded ? (
-            <NavLink end to='/' className='block'>
+            <figure end to='/' className='block'>
               <img src={icons.logoSidebar} alt='Logo' />
-            </NavLink>
+            </figure>
           ) : (
-            <NavLink end to='/' className='block'>
+            <figure end to='/' className='block'>
               <img src={icons.cleanLogo} alt='' />
-            </NavLink>
+            </figure>
           )}
         </div>
 

@@ -27,7 +27,7 @@ function PhoneCodeGenerator() {
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
             {/* Header */}
             <div className='flex-1'>
-              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
+              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-40'>
                 {/* Logo */}
                 <Link to='/signin' className='block'>
                   <img src={icons.logoSupplier} alt='logo hubmine' />
@@ -36,13 +36,12 @@ function PhoneCodeGenerator() {
             </div>
 
             <div className='max-w-lg mx-auto px-4 py-8'>
-              <h1 className='text-3xl text-slate-800 font-bold mb-6'>
-                Solicita un código ✨
+              <h1 className='text-3xl text-slate-800 font-bold'>
+                Solicita un código
               </h1>
               <div>
                 <p className='text-sm'>
-                  Introduce un número de teléfono con tu código del pais, para
-                  que puedas generar un código de verificación.
+                  Enviaremos un SMS al número que registres para continuar
                 </p>
               </div>
               {/* Form */}
@@ -50,10 +49,6 @@ function PhoneCodeGenerator() {
                 <div className='space-y-4 mt-10'>
                   {/* INPUT PHONE */}
                   <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      Numero de telefono
-                      <span className='text-rose-500'>*</span>
-                    </label>
                     <input
                       placeholder='Ej: +573101521422'
                       className='form-input w-full capitalize'
@@ -77,14 +72,12 @@ function PhoneCodeGenerator() {
                     )}
                   </div>
                 </div>
-                <div className='flex items-center justify-start mt-6'>
+                <div className='flex items-center justify-start'>
                   {loading ? (
-                    <LoadingButton />
+                    <LoadingButton name='Generando código' />
                   ) : (
                     <>
-                      <button
-                        type='submit'
-                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary  disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'>
+                      <button type='submit' className='button-login'>
                         Generar código
                       </button>
                     </>
@@ -92,14 +85,13 @@ function PhoneCodeGenerator() {
                 </div>
               </form>
               {/* Footer */}
-              <div className='pt-5 mt-6 '>
-                {/* Warning */}
-                <div className='text-sm'>
-                  ¿Tienes cuenta?
+              <div className='pt-5'>
+                <div className='text-sm flex justify-center items-center space-x-1'>
+                  <p className='font-semibold'>¿Tienes una cuenta?</p>
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
                     to='/signin'>
-                    Iniciar sesión
+                    Iniciar sesión aquí
                   </Link>
                 </div>
 
