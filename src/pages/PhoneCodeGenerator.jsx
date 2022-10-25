@@ -44,7 +44,7 @@ function PhoneCodeGenerator() {
                   Enviaremos un SMS al número que registres para continuar
                 </p>
               </div>
-              {/* Form */}
+
               <form onSubmit={handleSubmit(codeGenerator)}>
                 <div className='space-y-4 mt-10'>
                   {/* INPUT PHONE */}
