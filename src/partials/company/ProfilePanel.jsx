@@ -193,8 +193,7 @@ function ProfilePanel() {
               <div className='sm:w-1/3 lg:w-1/2'>
                 {/* SOCIAL REASON */}
                 <label className='block text-sm font-semibold mb-1'>
-                  Nombre legal de la empresa{' '}
-                  <span className='text-gray-700'>*</span>
+                  Razón social <span className='text-gray-700'>*</span>
                 </label>
                 <input
                   maxLength='30'
@@ -221,10 +220,10 @@ function ProfilePanel() {
               {/* INPUT RFC */}
               <div className='sm:w-1/3 lg:w-1/2'>
                 <label className='block text-sm font-semibold mb-1'>
-                  RUT <span className='text-gray-700'>*</span>
+                  RFC <span className='text-gray-700'>*</span>
                 </label>
                 <input
-                  maxLength='11'
+                  maxLength='13'
                   className='uppercase form-input w-full '
                   autoComplete='off'
                   type='text'
@@ -239,7 +238,7 @@ function ProfilePanel() {
                     },
                     minLength: {
                       value: 13,
-                      message: 'El RUT debe de tener 11 caracteres',
+                      message: 'El RFC debe de tener 13 caracteres',
                     },
                   })}
                 />{' '}
