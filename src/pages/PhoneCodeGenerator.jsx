@@ -50,7 +50,7 @@ function PhoneCodeGenerator() {
                   {/* INPUT PHONE */}
                   <div>
                     <input
-                      placeholder='Ej: +573101521422'
+                      placeholder='Ej: +522721194113'
                       className='form-input w-full capitalize'
                       autoComplete='off'
                       type='text'
