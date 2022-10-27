@@ -156,6 +156,7 @@ const PlantCreateForm = () => {
                   <label className='block text-sm font-semibold mb-1'>
                     Numero de teléfono <span className='text-gray-700'>*</span>
                   </label>
+
                   <input
                     placeholder='Numero de teléfono'
                     className='form-input w-full'
@@ -180,6 +181,7 @@ const PlantCreateForm = () => {
                       },
                     })}
                   />
+
                   {errors.phone_contact && (
                     <span className='text-red-500 text-sm'>
                       {errors.phone_contact.message}

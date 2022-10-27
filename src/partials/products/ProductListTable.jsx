@@ -16,8 +16,6 @@ const ProductListTable = () => {
     productList,
   } = useContext(StateContext);
 
-  console.log(productList);
-
   return (
     <div className='bg-white'>
       {bannerSuccessOpen ? (
