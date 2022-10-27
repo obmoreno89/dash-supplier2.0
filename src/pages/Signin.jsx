@@ -149,7 +149,6 @@ function Signin() {
             {/* Header */}
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-28'>
-               
                 <div className='block'>
                   <img src={icons.logoSupplier} alt='Logo' />
                 </div>
@@ -271,7 +270,6 @@ function Signin() {
               </form>
 
               <footer className='pt-5'>
-                {/* Warning */}
                 <section className='text-sm font-bold flex justify-center space-x-1'>
                   <p> ¿No tienes cuenta?</p>
                   <div>
