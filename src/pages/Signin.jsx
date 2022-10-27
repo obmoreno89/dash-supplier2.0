@@ -287,7 +287,6 @@ function Signin() {
             </div>
           </div>
         </div>
-
         <div
           className='hidden md:block absolute top-0 bottom-0 right-0 md:w-1/2'
           aria-hidden='true'>
