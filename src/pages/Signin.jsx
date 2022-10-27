@@ -149,7 +149,7 @@ function Signin() {
             {/* Header */}
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-28'>
-                {/* Logo */}
+               
                 <div className='block'>
                   <img src={icons.logoSupplier} alt='Logo' />
                 </div>
