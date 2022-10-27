@@ -35,7 +35,6 @@ function PhoneCodeGenerator() {
   return (
     <main className='bg-white'>
       <div className='relative md:flex'>
-        {/* Content */}
         <div className='md:w-1/2'>
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
             <div className='flex-1'>
