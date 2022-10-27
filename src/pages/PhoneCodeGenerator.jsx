@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import StateContext from '../context/StateContext';
@@ -9,15 +9,29 @@ import './customPhoneNumberInput.css';
 import icons from '../images/icons';
 
 function PhoneCodeGenerator() {
+  const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
+
   const {
     handleSubmit,
     register,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      number: codeCountryPhone,
+    },
+  });
 
-  const { loading, codeGenerator, errorApi } = useContext(StateContext);
+  const { loading, codeGenerator, errorApi, countryCode } =
+    useContext(StateContext);
 
   const submit = (data) => console.log(data);
+  console.log();
+
+  const handleCodeCuntry = (e) => {
+    const phoneCode = e.target.value;
+    return setCodeCountryPhone(phoneCode);
+  };
 
   return (
     <main className='bg-white'>
@@ -46,12 +60,24 @@ function PhoneCodeGenerator() {
               </div>
 
               <form onSubmit={handleSubmit(codeGenerator)}>
-                <div className='space-y-4 mt-10'>
+                <div className='mt-10 flex space-x-2'>
                   {/* INPUT PHONE */}
                   <div>
+                    <select
+                      className='form-select'
+                      onChange={(e) => handleCodeCuntry(e)}>
+                      {countryCode.map((code) => (
+                        <option key={code.id} value={code.ext}>
+                          {code.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className='flex flex-col'>
                     <input
-                      placeholder='Ej: +522721194113'
-                      className='form-input w-full capitalize'
+                      onChange={setValue('number', codeCountryPhone)}
+                      placeholder='Ej: +52-9981154131'
+                      className='form-input capitalize w-80'
                       autoComplete='off'
                       type='text'
                       {...register('number', {
