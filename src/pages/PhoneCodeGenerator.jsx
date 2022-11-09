@@ -7,6 +7,7 @@ import AuthImage from '../images/AuthImage.jpg';
 import 'react-phone-input-2/lib/style.css';
 import './customPhoneNumberInput.css';
 import icons from '../images/icons';
+import Select from 'react-select';
 
 function PhoneCodeGenerator() {
   const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
@@ -26,12 +27,20 @@ function PhoneCodeGenerator() {
     useContext(StateContext);
 
   const submit = (data) => console.log(data);
-  console.log();
+  console.log(countryCode);
 
   const handleCodeCuntry = (e) => {
     const phoneCode = e.target.value;
     return setCodeCountryPhone(phoneCode);
   };
+
+  let options = countryCode.map((code) => {
+    return {
+      value: `${code.id}`,
+      label: `${code.name}`,
+      image: `${code.flag}`,
+    };
+  });
 
   return (
     <main className='bg-white'>
@@ -63,15 +72,15 @@ function PhoneCodeGenerator() {
                 <div className='mt-10 flex space-x-2'>
                   {/* INPUT PHONE */}
                   <div>
-                    <select
-                      className='form-select'
-                      onChange={(e) => handleCodeCuntry(e)}>
-                      {countryCode.map((code) => (
-                        <option key={code.id} value={code.ext}>
-                          {code.name}
-                        </option>
-                      ))}
-                    </select>
+                    <Select
+                      options={options}
+                      formatOptionLabel={(country) => (
+                        <div className='country-option'>
+                          <img src={country.image} alt='country-image' />
+                          <span>{country.label}</span>
+                        </div>
+                      )}
+                    />
                   </div>
                   <div className='flex flex-col'>
                     <input
@@ -120,7 +129,11 @@ function PhoneCodeGenerator() {
                     Iniciar sesión aquí
                   </Link>
                 </div>
-
+                <div>
+                  {countryCode.map((data) => (
+                    <img src={data.flag} alt='' />
+                  ))}
+                </div>
                 {errorApi && (
                   <div className='mt-5'>
                     <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
