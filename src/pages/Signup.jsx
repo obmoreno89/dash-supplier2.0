@@ -106,7 +106,7 @@ function Signup() {
                     <input
                       maxLength='35'
                       autoComplete='off'
-                      className='form-input w-full capitalize pl-9'
+                      className='form-input w-full capitalize pl-10'
                       type='text'
                       {...register('first_name', {
                         required: {
@@ -137,7 +137,7 @@ function Signup() {
                     </label>
                     <input
                       maxLength='35'
-                      className='form-input w-full capitalize pl-9'
+                      className='form-input w-full capitalize pl-10'
                       autoComplete='off'
                       type='text'
                       {...register('last_name', {
@@ -197,7 +197,7 @@ function Signup() {
                     </label>
                     <input
                       maxLength='35'
-                      className='form-input w-full pl-9'
+                      className='form-input w-full pl-10'
                       autoComplete='off'
                       type='email'
                       {...register('email', {
@@ -213,7 +213,7 @@ function Signup() {
                     />
                     <section className='relative'>
                       <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
-                        <img src={icons.aquaEmail} alt='Email' />
+                        <img src={icons.email} alt='Email' />
                       </figure>
                     </section>
                     {errors.email && (
@@ -228,7 +228,7 @@ function Signup() {
                       Contraseña
                     </label>
                     <input
-                      className='form-input w-full pl-9'
+                      className='form-input w-full pl-10'
                       type={eye ? 'text' : 'password'}
                       autoComplete='off'
                       {...register('password', {
@@ -240,7 +240,7 @@ function Signup() {
                     />
                     <section className='relative'>
                       <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
-                        <img src={icons.aquaLock} alt='Candado' />
+                        <img src={icons.lock} alt='Candado' />
                       </figure>
                       <button
                         type='button'
