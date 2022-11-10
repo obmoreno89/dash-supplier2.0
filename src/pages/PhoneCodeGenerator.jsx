@@ -7,9 +7,10 @@ import AuthImage from '../images/AuthImage.jpg';
 import 'react-phone-input-2/lib/style.css';
 import './customPhoneNumberInput.css';
 import icons from '../images/icons';
+import Select from 'react-select';
 
 function PhoneCodeGenerator() {
-  const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
+  const [codeCountryPhone, setCodeCountryPhone] = useState('');
 
   const {
     handleSubmit,
@@ -20,6 +21,7 @@ function PhoneCodeGenerator() {
     defaultValues: {
       number: codeCountryPhone,
     },
+    mode: 'all',
   });
 
   const { loading, codeGenerator, errorApi, countryCode } =
@@ -28,8 +30,26 @@ function PhoneCodeGenerator() {
   const submit = (data) => console.log(data);
 
   const handleCodeCuntry = (e) => {
-    const phoneCode = e.target.value;
+    const phoneCode = e.value;
     return setCodeCountryPhone(phoneCode);
+  };
+
+  const options = countryCode.map((code) => {
+    return {
+      value: `${code.ext}`,
+      label: `${code.ext}`,
+      image: `${code.flag}`,
+    };
+  });
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      padding: 3,
+    }),
+    control: () => ({
+      width: 50,
+    }),
   };
 
   return (
@@ -59,15 +79,23 @@ function PhoneCodeGenerator() {
                 <div className='mt-10 flex space-x-2'>
                   {/* INPUT PHONE */}
                   <div>
-                    <select
-                      className='form-select'
-                      onChange={(e) => handleCodeCuntry(e)}>
-                      {countryCode.map((code) => (
-                        <option key={code.id} value={code.ext}>
-                          {code.name}
-                        </option>
-                      ))}
-                    </select>
+                    <Select
+                      className='form-select cursor-pointer'
+                      onChange={handleCodeCuntry}
+                      placeholder='Pais'
+                      components={{
+                        DropdownIndicator: () => null,
+                        IndicatorSeparator: () => null,
+                      }}
+                      styles={customStyles}
+                      options={options}
+                      formatOptionLabel={(country) => (
+                        <div className='flex space-x-1'>
+                          <img src={country.image} alt='country-image' />
+                          <span>{country.label}</span>
+                        </div>
+                      )}
+                    />
                   </div>
 
                   <div>
