@@ -171,11 +171,11 @@ function Signin() {
                 <div className='space-y-4'>
                   <div>
                     <label
-                      className='block text-sm font-semibold mb-1'
+                      className='block text-sm font-semibold mb-1  '
                       htmlFor='email'>
                       Correo:
                     </label>
-                    <div className='relative'>
+                    <div className='relative '>
                       <input
                         maxLength='35'
                         autoComplete='off'
@@ -192,7 +192,7 @@ function Signin() {
                           },
                         })}
                       />
-                      <div className='absolute inset-3 right-0 flex items-center pointer-events-none'>
+                      <div className='absolute inset-3 right-0 flex items-center pointer-events-none '>
                         <img src={icons.email} alt='Correo' />
                       </div>
                     </div>
@@ -202,7 +202,7 @@ function Signin() {
                       </span>
                     )}
                   </div>
-                  <div className='relative'>
+                  <div className='relative '>
                     <label
                       className='block text-sm font-semibold mb-1'
                       htmlFor='password'>

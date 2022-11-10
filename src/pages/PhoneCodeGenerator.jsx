@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import StateContext from '../context/StateContext';
@@ -10,7 +10,7 @@ import icons from '../images/icons';
 import Select from 'react-select';
 
 function PhoneCodeGenerator() {
-  const [codeCountryPhone, setCodeCountryPhone] = useState('');
+  const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
 
   const {
     handleSubmit,
@@ -28,7 +28,6 @@ function PhoneCodeGenerator() {
     useContext(StateContext);
 
   const submit = (data) => console.log(data);
-  console.log(countryCode);
 
   const handleCodeCuntry = (e) => {
     const phoneCode = e.value;
@@ -49,7 +48,8 @@ function PhoneCodeGenerator() {
       padding: 3,
     }),
     control: () => ({
-      width: 50,
+      width: 90,
+      display: 'flex',
     }),
   };
 
@@ -84,14 +84,21 @@ function PhoneCodeGenerator() {
                   {/* INPUT PHONE */}
                   <div>
                     <Select
-                      className='form-select cursor-pointer'
-                      onChange={handleCodeCuntry}
-                      placeholder='Pais'
-                      components={{
-                        DropdownIndicator: () => null,
-                        IndicatorSeparator: () => null,
+                      isSearchable={false}
+                      defaultValue={{
+                        label: '+52',
+                        value: '+52',
+                        image:
+                          'https://hubmine-d.s3.amazonaws.com/Flags/mexico.svg',
                       }}
                       styles={customStyles}
+                      className='form-select cursor-pointer w-[120px]'
+                      onChange={handleCodeCuntry}
+                      placeholder='Pais'
+                      required
+                      components={{
+                        IndicatorSeparator: () => null,
+                      }}
                       options={options}
                       formatOptionLabel={(country) => (
                         <div className='flex space-x-1'>
