@@ -98,7 +98,7 @@ function PhoneCodeGenerator() {
                     />
                   </div>
 
-                  <div>
+                  <div className='flex flex-col'>
                     <input
                       onChange={setValue('number', codeCountryPhone)}
                       placeholder='Ej: +57-9981154131'
