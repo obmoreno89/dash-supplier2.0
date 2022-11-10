@@ -8,10 +8,12 @@ const ProductListTableItem = (props) => {
 
   const statusColor = (status) => {
     switch (status) {
-      case 'Estado Borrador':
-        return 'bg-yellow-50 text-gray-800 font-semibold';
+      case 'Borrador':
+        return 'bg-yellow-50 text-yellow-800 font-semibold';
+      case 'Aceptado':
+        return 'bg-green-50 text-green-700 font-semibold';
       default:
-        return 'bg-green-50 text-gray-800 font-semibold';
+        return 'bg-slate-50 text-gray-800 font-semibold';
     }
   };
 
