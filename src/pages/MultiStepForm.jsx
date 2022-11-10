@@ -199,7 +199,7 @@ const MultiStepForm = () => {
                         <h1 className='text-3xl text-slate-800 font-bold '>
                           Datos fiscales
                         </h1>
-                        <p>¿Con qué nombre es conocida tu empresa?</p>
+                        <p>Ingresa los datos fiscales de tu compañía</p>
                       </article>
                       <div className='space-y-4 mb-8'>
                         {/* SOCIAL REASON */}
@@ -294,7 +294,7 @@ const MultiStepForm = () => {
                         <h1 className='text-3xl text-slate-800 font-bold '>
                           Datos de contacto comercial
                         </h1>
-                        <p>¿Con qué nombre es conocida tu empresa?</p>
+                        <p>Ingresa los datos de contacto</p>
                       </article>
                       <div className='space-y-4 mb-8'>
                         {/* INPUT PHONE */}
