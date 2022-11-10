@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Sinlogo from '../images/Sinlogo.png';
 import Transition from '../utils/Transition';
+import icons from '../images/icons';
 
 const Logout = ({ align }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -62,18 +63,14 @@ const Logout = ({ align }) => {
           src={Sinlogo}
           width='32'
           height='32'
-          alt='User'
+          alt='User nidata'
         />
 
-        <div className='flex items-center truncate'>
-          <span className='capitalize truncate ml-2 text-sm font-medium group-hover:text-slate-800'>
+        <div className='flex items-center truncate space-x-4'>
+          <span className='capitalize truncate ml-2 text-sm font-bold group-hover:text-slate-800'>
             {username}
           </span>
-          <svg
-            className='w-3 h-3 shrink-0 ml-1 fill-current text-slate-400'
-            viewBox='0 0 12 12'>
-            <path d='M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z' />
-          </svg>
+          <img src={icons.smallArrowDown} alt='Flecha abajo' />
         </div>
       </button>
 

@@ -87,7 +87,7 @@ const CreateProductForm = () => {
         {/* Page header */}
         <div className='mb-8'>
           <h1 className='text-2xl md:text-3xl text-slate-800 font-bold'>
-            Añadir Productos 📦
+            Añadir productos
           </h1>
         </div>
         {/* BANNER SUCCESS AND ERROR */}
@@ -111,23 +111,23 @@ const CreateProductForm = () => {
           </div>
         ) : null}
 
-        <div className='border-t border-slate-200'></div>
         <div className='space-y-8 mt-8'>
-          <article className='mt-10'>
-            <h2 className='text-2xl text-slate-800 font-bold mb-6'>
+          <article className='mt-2'>
+            <h2 className='text-xl text-slate-800 font-bold mb-6'>
               Datos del producto
             </h2>
-            <div className='border-t border-slate-200'></div>
           </article>
           <form onSubmit={handleSubmit(newProduct)}>
             <section className='grid gap-5 md:grid-cols-3'>
               <div>
                 {/* PRODUCT NAME */}
                 <div>
-                  <label className='block text-sm font-medium mb-1'>
-                    Nombre del producto<span className='text-rose-500'>*</span>
+                  <label className='block text-sm font-semibold mb-1'>
+                    Nombre del producto:{' '}
+                    <span className='text-gray-700'>*</span>
                   </label>
                   <input
+                    placeholder='Nombre o categoria el producto'
                     maxLength='30'
                     className='form-input w-full '
                     autoComplete='off'
@@ -153,9 +153,9 @@ const CreateProductForm = () => {
               <div>
                 {/* CATEGORY PRODUCT */}
                 <div>
-                  <label className='block text-sm font-medium mb-1'>
-                    Categoria del producto
-                    <span className='text-rose-500'>*</span>
+                  <label className='block text-sm font-semibold mb-1'>
+                    Categoria del producto:{' '}
+                    <span className='text-gray-700'>*</span>
                   </label>
                   <select
                     className='form-select w-full'
@@ -165,7 +165,9 @@ const CreateProductForm = () => {
                         message: 'El campo es requerido',
                       },
                     })}>
-                    <option value=''>Selecciona</option>
+                    <option disabled selected>
+                      Selecciona una categoria
+                    </option>
                     {categories.map((categories) => (
                       <option key={categories.id} value={categories.id}>
                         {categories.category_name}
@@ -182,10 +184,11 @@ const CreateProductForm = () => {
               <div>
                 {/* SHORT DESCRIPTION */}
                 <div>
-                  <label className='block text-sm font-medium mb-1'>
-                    Breve descripción<span className='text-rose-500'>*</span>
+                  <label className='block text-sm font-semibold mb-1'>
+                    Breve descripción: <span className='text-gray-700'>*</span>
                   </label>
                   <input
+                    placeholder='Breve descripción'
                     maxLength='35'
                     className='form-input w-full'
                     autoComplete='off'
@@ -210,17 +213,15 @@ const CreateProductForm = () => {
               </div>
             </section>
             <article className='mt-10'>
-              <h2 className='text-2xl text-slate-800 font-bold mb-6'>
+              <h2 className='text-xl text-slate-800 font-bold mb-6'>
                 Precio y marca
               </h2>
-              <div className='border-t border-slate-200'></div>
             </article>
-            <section className='grid gap-5 md:grid-cols-3 mt-8'>
+            <section className='grid gap-5 md:grid-cols-4 mt-8'>
               {/* CURRENCY TYPE */}
               <div>
-                <label className='block text-sm font-medium mb-1'>
-                  Moneda
-                  <span className='text-rose-500'>*</span>
+                <label className='block text-sm font-semibold mb-1'>
+                  Tipo de moneda: <span className='text-gray-700'>*</span>
                 </label>
                 <select
                   className='form-select w-full'
@@ -230,8 +231,8 @@ const CreateProductForm = () => {
                       message: 'El campo es requerido',
                     },
                   })}>
-                  <option value=''>Selecciona</option>
-                  <option value='1'>Dolar estadounidense</option>
+                  <option value=''>Selecciona una categoria</option>
+                  <option value='1'>MXN</option>
                 </select>
                 {errors.currency_id && (
                   <span className='text-red-500 text-sm'>
@@ -242,11 +243,13 @@ const CreateProductForm = () => {
               <div>
                 {/* PRODUCT PRICE */}
                 <div>
-                  <label className='block text-sm font-medium mb-1'>
-                    Precio del producto<span className='text-rose-500'>*</span>
+                  <label className='block text-sm font-semibold mb-1'>
+                    Precio del producto:{' '}
+                    <span className='text-gray-700'>*</span>
                   </label>
                   <div className='relative'>
                     <input
+                      placeholder='Precio'
                       maxLength='10'
                       autoComplete='off'
                       className='form-input w-full pl-8'
@@ -263,7 +266,7 @@ const CreateProductForm = () => {
                       })}
                     />
                     <div className='absolute inset-0 right-auto flex items-center pointer-events-none'>
-                      <span className='text-sm text-slate-400 font-medium px-3'>
+                      <span className='text-sm text-slate-500 font-medium px-3'>
                         $
                       </span>
                     </div>
@@ -277,10 +280,11 @@ const CreateProductForm = () => {
               </div>
               {/* PRODUCT MARK */}
               <div>
-                <label className='block text-sm font-medium mb-1'>
-                  Marca del producto<span className='text-rose-500'>*</span>
+                <label className='block text-sm font-semibold mb-1'>
+                  Marca del producto: <span className='text-gray-700'>*</span>
                 </label>
                 <input
+                  placeholder='Marca del producto'
                   maxLength='35'
                   className='form-input w-full'
                   autoComplete='off'
@@ -305,9 +309,8 @@ const CreateProductForm = () => {
 
               {/* UNITY PRODUCT */}
               <div>
-                <label className='block text-sm font-medium mb-1'>
-                  Unidad de medida
-                  <span className='text-rose-500'>*</span>
+                <label className='block text-sm font-semibold mb-1'>
+                  Unidad de medida: <span className='text-gray-700'>*</span>
                 </label>
                 <select
                   className='form-select w-full'
@@ -317,7 +320,7 @@ const CreateProductForm = () => {
                       message: 'El campo es requerido',
                     },
                   })}>
-                  <option value=''>Selecciona</option>
+                  <option value=''>Selecciona una unidad</option>
                   <option value='1'>Tonelada</option>
                   <option value='2'>Metro cúbico</option>
                   <option value='3'>Unidad</option>
@@ -332,22 +335,22 @@ const CreateProductForm = () => {
             </section>
 
             <article className='mt-10'>
-              <h2 className='text-2xl text-slate-800 font-bold mb-6'>
+              <h2 className='text-xl text-slate-800 font-bold mb-6'>
                 Descripción e Imagen
               </h2>
-              <div className='border-t border-slate-200'></div>
             </article>
-            <section className='mt-8'>
+            <section className='grid gap-5 md:grid-cols-2 mt-8'>
               <div>
                 {/* SHORT DESCRIPTION */}
                 <div>
-                  <label className='block text-sm font-medium mb-1'>
-                    Descripción del producto (función, objetivo, etc)
-                    <span className='text-rose-500'>*</span>
+                  <label className='block text-sm font-semibold mb-2'>
+                    Descripción del producto (función, objetivo, etc){' '}
+                    <span className='text-gray-700'>*</span>
                   </label>
                   <textarea
+                    placeholder='Descripción del producto'
                     maxLength='150'
-                    className='form-input w-full'
+                    className='form-input w-full h-48'
                     type='text'
                     autoComplete='off'
                     {...register('description', {
@@ -368,10 +371,6 @@ const CreateProductForm = () => {
                   )}
                 </div>
               </div>
-            </section>
-            <section>
-              {/* INPUT SUBMIT FILE */}
-
               <div className='mt-8 w-full'>
                 <ImageDropzone
                   files={files}
@@ -386,21 +385,20 @@ const CreateProductForm = () => {
                 />
               </div>
             </section>
-            <section className='w-full flex space-x-6 justify-center items-center mt-10'>
+
+            <section className='w-full flex justify-center  mt-10'>
               <div className='m-1.5'>
                 {loading ? (
-                  <LoadingButton />
+                  <LoadingButton name='Creando producto' />
                 ) : (
                   <>
-                    <button
-                      type='submit'
-                      className='btn bg-emerald-500 hover:bg-emerald-600 text-white'>
-                      Guardar
+                    <button type='submit' className='button-login w-52'>
+                      Crear producto
                     </button>
                   </>
                 )}
               </div>
-              <div className='m-1.5'>
+              {/* <div className='m-1.5'>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -410,7 +408,7 @@ const CreateProductForm = () => {
                   className='btn border-slate-200 hover:border-slate-300 text-emerald-500 hover:bg-red-500 hover:text-slate-50'>
                   Cancelar
                 </button>
-              </div>
+              </div> */}
             </section>
           </form>
         </div>

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
+import icons from '../../../images/icons';
 
 const baseStyle = {
   display: 'flex',
@@ -70,9 +71,8 @@ function ImageDropzone({ files, setFiles }) {
     <div
       className='mt-5 flex flex-col justify-center items-center'
       key={file.name}>
-      <p className='mt-3 font-semibold text-center'>Vista previa</p>
-      <img className='w-44 mt-2 ' src={file.preview} alt={file.name} />
-      <p className='text-center'>{file.name}</p>
+      <p className='mt-1 font-semibold text-center'>Vista previa</p>
+      <img className='w-24 mt-2 ' src={file.preview} alt={file.name} />
     </div>
   ));
 
@@ -94,31 +94,20 @@ function ImageDropzone({ files, setFiles }) {
   return (
     <section className='flex flex-col justify-center items-center w-full'>
       <label {...getRootProps({ style })}>
-        <div className='flex flex-col justify-center items-center pt-5 pb-6'>
-          <svg
-            aria-hidden='true'
-            className='mb-3 w-10 h-10 text-gray-400'
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-            xmlns='http://www.w3.org/2000/svg'>
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12'></path>
-          </svg>
+        <figure className='flex flex-col justify-center items-center pt-5 pb-6'>
+          <img
+            src={icons.upload}
+            className='mb-2 w-10 h-10'
+            alt='Cargar archivo'
+          />
           <p className='mb-2 text-sm text-gray-500 dark:text-gray-400 font-semibold'>
             Click para cargar imagen o arrastra y suelta
           </p>
-          <p className='text-xs text-gray-500 dark:text-gray-400'>
-            Puedes cambiar tu imagen haciendo las mismas indicaciones
-          </p>
-        </div>
+          <br />
+          <aside>{thumbs}</aside>
+        </figure>
         <input {...getInputProps()} />
       </label>
-
-      <aside>{thumbs}</aside>
     </section>
   );
 }

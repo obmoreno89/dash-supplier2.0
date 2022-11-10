@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import StateContext from '../context/StateContext';
 import LoadingButton from '../helpers/LoadingButton';
-import AuthImage from '../images/AuthImage.jpg';
-import logohubsupplier from '../images/logohubsupplier.svg';
+import CreateAccount from '../images/createAccount.jpg';
+import icons from '../images/icons';
 
 const ValidationCode = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const ValidationCode = () => {
     useContext(StateContext);
 
   const [otp, setOtp] = useState(new Array(5).fill(''));
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(59);
   const [containerChange, setContainerChange] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -27,7 +27,7 @@ const ValidationCode = () => {
     }
   }, [counter]);
 
-  const codeValue = { code: otp.join(''), number: `+${savedCode.number}` };
+  const codeValue = { code: otp.join(''), number: `${savedCode.number}` };
 
   const phoneUser = savedCode.number;
   const newCode = { number: phoneUser };
@@ -82,39 +82,33 @@ const ValidationCode = () => {
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
             {/* Header */}
             <div className='flex-1'>
-              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
-                {/* Logo */}
+              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-28'>
                 <Link
                   to='/signin'
                   className='block'
                   onClick={deleteCodeLocalStorage}>
-                  <img src={logohubsupplier} alt='logo hubmine' />
+                  <img src={icons.logoSupplier} alt='Logo' />
                 </Link>
               </div>
             </div>
 
             <div className='max-w-lg mx-auto px-4 py-8'>
-              <h1 className='text-3xl text-slate-800 font-bold mb-6'>
-                Verificación del código ✨
+              <h1 className='text-3xl text-slate-800 font-bold w-2/3'>
+                Escribe el código de verificación
               </h1>
-              <div className=' mb-6 text-center flex flex-col'>
-                <h5 className='text-md text-slate-800 font-bold'>
-                  Te enviamos un código al:
+              <div className=' mb-6 text-start flex flex-col'>
+                <h5 className='text-md text-slate-800'>
+                  Hemos enviado un código a{' '}
+                  <span className='text-primary font-bold'>{phoneUser}</span>
                 </h5>
-                <span className='text-red-500 font-bold'>{phoneUser}</span>
+                <span className='text-red-500 font-bold'>{code}</span>
               </div>
-              <div>
-                <p className='text-sm'>
-                  Introduce el código que te hicimos llegar por mensaje SMS.
-                </p>
-              </div>
-              {/* Form */}
               <form>
                 <div className='space-x-10 mt-5 flex justify-center items-center'>
                   {otp.map((data, index) => {
                     return (
                       <input
-                        className='form-input w-10 text-xl'
+                        className='form-input w-12 text-xl text-center'
                         type='text'
                         name='otp'
                         maxLength='1'
@@ -126,54 +120,55 @@ const ValidationCode = () => {
                     );
                   })}
                 </div>
-                <div className='flex items-center justify-end mt-16'>
+                <article className='mt-6 flex flex-col justify-center items-center'>
+                  <p className='text-gray-400 text-sm'>¿No lo recibiste?</p>
+                  {!containerChange ? (
+                    <p className='text-center text-gray-400 font-semibold'>
+                      Tu código vence en: {counter} segundos
+                    </p>
+                  ) : (
+                    <div>
+                      <button
+                        onClick={() => {
+                          codeGenerator(newCode);
+                          setContainerChange(false);
+                          setCounter(10);
+                        }}
+                        className='text-sm font-semibold text-primary hover:text-slate-500'>
+                        Solicitar código nuevo
+                      </button>
+                    </div>
+                  )}
+                </article>
+                <div>
                   {buttonLoading ? (
-                    <LoadingButton />
+                    <LoadingButton name='Validando código' />
                   ) : (
                     <>
                       <button
                         onClick={codeValidation}
                         type='button'
-                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary ml-3'>
+                        className='button-login'>
                         Validar código
                       </button>
                     </>
                   )}
                 </div>
               </form>
-              {/* Footer */}
-              <div className='pt-5 mt-6 space-y-6 '>
-                {!containerChange ? (
-                  <div className='text-sm text-center'>
-                    Tu código vence en: {counter} segundos
-                  </div>
-                ) : (
-                  <div className='flex justify-center items-center'>
-                    <button
-                      onClick={() => {
-                        codeGenerator(newCode);
-                        setContainerChange(false);
-                        setCounter(10);
-                      }}
-                      className='text-sm font-medium text-primary hover:text-slate-500'>
-                      Solicitar código nuevo
-                    </button>
-                  </div>
-                )}
 
-                <div className='text-sm text-center'>
-                  ¿Este no es tu número?{' '}
+              <footer className='pt-5 space-y-6 '>
+                <div className='text-sm text-center text-gray-900 font-semibold'>
+                  ¿Tienes una cuenta?{' '}
                   <Link
                     onClick={deleteCodeLocalStorage}
-                    className='font-medium text-primary hover:text-secondary'
-                    to='/code/generator'>
-                    Cambiar número
+                    className='font-semibold text-primary hover:text-secondary'
+                    to='/signin'>
+                    Inicia sesión aquí
                   </Link>
                 </div>
-
                 {errorApi && (
                   <div className='mt-5'>
-                    <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
+                    <div className='bg-red-50 text-red-600 px-2 py-2 rounded-2xl'>
                       <svg
                         className='inline w-4 h-4 shrink-0 fill-current mr-2'
                         viewBox='0 0 17 17'>
@@ -186,7 +181,7 @@ const ValidationCode = () => {
                     </div>
                   </div>
                 )}
-              </div>
+              </footer>
             </div>
           </div>
         </div>
@@ -197,10 +192,10 @@ const ValidationCode = () => {
           aria-hidden='true'>
           <img
             className='object-cover object-center w-full h-full'
-            src={AuthImage}
+            src={CreateAccount}
             width='760'
             height='1024'
-            alt='Authentication'
+            alt='Imagen de fondo'
           />
         </div>
       </div>

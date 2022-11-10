@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import Sidebar from '../../partials/Sidebar';
-import Header from '../../partials/Header';
+import HeaderGlobal from '../HeaderGlobal';
 import StateContext from '../../context/StateContext';
 import PlantUpdateForm from './PlantUpdateForm';
+import icons from '../../images/icons';
 
 const PlantUpdate = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(StateContext);
@@ -15,7 +16,14 @@ const PlantUpdate = () => {
       {/* Content area */}
       <div className='relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white'>
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <HeaderGlobal
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          headerTitle='Plantas'
+          icons={icons.plants}
+          arrowIcon={icons.smallArrowDown}
+          headerSubTitle='Editar planta de recolección'
+        />
 
         <main>
           <PlantUpdateForm />

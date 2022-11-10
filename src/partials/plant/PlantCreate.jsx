@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import Sidebar from '../../partials/Sidebar';
-import Header from '../../partials/Header';
+import HeaderGlobal from '../HeaderGlobal';
 import PlantCreateForm from './PlantCreateForm';
+import icons from '../../images/icons';
 
 import StateContext from '../../context/StateContext';
 const PlantCreate = () => {
@@ -15,7 +16,14 @@ const PlantCreate = () => {
       {/* Content area */}
       <div className='relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white'>
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <HeaderGlobal
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          headerTitle='Plantas'
+          icons={icons.plants}
+          arrowIcon={icons.smallArrowDown}
+          headerSubTitle='Crear planta de recolección'
+        />
 
         <main>
           <PlantCreateForm />

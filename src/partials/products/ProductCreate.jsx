@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Sidebar from '../../partials/Sidebar';
-import Header from '../../partials/Header';
+import HeaderGlobal from '../HeaderGlobal';
 import CreateProductForm from './CreateProductForm';
-
 import StateContext from '../../context/StateContext';
+import icons from '../../images/icons';
 
 const ProductCreate = () => {
   const { sidebarOpen, setSidebarOpen } = useContext(StateContext);
@@ -16,7 +16,14 @@ const ProductCreate = () => {
       {/* Content area */}
       <div className='relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden bg-white'>
         {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <HeaderGlobal
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          headerTitle='Productos'
+          icons={icons.box}
+          arrowIcon={icons.smallArrowDown}
+          headerSubTitle='Crear producto'
+        />
 
         <main>
           <CreateProductForm />

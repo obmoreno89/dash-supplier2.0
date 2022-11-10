@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import StateContext from '../context/StateContext';
@@ -6,19 +6,52 @@ import LoadingButton from '../helpers/LoadingButton';
 import AuthImage from '../images/AuthImage.jpg';
 import 'react-phone-input-2/lib/style.css';
 import './customPhoneNumberInput.css';
-import logohubsupplier from '../images/logohubsupplier.svg';
+import icons from '../images/icons';
+import Select from 'react-select';
 
 function PhoneCodeGenerator() {
+  const [codeCountryPhone, setCodeCountryPhone] = useState('');
+
   const {
     handleSubmit,
-    control,
     register,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      number: codeCountryPhone,
+    },
+    mode: 'all',
+  });
 
-  const { loading, codeGenerator, errorApi } = useContext(StateContext);
+  const { loading, codeGenerator, errorApi, countryCode } =
+    useContext(StateContext);
 
   const submit = (data) => console.log(data);
+  console.log(countryCode);
+
+  const handleCodeCuntry = (e) => {
+    const phoneCode = e.value;
+    return setCodeCountryPhone(phoneCode);
+  };
+
+  const options = countryCode.map((code) => {
+    return {
+      value: `${code.ext}`,
+      label: `${code.ext}`,
+      image: `${code.flag}`,
+    };
+  });
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      padding: 3,
+    }),
+    control: () => ({
+      width: 50,
+    }),
+  };
 
   return (
     <main className='bg-white'>
@@ -28,36 +61,51 @@ function PhoneCodeGenerator() {
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
             {/* Header */}
             <div className='flex-1'>
-              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8'>
+              <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-40'>
                 {/* Logo */}
                 <Link to='/signin' className='block'>
-                  <img src={logohubsupplier} alt='logo hubmine' />
+                  <img src={icons.logoSupplier} alt='logo hubmine' />
                 </Link>
               </div>
             </div>
 
             <div className='max-w-lg mx-auto px-4 py-8'>
-              <h1 className='text-3xl text-slate-800 font-bold mb-6'>
-                Solicita un código ✨
+              <h1 className='text-3xl text-slate-800 font-bold'>
+                Solicita un código
               </h1>
               <div>
                 <p className='text-sm'>
-                  Introduce un número de teléfono con tu código del pais, para
-                  que puedas generar un código de verificación.
+                  Enviaremos un SMS al número que registres para continuar
                 </p>
               </div>
-              {/* Form */}
+
               <form onSubmit={handleSubmit(codeGenerator)}>
-                <div className='space-y-4 mt-10'>
+                <div className='mt-10 flex space-x-2'>
                   {/* INPUT PHONE */}
                   <div>
-                    <label className='block text-sm font-medium mb-1'>
-                      Numero de telefono
-                      <span className='text-rose-500'>*</span>
-                    </label>
+                    <Select
+                      className='form-select cursor-pointer'
+                      onChange={handleCodeCuntry}
+                      placeholder='Pais'
+                      components={{
+                        DropdownIndicator: () => null,
+                        IndicatorSeparator: () => null,
+                      }}
+                      styles={customStyles}
+                      options={options}
+                      formatOptionLabel={(country) => (
+                        <div className='flex space-x-1'>
+                          <img src={country.image} alt='country-image' />
+                          <span>{country.label}</span>
+                        </div>
+                      )}
+                    />
+                  </div>
+                  <div className='flex flex-col'>
                     <input
-                      placeholder='Ej: +522711521422'
-                      className='form-input w-full capitalize'
+                      onChange={setValue('number', codeCountryPhone)}
+                      placeholder='2721194113'
+                      className='form-input capitalize w-80'
                       autoComplete='off'
                       type='text'
                       {...register('number', {
@@ -78,14 +126,12 @@ function PhoneCodeGenerator() {
                     )}
                   </div>
                 </div>
-                <div className='flex items-center justify-start mt-6'>
+                <div className='flex items-center justify-start'>
                   {loading ? (
-                    <LoadingButton />
+                    <LoadingButton name='Generando código' />
                   ) : (
                     <>
-                      <button
-                        type='submit'
-                        className='btn bg-secondary hover:bg-primary hover:text-white text-primary  disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed shadow-none'>
+                      <button type='submit' className='button-login'>
                         Generar código
                       </button>
                     </>
@@ -93,14 +139,13 @@ function PhoneCodeGenerator() {
                 </div>
               </form>
               {/* Footer */}
-              <div className='pt-5 mt-6 '>
-                {/* Warning */}
-                <div className='text-sm'>
-                  ¿Tienes cuenta?{' '}
+              <div className='pt-5'>
+                <div className='text-sm flex justify-center items-center space-x-1'>
+                  <p className='font-semibold'>¿Tienes una cuenta?</p>
                   <Link
                     className='font-medium text-primary hover:text-slate-500'
                     to='/signin'>
-                    Iniciar sesión
+                    Iniciar sesión aquí
                   </Link>
                 </div>
 

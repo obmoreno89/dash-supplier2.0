@@ -28,6 +28,8 @@ const StateProvider = ({ children }) => {
   const [errorApi, setErrorApi] = useState(false);
   //STATE SAVE JSON CODE GENERATOR
   const [savedCode, setSavedCode] = useState([]);
+  //STATE SAVE JSON COUNTRY CODE
+  const [countryCode, setCountryCode] = useState([]);
   //STATE FOR UPDATE STATE
   const [productReload, setProductReload] = useState(false);
   const [plantReload, setPlantReload] = useState(false);
@@ -56,6 +58,7 @@ const StateProvider = ({ children }) => {
   const [mapAddress, setMapAddress] = useState(null);
   //STATE FOR SAVE PRODUCT CATEGORIES
   const [categories, setCategories] = useState([]);
+  const [companyName, setCompanyName] = useState(null);
 
   //FUNCTION FOR EYES
   const toggleEye = (prevState) => {
@@ -240,6 +243,17 @@ const StateProvider = ({ children }) => {
     getCategories();
   }, []);
 
+  const getCountryCode = () => {
+    fetch('https://api.hubmine.mx/api/basics/countries')
+      .then((response) => response.json())
+      .then((json) => setCountryCode(json))
+      .catch((res) => console.error(res.status));
+  };
+
+  useEffect(() => {
+    getCountryCode();
+  }, []);
+
   return (
     <StateContext.Provider
       value={{
@@ -298,6 +312,9 @@ const StateProvider = ({ children }) => {
         mapAddress,
         setMapAddress,
         categories,
+        setCompanyName,
+        companyName,
+        countryCode,
       }}>
       {children}
     </StateContext.Provider>
