@@ -10,7 +10,7 @@ import icons from '../images/icons';
 import Select from 'react-select';
 
 function PhoneCodeGenerator() {
-  const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
+  const [codeCountryPhone, setCodeCountryPhone] = useState('');
 
   const {
     handleSubmit,
@@ -21,6 +21,7 @@ function PhoneCodeGenerator() {
     defaultValues: {
       number: codeCountryPhone,
     },
+    mode: 'all',
   });
 
   const { loading, codeGenerator, errorApi, countryCode } =
@@ -30,17 +31,27 @@ function PhoneCodeGenerator() {
   console.log(countryCode);
 
   const handleCodeCuntry = (e) => {
-    const phoneCode = e.target.value;
+    const phoneCode = e.value;
     return setCodeCountryPhone(phoneCode);
   };
 
-  let options = countryCode.map((code) => {
+  const options = countryCode.map((code) => {
     return {
-      value: `${code.id}`,
-      label: `${code.name}`,
+      value: `${code.ext}`,
+      label: `${code.ext}`,
       image: `${code.flag}`,
     };
   });
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      padding: 3,
+    }),
+    control: () => ({
+      width: 50,
+    }),
+  };
 
   return (
     <main className='bg-white'>
@@ -73,9 +84,17 @@ function PhoneCodeGenerator() {
                   {/* INPUT PHONE */}
                   <div>
                     <Select
+                      className='form-select cursor-pointer'
+                      onChange={handleCodeCuntry}
+                      placeholder='Pais'
+                      components={{
+                        DropdownIndicator: () => null,
+                        IndicatorSeparator: () => null,
+                      }}
+                      styles={customStyles}
                       options={options}
                       formatOptionLabel={(country) => (
-                        <div className='country-option'>
+                        <div className='flex space-x-1'>
                           <img src={country.image} alt='country-image' />
                           <span>{country.label}</span>
                         </div>
@@ -85,7 +104,7 @@ function PhoneCodeGenerator() {
                   <div className='flex flex-col'>
                     <input
                       onChange={setValue('number', codeCountryPhone)}
-                      placeholder='Ej: +52-9981154131'
+                      placeholder='2721194113'
                       className='form-input capitalize w-80'
                       autoComplete='off'
                       type='text'
@@ -129,11 +148,7 @@ function PhoneCodeGenerator() {
                     Iniciar sesión aquí
                   </Link>
                 </div>
-                <div>
-                  {countryCode.map((data) => (
-                    <img src={data.flag} alt='' />
-                  ))}
-                </div>
+
                 {errorApi && (
                   <div className='mt-5'>
                     <div className='bg-red-100 text-red-600 px-3 py-2 rounded'>
