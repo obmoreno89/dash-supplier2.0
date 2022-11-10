@@ -35,7 +35,7 @@ const PlantListTableItem = (props) => {
           <div className='flex justify-center items-center space-x-2'>
             <Link
               to={`/plant/update/${props.id}`}
-              className='font-semibold text-slate-600 hover:border-b-2 border-slate-500'>
+              className='font-semibold text-slate-600  border-slate-500'>
               <img className='w-42' src={icons.pencil} alt='Lapiz' />
             </Link>
             <button
@@ -43,7 +43,7 @@ const PlantListTableItem = (props) => {
                 e.stopPropagation();
                 setDangerModalOpen(true);
               }}
-              className='font-semibold text-red-400 hover:border-b-2 border-slate-500'>
+              className='font-semibold text-red-400 border-slate-500'>
               <img className='w-42' src={icons.trash} alt='bote basura' />
             </button>
           </div>

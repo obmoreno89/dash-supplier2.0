@@ -11,7 +11,7 @@ const ProductListTableItem = (props) => {
       case 'Estado Borrador':
         return 'bg-yellow-50 text-gray-800 font-semibold';
       default:
-        return 'bg-slate-100 text-slate-500';
+        return 'bg-green-50 text-gray-800 font-semibold';
     }
   };
 

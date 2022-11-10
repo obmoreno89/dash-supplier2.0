@@ -9,6 +9,7 @@ import LogoDropzone from './helpers/LogoDropzone';
 function ProfilePanel() {
   const [supplierData, setSupplierData] = useState([]);
   const [logo, setLogo] = useState([]);
+  const [companyRefresh, setCompanyRefresh] = useState(false);
 
   const navigate = useNavigate();
 
@@ -56,11 +57,12 @@ function ProfilePanel() {
         setValue('nif', json[0].nif);
         setValue('legal_entity_name', json[0].legal_entity_name);
       });
+    setCompanyRefresh(false);
   };
 
   useEffect(() => {
     getDetailsSupplier();
-  }, []);
+  }, [companyRefresh]);
 
   const profileUpdate = async (data) => {
     fetch(`https://dev.hubmine.mx/api/suppliers/update/${supplierId}/`, {
@@ -84,6 +86,7 @@ function ProfilePanel() {
         }, 1500);
       }
     });
+    setCompanyRefresh(true);
   };
 
   return (
