@@ -86,8 +86,6 @@ function PhoneCodeGenerator() {
                     <Select
                       isSearchable={false}
                       defaultValue={{
-                        label: '+52',
-                        value: '+52',
                         image:
                           'https://hubmine-d.s3.amazonaws.com/Flags/mexico.svg',
                       }}
