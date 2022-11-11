@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import ModalConfirmAndReturn from './helpers/ModalConfirmAndReturn';
@@ -10,6 +10,7 @@ import ImageDropzone from './helpers/ImageDropzone';
 const CreateProductForm = () => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
+  const [currencyList, setCurrencyList] = useState([]);
 
   const supplierId = localStorage.getItem('supplier_id');
 
@@ -80,6 +81,16 @@ const CreateProductForm = () => {
       setProductReload(true);
     });
   };
+
+  const getCurrencyList = () => {
+    fetch('https://dev.hubmine.mx/api/products/currencies')
+      .then((response) => response.json())
+      .then((json) => setCurrencyList(json));
+  };
+
+  useEffect(() => {
+    getCurrencyList();
+  }, []);
 
   return (
     <>
@@ -231,8 +242,14 @@ const CreateProductForm = () => {
                       message: 'El campo es requerido',
                     },
                   })}>
-                  <option value=''>Selecciona una categoria</option>
-                  <option value='1'>MXN</option>
+                  <option disabled selected>
+                    Selecciona una categoria
+                  </option>
+                  {currencyList.map((currency) => (
+                    <option key={currency.id} value={currency.id}>
+                      {currency.name}
+                    </option>
+                  ))}
                 </select>
                 {errors.currency_id && (
                   <span className='text-red-500 text-sm'>

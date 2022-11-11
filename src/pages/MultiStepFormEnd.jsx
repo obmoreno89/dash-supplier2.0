@@ -33,7 +33,7 @@ const MultiStepFormEnd = () => {
                   <Link
                     className='button-login flex justify-center items-center'
                     to='/products/list'>
-                    Ingresar al Panel de proveedores
+                    Ingresar al panel de proveedores
                   </Link>
                 </section>
               </div>

@@ -97,33 +97,38 @@ function Signup() {
               </p>
               <form onSubmit={handleSubmit(createAccount)}>
                 <div className='space-y-4'>
-                  <div className='relative'>
+                  <div className='relative '>
                     <label
                       className='block text-sm mb-1 font-semibold'
                       htmlFor='email'>
                       Nombre
                     </label>
-                    <input
-                      maxLength='35'
-                      autoComplete='off'
-                      className='form-input w-full capitalize pl-9'
-                      type='text'
-                      {...register('first_name', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[a-zA-Z]/,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />
-                    <section className='relative'>
-                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
-                        <img src={icons.user} alt='Usuario' />
-                      </figure>
-                    </section>
+                    <div className='focus-within:text-primary'>
+                      <input
+                        maxLength='35'
+                        autoComplete='off'
+                        className='form-input w-full capitalize pl-10'
+                        type='text'
+                        {...register('first_name', {
+                          required: {
+                            value: true,
+                            message: 'El campo es requerido',
+                          },
+                          pattern: {
+                            value: /[a-zA-Z]/,
+                            message: 'El formato no es correcto',
+                          },
+                        })}
+                      />
+                      <section className='relative '>
+                        <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                          <svg class='w-5 h-5 fill-current' viewBox='0 0 20 20'>
+                            <path d='M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z' />
+                            <path d='M17.08 14.15C14.29 12.29 9.73996 12.29 6.92996 14.15C5.65996 15 4.95996 16.15 4.95996 17.38C4.95996 18.61 5.65996 19.75 6.91996 20.59C8.31996 21.53 10.16 22 12 22C13.84 22 15.68 21.53 17.08 20.59C18.34 19.74 19.04 18.6 19.04 17.36C19.03 16.13 18.34 14.99 17.08 14.15Z'></path>
+                          </svg>
+                        </figure>
+                      </section>
+                    </div>
                     {errors.first_name && (
                       <span className='text-red-500 text-sm'>
                         {errors.first_name.message}
@@ -135,27 +140,32 @@ function Signup() {
                     <label className='block text-sm font-semibold mb-1'>
                       Apellidos
                     </label>
-                    <input
-                      maxLength='35'
-                      className='form-input w-full capitalize pl-9'
-                      autoComplete='off'
-                      type='text'
-                      {...register('last_name', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /[a-zA-Z]/,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />
-                    <section className='relative'>
-                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
-                        <img src={icons.user} alt='Usuario' />
-                      </figure>
-                    </section>
+                    <div className='focus-within:text-primary'>
+                      <input
+                        maxLength='35'
+                        className='form-input w-full capitalize pl-10'
+                        autoComplete='off'
+                        type='text'
+                        {...register('last_name', {
+                          required: {
+                            value: true,
+                            message: 'El campo es requerido',
+                          },
+                          pattern: {
+                            value: /[a-zA-Z]/,
+                            message: 'El formato no es correcto',
+                          },
+                        })}
+                      />
+                      <section className='relative'>
+                        <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                          <svg class='w-5 h-5 fill-current' viewBox='0 0 20 20'>
+                            <path d='M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z' />
+                            <path d='M17.08 14.15C14.29 12.29 9.73996 12.29 6.92996 14.15C5.65996 15 4.95996 16.15 4.95996 17.38C4.95996 18.61 5.65996 19.75 6.91996 20.59C8.31996 21.53 10.16 22 12 22C13.84 22 15.68 21.53 17.08 20.59C18.34 19.74 19.04 18.6 19.04 17.36C19.03 16.13 18.34 14.99 17.08 14.15Z'></path>
+                          </svg>
+                        </figure>
+                      </section>
+                    </div>
                     {errors.last_name && (
                       <span className='text-red-500 text-sm'>
                         {errors.last_name.message}
@@ -195,27 +205,31 @@ function Signup() {
                     <label className='block text-sm font-semibold mb-1'>
                       Correo electrónico
                     </label>
-                    <input
-                      maxLength='35'
-                      className='form-input w-full pl-9'
-                      autoComplete='off'
-                      type='email'
-                      {...register('email', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                          message: 'El formato no es correcto',
-                        },
-                      })}
-                    />
-                    <section className='relative'>
-                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
-                        <img src={icons.aquaEmail} alt='Email' />
-                      </figure>
-                    </section>
+                    <div className='focus-within:text-primary'>
+                      <input
+                        maxLength='35'
+                        className='form-input w-full pl-10'
+                        autoComplete='off'
+                        type='email'
+                        {...register('email', {
+                          required: {
+                            value: true,
+                            message: 'El campo es requerido',
+                          },
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                            message: 'El formato no es correcto',
+                          },
+                        })}
+                      />
+                      <section className='relative'>
+                        <figure className='absolute -top-8 inset-3 right-0 flex items-center pointer-events-none'>
+                          <svg class='w-5 h-5 fill-current' viewBox='0 0 20 20'>
+                            <path d='M15 0.5H5C2 0.5 0 2 0 5.5V12.5C0 16 2 17.5 5 17.5H15C18 17.5 20 16 20 12.5V5.5C20 2 18 0.5 15 0.5ZM15.47 6.59L12.34 9.09C11.68 9.62 10.84 9.88 10 9.88C9.16 9.88 8.31 9.62 7.66 9.09L4.53 6.59C4.21 6.33 4.16 5.85 4.41 5.53C4.67 5.21 5.14 5.15 5.46 5.41L8.59 7.91C9.35 8.52 10.64 8.52 11.4 7.91L14.53 5.41C14.85 5.15 15.33 5.2 15.58 5.53C15.84 5.85 15.79 6.33 15.47 6.59Z'></path>
+                          </svg>
+                        </figure>
+                      </section>
+                    </div>
                     {errors.email && (
                       <span className='text-red-500 text-sm'>
                         {errors.email.message}
@@ -227,39 +241,44 @@ function Signup() {
                     <label className='block text-sm font-semibold mb-1'>
                       Contraseña
                     </label>
-                    <input
-                      className='form-input w-full pl-9'
-                      type={eye ? 'text' : 'password'}
-                      autoComplete='off'
-                      {...register('password', {
-                        required: {
-                          value: true,
-                          message: 'El campo es requerido',
-                        },
-                      })}
-                    />
-                    <section className='relative'>
-                      <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
-                        <img src={icons.aquaLock} alt='Candado' />
-                      </figure>
-                      <button
-                        type='button'
-                        className='absolute inset-3 -top-9 left-auto flex items-center'>
-                        {eye ? (
-                          <img
-                            onClick={toggleEye}
-                            src={icons.openEye}
-                            alt='Ojo abierto'
-                          />
-                        ) : (
-                          <img
-                            onClick={toggleEye}
-                            src={icons.closedEye}
-                            alt='Ojo cerrado'
-                          />
-                        )}
-                      </button>
-                    </section>
+                    <div className='focus-within:text-primary'>
+                      <input
+                        className='form-input w-full pl-10'
+                        type={eye ? 'text' : 'password'}
+                        autoComplete='off'
+                        {...register('password', {
+                          required: {
+                            value: true,
+                            message: 'El campo es requerido',
+                          },
+                        })}
+                      />
+                      <section className='relative'>
+                        <figure className='absolute -top-9 inset-3 right-0 flex items-center pointer-events-none'>
+                          <svg class='w-6 h-6 fill-current' viewBox='0 0 24 24'>
+                            <path d='M18.75 8V10.1C18.31 10.04 17.81 10.01 17.25 10V8C17.25 4.85 16.36 2.75 12 2.75C7.64 2.75 6.75 4.85 6.75 8V10C6.19 10.01 5.69 10.04 5.25 10.1V8C5.25 5.1 5.95 1.25 12 1.25C18.05 1.25 18.75 5.1 18.75 8Z' />
+                            <path d='M18.75 10.1C18.31 10.04 17.81 10.01 17.25 10H6.75C6.19 10.01 5.69 10.04 5.25 10.1C2.7 10.41 2 11.66 2 15V17C2 21 3 22 7 22H17C21 22 22 21 22 17V15C22 11.66 21.3 10.41 18.75 10.1ZM8.71 16.71C8.52 16.89 8.26 17 8 17C7.87 17 7.74 16.97 7.62 16.92C7.49 16.87 7.39 16.8 7.29 16.71C7.11 16.52 7 16.26 7 16C7 15.87 7.03 15.74 7.08 15.62C7.13 15.5 7.2 15.39 7.29 15.29C7.39 15.2 7.49 15.13 7.62 15.08C7.99 14.92 8.43 15.01 8.71 15.29C8.8 15.39 8.87 15.5 8.92 15.62C8.97 15.74 9 15.87 9 16C9 16.26 8.89 16.52 8.71 16.71ZM12.92 16.38C12.87 16.5 12.8 16.61 12.71 16.71C12.52 16.89 12.26 17 12 17C11.73 17 11.48 16.89 11.29 16.71C11.2 16.61 11.13 16.5 11.08 16.38C11.03 16.26 11 16.13 11 16C11 15.73 11.11 15.48 11.29 15.29C11.66 14.92 12.33 14.92 12.71 15.29C12.89 15.48 13 15.73 13 16C13 16.13 12.97 16.26 12.92 16.38ZM16.71 16.71C16.52 16.89 16.26 17 16 17C15.74 17 15.48 16.89 15.29 16.71C15.11 16.52 15 16.27 15 16C15 15.73 15.11 15.48 15.29 15.29C15.67 14.92 16.34 14.92 16.71 15.29C16.75 15.34 16.79 15.39 16.83 15.45C16.87 15.5 16.9 15.56 16.92 15.62C16.95 15.68 16.97 15.74 16.98 15.8C16.99 15.87 17 15.94 17 16C17 16.26 16.89 16.52 16.71 16.71Z'></path>
+                          </svg>
+                        </figure>
+                        <button
+                          type='button'
+                          className='absolute inset-3 -top-9 left-auto flex items-center'>
+                          {eye ? (
+                            <img
+                              onClick={toggleEye}
+                              src={icons.openEye}
+                              alt='Ojo abierto'
+                            />
+                          ) : (
+                            <img
+                              onClick={toggleEye}
+                              src={icons.closedEye}
+                              alt='Ojo cerrado'
+                            />
+                          )}
+                        </button>
+                      </section>
+                    </div>
                     {errors.password && (
                       <span className='text-red-500 text-sm'>
                         {errors.password.message}

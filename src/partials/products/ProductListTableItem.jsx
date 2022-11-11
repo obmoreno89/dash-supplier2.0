@@ -8,10 +8,12 @@ const ProductListTableItem = (props) => {
 
   const statusColor = (status) => {
     switch (status) {
-      case 'Estado Borrador':
-        return 'bg-yellow-50 text-gray-800 font-semibold';
+      case 'Borrador':
+        return 'bg-yellow-50 text-yellow-700 font-semibold';
+      case 'Aceptado':
+        return 'bg-green-50 text-green-700 font-semibold';
       default:
-        return 'bg-slate-100 text-slate-500';
+        return 'bg-slate-50 text-gray-800 font-semibold';
     }
   };
 
@@ -92,7 +94,7 @@ const ProductListTableItem = (props) => {
                 e.stopPropagation();
                 setDangerModalOpen(true);
               }}
-              className='font-semibold text-red-400 hover:border-b-2 border-slate-500'>
+              className='font-semibold text-red-400 border-slate-500'>
               <img src={icons.trash} alt='Bote de basura' />
             </button>
             {/* {MODAL DELETE PRODUCT} */}
