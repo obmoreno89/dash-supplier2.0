@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import StateContext from '../context/StateContext';
@@ -10,7 +11,9 @@ import icons from '../images/icons';
 import Select from 'react-select';
 
 function PhoneCodeGenerator() {
+
   const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
+
 
   const {
     handleSubmit,
@@ -48,21 +51,20 @@ function PhoneCodeGenerator() {
       padding: 3,
     }),
     control: () => ({
+
       width: 90,
       display: 'flex',
+
     }),
   };
 
   return (
     <main className='bg-white'>
       <div className='relative md:flex'>
-        {/* Content */}
         <div className='md:w-1/2'>
           <div className='min-h-screen h-full flex flex-col after:flex-1'>
-            {/* Header */}
             <div className='flex-1'>
               <div className='flex items-center justify-between h-16 px-4 sm:px-6 lg:px-40'>
-                {/* Logo */}
                 <Link to='/signin' className='block'>
                   <img src={icons.logoSupplier} alt='logo hubmine' />
                 </Link>
@@ -84,6 +86,7 @@ function PhoneCodeGenerator() {
                   {/* INPUT PHONE */}
                   <div>
                     <Select
+
                       isSearchable={false}
                       defaultValue={{
                         image:
@@ -97,6 +100,7 @@ function PhoneCodeGenerator() {
                       components={{
                         IndicatorSeparator: () => null,
                       }}
+
                       options={options}
                       formatOptionLabel={(country) => (
                         <div className='flex space-x-1'>
@@ -110,6 +114,7 @@ function PhoneCodeGenerator() {
                     <input
                       onChange={setValue('number', codeCountryPhone)}
                       placeholder='2721194113'
+
                       className='form-input capitalize w-80'
                       autoComplete='off'
                       type='text'
