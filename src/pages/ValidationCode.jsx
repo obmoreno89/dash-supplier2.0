@@ -101,7 +101,7 @@ const ValidationCode = () => {
                   Hemos enviado un código a{' '}
                   <span className='text-primary font-bold'>{phoneUser}</span>
                 </h5>
-                <span className='text-red-500 font-bold'>{code}</span>
+                {/* <span className='text-red-500 font-bold'>{code}</span> */}
               </div>
               <form>
                 <div className='space-x-10 mt-5 flex justify-center items-center'>
@@ -132,7 +132,7 @@ const ValidationCode = () => {
                         onClick={() => {
                           codeGenerator(newCode);
                           setContainerChange(false);
-                          setCounter(10);
+                          setCounter(59);
                         }}
                         className='text-sm font-semibold text-primary hover:text-slate-500'>
                         Solicitar código nuevo
