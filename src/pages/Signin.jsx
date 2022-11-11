@@ -179,7 +179,7 @@ function Signin() {
                       <input
                         maxLength='35'
                         autoComplete='off'
-                        className='form-input w-full pl-9 '
+                        className='form-input w-full pl-10'
                         type='email'
                         {...register('email', {
                           required: {
@@ -214,7 +214,7 @@ function Signin() {
                     <div className='focus-within:text-primary '>
                       <input
                         maxLength='35'
-                        className='form-input w-full pl-9 '
+                        className='form-input w-full pl-10 '
                         type={eye ? 'text' : 'password'}
                         autoComplete='off'
                         {...register('password', {

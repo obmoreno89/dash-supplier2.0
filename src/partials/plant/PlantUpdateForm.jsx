@@ -374,7 +374,7 @@ const PlantUpdateForm = () => {
                   <input
                     placeholder='Dirección de la planta'
                     onChange={setValue('address', mapAddress)}
-                    className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed pl-9'
+                    className='form-input w-full disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed pl-10'
                     autoComplete='off'
                     type='text'
                     {...register('address', {
