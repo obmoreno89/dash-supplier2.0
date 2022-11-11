@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
@@ -10,7 +11,9 @@ import icons from '../images/icons';
 import Select from 'react-select';
 
 function PhoneCodeGenerator() {
-  const [codeCountryPhone, setCodeCountryPhone] = useState('');
+
+  const [codeCountryPhone, setCodeCountryPhone] = useState('+52');
+
 
   const {
     handleSubmit,
@@ -48,7 +51,10 @@ function PhoneCodeGenerator() {
       padding: 3,
     }),
     control: () => ({
-      width: 50,
+
+      width: 90,
+      display: 'flex',
+
     }),
   };
 
@@ -80,14 +86,21 @@ function PhoneCodeGenerator() {
                   {/* INPUT PHONE */}
                   <div>
                     <Select
-                      className='form-select cursor-pointer'
-                      onChange={handleCodeCuntry}
-                      placeholder='Pais'
-                      components={{
-                        DropdownIndicator: () => null,
-                        IndicatorSeparator: () => null,
+
+                      isSearchable={false}
+                      defaultValue={{
+                        image:
+                          'https://hubmine-d.s3.amazonaws.com/Flags/mexico.svg',
                       }}
                       styles={customStyles}
+                      className='form-select cursor-pointer w-[120px]'
+                      onChange={handleCodeCuntry}
+                      placeholder='Pais'
+                      required
+                      components={{
+                        IndicatorSeparator: () => null,
+                      }}
+
                       options={options}
                       formatOptionLabel={(country) => (
                         <div className='flex space-x-1'>
@@ -97,11 +110,11 @@ function PhoneCodeGenerator() {
                       )}
                     />
                   </div>
-
                   <div className='flex flex-col'>
                     <input
                       onChange={setValue('number', codeCountryPhone)}
-                      placeholder='Ej: +57-9981154131'
+                      placeholder='2721194113'
+
                       className='form-input capitalize w-80'
                       autoComplete='off'
                       type='text'

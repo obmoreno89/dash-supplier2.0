@@ -32,23 +32,23 @@ const PlantListTableItem = (props) => {
           <p className='text-center'>{props.city}</p>
         </td>
         <td className='px-6 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px'>
-          <div className='flex justify-center items-center space-x-1'>
+          <div className='flex justify-center items-center space-x-2'>
             <Link
               to={`/plant/update/${props.id}`}
-              className='font-semibold text-slate-600 hover:border-b-2 border-slate-500'>
-              <img className='w-32' src={icons.pencil} alt='Lapiz' />
+              className='font-semibold text-slate-600  border-slate-500'>
+              <img className='w-42' src={icons.pencil} alt='Lapiz' />
             </Link>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setDangerModalOpen(true);
               }}
-              className='font-semibold text-red-400 hover:border-b-2 border-slate-500'>
-              <img className='w-32' src={icons.trash} alt='bote basura' />
+              className='font-semibold text-red-400 border-slate-500'>
+              <img className='w-42' src={icons.trash} alt='bote basura' />
             </button>
-            {/* {MODAL DELETE PLANT} */}
-            <ModalPlantDelete id={props.id} />
           </div>
+          {/* {MODAL DELETE PLANT} */}
+          <ModalPlantDelete id={props.id} />
         </td>
       </tr>
     </>

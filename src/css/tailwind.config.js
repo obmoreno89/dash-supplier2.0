@@ -57,6 +57,9 @@ module.exports = {
       zIndex: {
         60: '60',
       },
+      variants: {
+        textColor: ['responsive', 'hover', 'focus', 'focus-within'],
+      },
     },
   },
   plugins: [

@@ -199,13 +199,13 @@ const MultiStepForm = () => {
                         <h1 className='text-3xl text-slate-800 font-bold '>
                           Datos fiscales
                         </h1>
-                        <p>¿Con qué nombre es conocida tu empresa?</p>
+                        <p>Ingresa los datos fiscales de tu compañía</p>
                       </article>
                       <div className='space-y-4 mb-8'>
                         {/* SOCIAL REASON */}
                         <div>
                           <label className='block text-sm font-semibold mb-1'>
-                            Nombre legal de la empresa
+                            Razón social
                             <span className='text-rose-500'>*</span>
                           </label>
                           <input
@@ -233,10 +233,10 @@ const MultiStepForm = () => {
                         {/* INPUT NIF */}
                         <div>
                           <label className='block text-sm font-semibold mb-1'>
-                            RUT<span className='text-rose-500'>*</span>
+                            RFC<span className='text-rose-500'>*</span>
                           </label>
                           <input
-                            maxLength='11'
+                            maxLength='13'
                             className='uppercase form-input w-full '
                             autoComplete='off'
                             type='text'
@@ -250,8 +250,8 @@ const MultiStepForm = () => {
                                 message: 'El formato no es correcto',
                               },
                               minLength: {
-                                value: 11,
-                                message: 'El RUT debe de tener 11 caracteres',
+                                value: 13,
+                                message: 'El RFC debe de tener 13 caracteres',
                               },
                             })}
                           />{' '}
@@ -294,7 +294,7 @@ const MultiStepForm = () => {
                         <h1 className='text-3xl text-slate-800 font-bold '>
                           Datos de contacto comercial
                         </h1>
-                        <p>¿Con qué nombre es conocida tu empresa?</p>
+                        <p>Ingresa los datos de contacto</p>
                       </article>
                       <div className='space-y-4 mb-8'>
                         {/* INPUT PHONE */}
