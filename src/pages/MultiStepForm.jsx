@@ -205,7 +205,7 @@ const MultiStepForm = () => {
                         {/* SOCIAL REASON */}
                         <div>
                           <label className='block text-sm font-semibold mb-1'>
-                            Razón social
+                            Nombre legal de la empresa
                             <span className='text-rose-500'>*</span>
                           </label>
                           <input
@@ -233,10 +233,10 @@ const MultiStepForm = () => {
                         {/* INPUT NIF */}
                         <div>
                           <label className='block text-sm font-semibold mb-1'>
-                            RFC<span className='text-rose-500'>*</span>
+                            RUT<span className='text-rose-500'>*</span>
                           </label>
                           <input
-                            maxLength='13'
+                            maxLength='11'
                             className='uppercase form-input w-full '
                             autoComplete='off'
                             type='text'
@@ -250,8 +250,8 @@ const MultiStepForm = () => {
                                 message: 'El formato no es correcto',
                               },
                               minLength: {
-                                value: 13,
-                                message: 'El RFC debe de tener 13 caracteres',
+                                value: 11,
+                                message: 'El RUT debe de tener 11 caracteres',
                               },
                             })}
                           />{' '}

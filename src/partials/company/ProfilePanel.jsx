@@ -195,7 +195,8 @@ function ProfilePanel() {
               <div className='sm:w-1/3 lg:w-1/2'>
                 {/* SOCIAL REASON */}
                 <label className='block text-sm font-semibold mb-1'>
-                  Razón social <span className='text-gray-700'>*</span>
+                  Nombre legal de la empresa{' '}
+                  <span className='text-gray-700'>*</span>
                 </label>
                 <input
                   maxLength='30'
@@ -222,10 +223,10 @@ function ProfilePanel() {
               {/* INPUT RFC */}
               <div className='sm:w-1/3 lg:w-1/2'>
                 <label className='block text-sm font-semibold mb-1'>
-                  RFC <span className='text-gray-700'>*</span>
+                  RUT <span className='text-gray-700'>*</span>
                 </label>
                 <input
-                  maxLength='13'
+                  maxLength='11'
                   className='uppercase form-input w-full '
                   autoComplete='off'
                   type='text'
@@ -239,8 +240,8 @@ function ProfilePanel() {
                       message: 'El formato no es correcto',
                     },
                     minLength: {
-                      value: 13,
-                      message: 'El RFC debe de tener 13 caracteres',
+                      value: 11,
+                      message: 'El RUT debe de tener 11 caracteres',
                     },
                   })}
                 />{' '}
