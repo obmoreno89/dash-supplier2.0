@@ -24,7 +24,7 @@ const MultiStepFormEnd = () => {
                 <section className='flex flex-col justify-center items-center'>
                   <img src={icons.check} alt='Palomita simbolo' />
                   <h1 className='text-3xl text-slate-800 font-bold mb-3 mt-6 text-center'>
-                    ¡Ya estas registradro en Hubmine Supplier System!
+                    ¡Ya estas registrado en Hubmine Supplier System!
                     <p className='font-normal text-gray-500 text-sm mt-3'>
                       Ya puedes crear tus plantas de recolección, cargar y ver
                       el stock de tus productos y mucho más
